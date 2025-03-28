@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 
 //        req.setAttribute("categories",categories);
 //        req.setAttribute("books",books);
-        req.getRequestDispatcher("./views/login.jsp").forward(req, resp);
+        req.getRequestDispatcher("/views/auth/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -36,16 +36,15 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("psw");
         String SQL_GET_USER = "SELECT * FROM users WHERE name = ? AND password = ?";
         try (Connection connection = DBConnectionPool.getConnection();
-
              // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_GET_USER);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_GET_USER)) {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 HttpSession session = req.getSession();
                 System.out.println(rs.getString("role"));
                 session.setAttribute("userRole", rs.getString("role"));
