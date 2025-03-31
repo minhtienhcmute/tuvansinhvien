@@ -1,5 +1,8 @@
-package servlets;
+package servlets.auth;
 
+
+import auth.GooglePoJo;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -7,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import utils.DBConnectionPool;
+import utils.GoogleUtils;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,19 +18,35 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet({"/loginssss"})
+@WebServlet({"/auth/callback"})
 
-public class LoginServlet extends HttpServlet {
+public class LoginGoogleServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    public LoginGoogleServlet() {
+        super();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        List<Category> categories = this.categoryService.getAll();
-//        int categoryId = Integer.parseInt(req.getParameter("category_id")) ;
+        String code = req.getParameter("code");
+        if (code == null || code.isEmpty()) {
+            RequestDispatcher dis = req.getRequestDispatcher("/views/auth/login.jsp");
+            dis.forward(req, resp);
+        } else {
+            String accessToken = GoogleUtils.getToken(code);
+            GooglePoJo googlePojo = GoogleUtils.getUserInfo(accessToken);
 
-//        List <Book> books = this.bookService.getByCategory(categoryId);
+            System.out.println(googlePojo);
 
-//        req.setAttribute("categories",categories);
-//        req.setAttribute("books",books);
-        req.getRequestDispatcher("/views/auth/login.jsp").forward(req, resp);
+            req.setAttribute("id", googlePojo.getId());
+            req.setAttribute("name", googlePojo.getName());
+            req.setAttribute("email", googlePojo.getEmail());
+            req.setAttribute("pojo", googlePojo);
+            RequestDispatcher dis = req.getRequestDispatcher("/views/layouts/client.jsp");
+            dis.forward(req, resp);
+        }
+//        req.getRequestDispatcher("/views/auth/login.jsp").forward(req, resp);
     }
 
     @Override

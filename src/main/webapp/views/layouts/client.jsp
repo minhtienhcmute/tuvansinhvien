@@ -1,3 +1,4 @@
+<%@ page import="auth.GooglePoJo" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -11,9 +12,32 @@
 <body>
 <h1><%= "Hello Client!" %>
 </h1>
-<br/>
-<span class="text-success bg-secondary" >Hello Servlet</span>
 
+
+<br/>
+<span class="text-success">Hello Servlet</span>
+<%GooglePoJo gp = (GooglePoJo) request.getAttribute("pojo"); %>
+<div style="width:400px;margin:auto;padding-top:30px;">
+    <table class="table table-bordered">
+        <tr>
+            <td>User ID</td>
+            <td><%=gp.getId()%>
+            </td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td><%=gp.getName()%>
+            </td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><%=request.getAttribute("name")%>
+            </td>
+        </tr>
+
+
+    </table>
+</div>
 <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
