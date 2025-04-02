@@ -14,7 +14,7 @@ public class GoogleUtils {
     private final static String GOOGLE_REDIRECT_URI = "http://localhost:8080/_03_final_project_war_exploded/auth/callback";
     private final static String GOOGLE_GRANT_TYPE = "authorization_code";
     private final static String GOOGLE_LINK_GET_TOKEN = "https://accounts.google.com/o/oauth2/token";
-    private final static String GOOGLE_LINK_GET_USER_INFO = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=";
+    private final static String GOOGLE_LINK_GET_USER_INFO = "https://www.googleapis.com/oauth2/v3/userinfo?access_token=";
 
     private GoogleUtils() {
 

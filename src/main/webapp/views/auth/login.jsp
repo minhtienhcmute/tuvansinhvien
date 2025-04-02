@@ -23,7 +23,7 @@
     <%--    </div>--%>
     <%--    <div class="g-signin2" data-onsuccess="onSignIn"></div>--%>
 
-    <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/_03_final_project_war_exploded/auth/callback&response_type=code&client_id=1092313228817-qhcl8pag3fgd19hfck31ailnc08ipncm.apps.googleusercontent.com&approval_prompt=force">Login
+    <a href="https://accounts.google.com/o/oauth2/auth?scope=openid profile email&redirect_uri=http://localhost:8080/_03_final_project_war_exploded/auth/callback&response_type=code&client_id=1092313228817-qhcl8pag3fgd19hfck31ailnc08ipncm.apps.googleusercontent.com&approval_prompt=force">Login
         With Gmail</a>
     <div class="container">
         <label for="uname"><b>Username</b></label>
