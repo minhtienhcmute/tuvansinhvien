@@ -1,6 +1,6 @@
 package models;
 
-public class Category {
+public class Department {
     private int id;
     private String name;
     private String description;
@@ -8,10 +8,7 @@ public class Category {
     private String updated_at;
     private String deleted_at;
 
-    public Category() {
-    }
-
-    public Category(int id, String name, String description, String created_at, String updated_at, String deleted_at) {
+    public Department(int id, String name, String description, String created_at, String updated_at, String deleted_at) {
         this.id = id;
         this.name = name;
         this.description = description;

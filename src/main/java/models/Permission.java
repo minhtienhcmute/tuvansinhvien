@@ -1,20 +1,22 @@
 package models;
 
-public class Category {
+public class Permission {
     private int id;
-    private String name;
-    private String description;
+    private String code;
+    private String module;
+    private String action;
     private String created_at;
     private String updated_at;
     private String deleted_at;
 
-    public Category() {
+    public Permission() {
     }
 
-    public Category(int id, String name, String description, String created_at, String updated_at, String deleted_at) {
+    public Permission(int id, String code, String module, String action, String created_at, String updated_at, String deleted_at) {
         this.id = id;
-        this.name = name;
-        this.description = description;
+        this.code = code;
+        this.module = module;
+        this.action = action;
         this.created_at = created_at;
         this.updated_at = updated_at;
         this.deleted_at = deleted_at;
@@ -24,12 +26,16 @@ public class Category {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setModule(String module) {
+        this.module = module;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 
     public void setCreated_at(String created_at) {
@@ -48,12 +54,16 @@ public class Category {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getCode() {
+        return code;
     }
 
-    public String getDescription() {
-        return description;
+    public String getModule() {
+        return module;
+    }
+
+    public String getAction() {
+        return action;
     }
 
     public String getCreated_at() {

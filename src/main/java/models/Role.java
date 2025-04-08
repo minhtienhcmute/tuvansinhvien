@@ -1,20 +1,15 @@
 package models;
 
-public class Category {
+public class Role {
     private int id;
-    private String name;
-    private String description;
+    private int name;
     private String created_at;
     private String updated_at;
     private String deleted_at;
 
-    public Category() {
-    }
-
-    public Category(int id, String name, String description, String created_at, String updated_at, String deleted_at) {
+    public Role(int id, int name, String created_at, String updated_at, String deleted_at) {
         this.id = id;
         this.name = name;
-        this.description = description;
         this.created_at = created_at;
         this.updated_at = updated_at;
         this.deleted_at = deleted_at;
@@ -24,12 +19,8 @@ public class Category {
         this.id = id;
     }
 
-    public void setName(String name) {
+    public void setName(int name) {
         this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public void setCreated_at(String created_at) {
@@ -48,12 +39,8 @@ public class Category {
         return id;
     }
 
-    public String getName() {
+    public int getName() {
         return name;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public String getCreated_at() {
@@ -67,4 +54,6 @@ public class Category {
     public String getDeleted_at() {
         return deleted_at;
     }
+
+
 }
