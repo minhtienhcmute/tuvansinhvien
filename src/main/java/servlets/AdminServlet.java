@@ -1,12 +1,13 @@
 package servlets;
 
+import config.MenuConfig;
+import config.MenuItem;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.Book;
-import models.Category;
 import repositoriesImpl.BookRepositoryImpl;
 import repositoriesImpl.CategoryRepositoryImpl;
 import services.IBookServiceImpl;
@@ -21,15 +22,21 @@ import java.util.List;
 public class AdminServlet extends HttpServlet {
     private ICategoryServiceImpl categoryService;
     private IBookService bookService;
+    private MenuConfig menuConfig;
+
     public void init() throws ServletException {
         this.categoryService = new ICategoryServiceImpl(new CategoryRepositoryImpl());
         this.bookService = new IBookServiceImpl(new BookRepositoryImpl());
 
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Book> testGetData = this.bookService.getAll();
-        System.out.println(testGetData);
+        List<MenuItem> menus = MenuConfig.getMenus();
+
+        req.setAttribute("menus", menus);
+        System.out.println(menus);
         req.getRequestDispatcher("/views/layouts/admin.jsp").forward(req, resp);
 
 
@@ -74,15 +81,17 @@ public class AdminServlet extends HttpServlet {
 
 
     }
+
     protected void insertUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
 //        String email = req.getParameter("email");
 //        String country = request.getParameter("country");
 //        User newUser = new User(name, email, country);
 //        userDAO.insertUser(newUser);
-        this.categoryService.add(new Category(name));
+//        this.categoryService.add(new Category(name));
         resp.sendRedirect("list");
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

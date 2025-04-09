@@ -10,6 +10,7 @@
 <%--    <title>Title</title>--%>
 <%--</head>--%>
 <%--<body>--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="startbar d-print-none">
     <!--start brand-->
     <div class="brand">
@@ -30,6 +31,34 @@
             <div class="d-flex align-items-start flex-column w-100">
                 <!-- Navigation -->
                 <ul class="navbar-nav mb-auto w-100">
+
+                    <c:forEach var="group" items="${menus}">
+
+                        <c:if test="${not empty group.getGroupTitle()}">
+                            <li class="menu-label mt-2">
+                                <span>${group.getGroupTitle()}</span>
+                            </li>
+                        </c:if>
+                        <c:choose>
+                            <c:when test="${not empty group.getChildren()}">
+                                <c:forEach var="item" items="${group.getChildren()}">
+                                    <c:set var="menu" value="${item}" scope="request"/>
+                                    <jsp:include page="/views/admin/menu-item.jsp"/>
+
+                                </c:forEach>
+                            </c:when>
+
+                            <c:otherwise>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="apps-contact-list.html">
+                                        <i class="${group.getIcon()} menu-icon"></i>
+                                        <span>${group.getTitle()}</span>
+                                    </a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+
+                    </c:forEach>
                     <li class="menu-label mt-2">
                         <span>Navigation</span>
                     </li>
@@ -81,7 +110,9 @@
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div>
-                    </li><!--end nav-item-->
+                    </li>
+
+                    <!--end nav-item-->
                     <li class="nav-item">
                         <a class="nav-link" href="#sidebarProjects" data-bs-toggle="collapse" role="button"
                            aria-expanded="false" aria-controls="sidebarProjects">
