@@ -32,31 +32,24 @@
                 <!-- Navigation -->
                 <ul class="navbar-nav mb-auto w-100">
 
-                    <c:forEach var="group" items="${menus}">
-
-                        <c:if test="${not empty group.getGroupTitle()}">
-                            <li class="menu-label mt-2">
-                                <span>${group.getGroupTitle()}</span>
-                            </li>
-                        </c:if>
+                    <c:forEach var="menuItem" items="${menus}">
                         <c:choose>
-                            <c:when test="${not empty group.getChildren()}">
-                                <c:forEach var="item" items="${group.getChildren()}">
-                                    <c:set var="menu" value="${item}" scope="request"/>
+                            <c:when test="${not empty menuItem.getGroupTitle()}">
+                                <li class="menu-label mt-2">
+                                    <span>${menuItem.getGroupTitle()}</span>
+                                </li>
+                                <c:forEach var="child" items="${menuItem.getChildren()}">
+                                    <c:set var="menu" value="${child}" scope="request"/>
                                     <jsp:include page="/views/admin/menu-item.jsp"/>
-
                                 </c:forEach>
                             </c:when>
 
                             <c:otherwise>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="apps-contact-list.html">
-                                        <i class="${group.getIcon()} menu-icon"></i>
-                                        <span>${group.getTitle()}</span>
-                                    </a>
-                                </li>
+                                <c:set var="menu" value="${menuItem}" scope="request"/>
+                                <jsp:include page="/views/admin/menu-item.jsp"/>
                             </c:otherwise>
                         </c:choose>
+
 
                     </c:forEach>
                     <li class="menu-label mt-2">
@@ -83,7 +76,7 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#sidebarEcommerce" data-bs-toggle="collapse" role="button"
+                        <a class="nav-link" href="sidebarEcommerce" data-bs-toggle="collapse" role="button"
                            aria-expanded="false" aria-controls="sidebarEcommerce">
                             <i class="iconoir-cart-alt menu-icon"></i>
                             <span>Ecommerce</span>
@@ -119,7 +112,7 @@
                             <i class="iconoir-asana menu-icon"></i>
                             <span>Projects</span>
                         </a>
-                        <div class="collapse " id="sidebarProjects">
+                        <div class="collapse" id="sidebarProjects">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a href="projects-overview.html" class="nav-link ">Overview</a>

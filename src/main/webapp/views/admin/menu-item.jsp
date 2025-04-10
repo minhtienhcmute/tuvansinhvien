@@ -15,26 +15,36 @@
 %>
 
 <li class="nav-item">
-    <a class="nav-link ${hasChildren ? "" : "single-menu"}"
-       href="${hasChildren ? '#' + collapseId : menu.getUrl()}"
-            <c:if test="${hasChildren}">
-                data-bs-toggle="collapse"
-                role="button"
-                aria-expanded="false"
-                aria-controls="${collapseId}"
-            </c:if>>
-        <i class="${menu.getIcon()} menu-icon"></i>
-        <span>${menu.getTitle()}</span>
-    </a>
+    <c:choose>
+        <c:when test="${empty menu.getChildren()}">
+            <a class="nav-link" href="${pageContext.request.contextPath}${menu.getUrl()}">
+                <i class="${menu.getIcon()} menu-icon"></i>
+                <span>${menu.getTitle()}</span>
+            </a>
+        </c:when>
+        <c:otherwise>
+            <a class="nav-link" href="#${menu.getUrl()}"
+               data-bs-toggle="collapse" role="button"
+               aria-expanded="false"
+               aria-controls="${menu.getUrl()}"
+            >
+                <i class="${menu.getIcon()} menu-icon"></i>
+                <span>${menu.getTitle()}</span>
+            </a>
 
-    <%--    <c:if test="${hasChildren}">--%>
-    <%--        <div class="collapse" id="${collapseId}">--%>
-    <%--            <ul class="nav flex-column">--%>
-    <%--                <c:forEach var="child" items="${menu.getChildren()}">--%>
-    <%--                    <c:set var="menu" value="${child}"/>--%>
-    <%--                    <jsp:include page="menu-item.jsp"/>--%>
-    <%--                </c:forEach>--%>
-    <%--            </ul>--%>
-    <%--        </div>--%>
-    <%--    </c:if>--%>
+            <div class="collapse" id="${menu.getUrl()}">
+                <ul class="nav flex-column">
+                    <c:forEach var="subMenu" items="${menu.getChildren()}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/${subMenu.getUrl()}">
+                                    ${subMenu.getTitle()}
+                            </a>
+                        </li>
+                    </c:forEach>
+                </ul><!--end nav-->
+            </div>
+        </c:otherwise>
+    </c:choose>
 </li>
+
+
