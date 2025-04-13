@@ -22,15 +22,16 @@ public class BookRepositoryImpl implements IBookRepository {
     private static final String UPDATE_BOOKS_SQL = "update book set name = ?,status= ?, category_id =? where id = ?;";
     private static final String GET_BY_CATEGORY_ID = "select * FROM book where category_id = ?;";
     Connection conn = null;
+
     @Override
     public List<Book> getByName(String name) {
 
-        List < Book > books = new ArrayList<>();
+        List<Book> books = new ArrayList<>();
         // Step 1: Establishing a Connection
         try (Connection connection = DBConnectionPool.getConnection();
 
              // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BOOKS_NAME);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BOOKS_NAME)) {
             preparedStatement.setString(1, name);
 
             System.out.println(preparedStatement);
@@ -43,7 +44,7 @@ public class BookRepositoryImpl implements IBookRepository {
                 String book_name = rs.getString("name");
                 Boolean status = rs.getBoolean("status");
                 int category_id = rs.getInt("category_id");
-                books.add( new Book(book_id, book_name, status, category_id));
+                books.add(new Book(book_id, book_name, status, category_id));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -54,12 +55,12 @@ public class BookRepositoryImpl implements IBookRepository {
 
     @Override
     public List<Book> getByCategory(int categoryId) {
-        List < Book > books = new ArrayList<>();
+        List<Book> books = new ArrayList<>();
         // Step 1: Establishing a Connection
         try (Connection connection = DBConnectionPool.getConnection();
 
              // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_CATEGORY_ID);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_CATEGORY_ID)) {
             preparedStatement.setInt(1, categoryId);
 
             System.out.println(preparedStatement);
@@ -72,7 +73,7 @@ public class BookRepositoryImpl implements IBookRepository {
                 String book_name = rs.getString("name");
                 Boolean status = rs.getBoolean("status");
                 int category_id = rs.getInt("category_id");
-                books.add( new Book(book_id, book_name, status, category_id));
+                books.add(new Book(book_id, book_name, status, category_id));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -82,22 +83,23 @@ public class BookRepositoryImpl implements IBookRepository {
     }
 
     @Override
-    public void add(Book item) {
-        try(Connection conn= DBConnectionPool.getConnection();PreparedStatement ps = conn.prepareStatement(INSERT_BOOK_SQL)){
+    public int add(Book item) {
+        try (Connection conn = DBConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(INSERT_BOOK_SQL)) {
             ps.setString(1, item.getName());
 
             ps.setBoolean(2, item.getStatus());
             ps.setInt(3, item.getCategory_id());
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             DBConnectionPool.closeConnection(conn);
         }
+        return 0;
     }
 
     @Override
     public void update(Book item) {
-        try(Connection conn= DBConnectionPool.getConnection();PreparedStatement ps = conn.prepareStatement(UPDATE_BOOKS_SQL)){
+        try (Connection conn = DBConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(UPDATE_BOOKS_SQL)) {
             ps.setString(1, item.getName());
 
             ps.setBoolean(2, item.getStatus());
@@ -105,19 +107,19 @@ public class BookRepositoryImpl implements IBookRepository {
             ps.setInt(4, item.getId());
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             DBConnectionPool.closeConnection(conn);
         }
     }
 
     @Override
     public void delete(Book item) {
-        try(Connection conn= DBConnectionPool.getConnection();PreparedStatement ps = conn.prepareStatement(DELETE_BOOKS_SQL)){
+        try (Connection conn = DBConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(DELETE_BOOKS_SQL)) {
             ps.setString(1, item.getName());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             DBConnectionPool.closeConnection(conn);
         }
     }
@@ -129,7 +131,7 @@ public class BookRepositoryImpl implements IBookRepository {
         // Step 1: Establishing a Connection
         try (Connection connection = DBConnectionPool.getConnection();
              // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BOOK_ID);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BOOK_ID)) {
             preparedStatement.setInt(1, id);
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -145,7 +147,7 @@ public class BookRepositoryImpl implements IBookRepository {
             }
         } catch (SQLException e) {
             printSQLException(e);
-        }finally {
+        } finally {
             DBConnectionPool.closeConnection(conn);
         }
         return book;
@@ -154,12 +156,12 @@ public class BookRepositoryImpl implements IBookRepository {
     @Override
     public List<Book> getAll() {
         // using try-with-resources to avoid closing resources (boiler plate code)
-        List < Book > books = new ArrayList<>();
+        List<Book> books = new ArrayList<>();
         // Step 1: Establishing a Connection
         try (Connection connection = DBConnectionPool.getConnection();
 
              // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_BOOKS);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_BOOKS)) {
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
@@ -170,15 +172,16 @@ public class BookRepositoryImpl implements IBookRepository {
                 String name = rs.getString("name");
                 Boolean status = rs.getBoolean("status");
                 int category_id = rs.getInt("category_id");
-                books.add( new Book(book_id, name, status, category_id));
+                books.add(new Book(book_id, name, status, category_id));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
         return books;
     }
+
     private void printSQLException(SQLException ex) {
-        for (Throwable e: ex) {
+        for (Throwable e : ex) {
             if (e instanceof SQLException) {
                 e.printStackTrace(System.err);
                 System.err.println("SQLState: " + ((SQLException) e).getSQLState());

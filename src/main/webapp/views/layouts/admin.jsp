@@ -11,12 +11,17 @@
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/favicon.ico">
+    <%--    <link rel="shortcut icon" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">--%>
 
-
+    <link href="${pageContext.request.contextPath}/assets/libs/simple-datatables/style.css" rel="stylesheet"
+          type="text/css"/>
     <!-- App css -->
     <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="${pageContext.request.contextPath}/assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
     <link href="${pageContext.request.contextPath}/assets/css/app.min.css" rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
     <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css"/>--%>
 </head>
 <body>
@@ -52,13 +57,13 @@
                         <img src="assets/images/flags/us_flag.jpg" alt="" class="thumb-sm rounded-circle">
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#"><img src="assets/images/flags/us_flag.jpg" alt=""
+                        <a class="dropdown-item" href="#"><img src="/assets/images/flags/us_flag.jpg" alt=""
                                                                height="15" class="me-2">English</a>
-                        <a class="dropdown-item" href="#"><img src="assets/images/flags/spain_flag.jpg" alt=""
+                        <a class="dropdown-item" href="#"><img src="/assets/images/flags/spain_flag.jpg" alt=""
                                                                height="15" class="me-2">Spanish</a>
-                        <a class="dropdown-item" href="#"><img src="assets/images/flags/germany_flag.jpg" alt=""
+                        <a class="dropdown-item" href="#"><img src="/assets/images/flags/germany_flag.jpg" alt=""
                                                                height="15" class="me-2">German</a>
-                        <a class="dropdown-item" href="#"><img src="assets/images/flags/french_flag.jpg" alt=""
+                        <a class="dropdown-item" href="#"><img src="/images/flags/french_flag.jpg" alt=""
                                                                height="15" class="me-2">French</a>
                     </div>
                 </li><!--end topbar-language-->
@@ -309,14 +314,104 @@
     </div>
 </div>
 <%@include file="/views/admin/sidebar.jsp" %>
+<div class="page-wrapper">
 
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
+    <div class="page-content">
+        <div class="container-fluid">
+            <c:choose>
+                <c:when test="${not empty contentPage}">
+                    <jsp:include page="${contentPage}"/>
+                </c:when>
+                <c:otherwise>
+                    <%-- Nếu không truyền gì thì mặc định include trang welcome.jsp --%>
+                    <jsp:include page="/views/admin/menu-item.jsp"/>
+                </c:otherwise>
+            </c:choose>
+        </div>
+        <!--Start Rightbar-->
+        <!--Start Rightbar/offcanvas-->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="Appearance" aria-labelledby="AppearanceLabel">
+            <div class="offcanvas-header border-bottom justify-content-between">
+                <h5 class="m-0 font-14" id="AppearanceLabel">Appearance</h5>
+                <button type="button" class="btn-close text-reset p-0 m-0 align-self-center"
+                        data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h6>Account Settings</h6>
+                <div class="p-2 text-start mt-3">
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="settings-switch1">
+                        <label class="form-check-label" for="settings-switch1">Auto updates</label>
+                    </div><!--end form-switch-->
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="settings-switch2" checked>
+                        <label class="form-check-label" for="settings-switch2">Location Permission</label>
+                    </div><!--end form-switch-->
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="settings-switch3">
+                        <label class="form-check-label" for="settings-switch3">Show offline Contacts</label>
+                    </div><!--end form-switch-->
+                </div><!--end /div-->
+                <h6>General Settings</h6>
+                <div class="p-2 text-start mt-3">
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="settings-switch4">
+                        <label class="form-check-label" for="settings-switch4">Show me Online</label>
+                    </div><!--end form-switch-->
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="settings-switch5" checked>
+                        <label class="form-check-label" for="settings-switch5">Status visible to all</label>
+                    </div><!--end form-switch-->
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="settings-switch6">
+                        <label class="form-check-label" for="settings-switch6">Notifications Popup</label>
+                    </div><!--end form-switch-->
+                </div><!--end /div-->
+            </div><!--end offcanvas-body-->
+        </div>
+        <!--end Rightbar/offcanvas-->
+        <!--end Rightbar-->
+        <!--Start Footer-->
+        <footer class="footer text-center text-sm-start d-print-none">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mb-0 border-bottom-0 rounded-bottom-0">
+                            <div class="card-body">
+                                <p class="text-muted mb-0">
+                                    ©
+                                    <script> document.write(new Date().getFullYear()) </script>
+                                    Dastone
+                                    <span class="text-muted d-none d-sm-inline-block float-end">
+                                            Design with
+                                            <i class="iconoir-heart-solid text-danger align-middle"></i>
+                                            by Mannatthemes</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<%--<script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>--%>
+
+
+<%--<script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>--%>
+<%--<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>--%>
 <script src="${pageContext.request.contextPath}/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/libs/simplebar/simplebar.min.js"></script>
+
+
+<script src="${pageContext.request.contextPath}/assets/libs/simple-datatables/umd/simple-datatables.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/pages/datatable.init.js"></script>
 
 <script src="${pageContext.request.contextPath}/assets/libs/apexcharts/apexcharts.min.js"></script>
 <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/pages/index.init.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/app.js"></script>
+
+
 </body>
 </html>

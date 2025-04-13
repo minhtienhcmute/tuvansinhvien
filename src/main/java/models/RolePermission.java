@@ -12,8 +12,17 @@ public class RolePermission {
         this.permission_id = permission_id;
     }
 
+    public RolePermission(int role_id, int permission_id) {
+        this.role_id = role_id;
+        this.permission_id = permission_id;
+    }
+
     public int getRoleId() {
         return role_id;
+    }
+
+    public RolePermission(int role_id) {
+        this.role_id = role_id;
     }
 
     public int getPermissionId() {

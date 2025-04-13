@@ -20,14 +20,14 @@ public class MenuConfig {
         )));
         menus.add(new MenuItem("Tư vấn",
                 Arrays.asList(
-                        new MenuItem("iconoir-report-columns", "Quản lý danh mục câu hỏi", 1, "/question"),
-                        new MenuItem("iconoir-building", "Quản lý phòng ban", 2, "/department")
+                        new MenuItem("iconoir-report-columns", "Quản lý danh mục câu hỏi", 1, "/admin/question"),
+                        new MenuItem("iconoir-building", "Quản lý phòng ban", 2, "/admin/department")
                 ))
         );
 
         menus.add(new MenuItem("Người dùng & Phân quyền", Arrays.asList(
-                new MenuItem("iconoir-user", "Quản lý người dùng", 1, "/user"),
-                new MenuItem("iconoir-lock", "Quản lý phân quyền", 2, "/role")
+                new MenuItem("iconoir-user", "Quản lý người dùng", 1, "/admin/user"),
+                new MenuItem("iconoir-lock", "Quản lý phân quyền", 2, "/admin/role")
         )));
 
 

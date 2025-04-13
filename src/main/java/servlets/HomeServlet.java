@@ -13,6 +13,7 @@ import services.ICategoryServiceImpl;
 import servicesImpl.IBookService;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet({""})
@@ -34,7 +35,11 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Category> testGetData = this.categoryService.getAll();
+        try {
+            List<Category> testGetData = this.categoryService.getAll();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 //        System.out.println(testGetData);
         req.getRequestDispatcher("/views/auth/login.jsp").forward(req, resp);
 

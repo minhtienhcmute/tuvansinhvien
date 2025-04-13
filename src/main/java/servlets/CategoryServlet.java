@@ -1,13 +1,11 @@
 package servlets;
 
 import config.MenuConfig;
-import config.MenuItem;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.Book;
 import repositoriesImpl.BookRepositoryImpl;
 import repositoriesImpl.CategoryRepositoryImpl;
 import services.IBookServiceImpl;
@@ -15,12 +13,10 @@ import services.ICategoryServiceImpl;
 import servicesImpl.IBookService;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
 
-@WebServlet({"/admin"})
+@WebServlet({"/admin/category"})
 
-public class AdminServlet extends HttpServlet {
+public class CategoryServlet extends HttpServlet {
     private ICategoryServiceImpl categoryService;
     private IBookService bookService;
     private MenuConfig menuConfig;
@@ -32,58 +28,11 @@ public class AdminServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            List<Book> testGetData = this.bookService.getAll();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        List<MenuItem> menus = MenuConfig.getMenus();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        req.setAttribute("menus", menus);
-        System.out.println(menus);
-        req.getRequestDispatcher("/views/layouts/admin.jsp").forward(req, resp);
-
-
-//        String act =req.getParameter("act") ;
-//            if(act!= null && act.equals("add")){
-//                req.getRequestDispatcher("./views/add-form.jsp").forward(req, resp);
-//            }
-//            if(act.equals("edit")){
-//             int id = Integer.parseInt(req.getParameter("id"));
-//            Category category = this.categoryService.getById(id);
-//            req.setAttribute("category", category);
-//            req.getRequestDispatcher("./views/add-form.jsp").forward(req, resp);
-//            }
-
-//        String action = req.getServletPath();
-
-//        try {
-//            switch (action) {
-//                case "/new":
-//                    bookService.add(new Book());
-//                    req.getRequestDispatcher("./views/add-form.jsp").forward(req, resp);
-//                    break;
-//                case "/insert":
-//                    insertUser(req, resp);
-//                    break;
-//                case "/delete":
-//                    deleteUser(request, response);
-//                    break;
-//                case "/edit":
-//                    showEditForm(request, response);
-//                    break;
-//                case "/update":
-//                    updateUser(request, response);
-//                    break;
-//                default:
-//
-//                    break;
-//            }
-//        } catch (SQLException ex) {
-//            throw new ServletException(ex);
-//        }
-
+        request.setAttribute("contentPage", "/views/admin/category/index.jsp");
+        request.setAttribute("view", "/views/admin/category/view-list.jsp");
+        request.getRequestDispatcher("/views/layouts/admin.jsp").forward(request, response);
 
     }
 

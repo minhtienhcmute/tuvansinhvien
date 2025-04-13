@@ -114,10 +114,27 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hethongtuvansv.permissions: ~0 rows (approximately)
+-- Dumping data for table hethongtuvansv.permissions: ~16 rows (approximately)
 DELETE FROM `permissions`;
+INSERT INTO `permissions` (`id`, `code`, `module`, `action`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'category.view', 'category', 'view', '2025-04-12 03:51:20', '2025-04-12 14:25:54', NULL),
+	(2, 'category.add', 'category', 'add', '2025-04-12 03:51:20', '2025-04-12 14:26:04', NULL),
+	(3, 'category.edit', 'category', 'edit', '2025-04-12 03:51:20', '2025-04-12 14:26:06', NULL),
+	(4, 'category.delete', 'category', 'delete', '2025-04-12 03:51:20', '2025-04-12 14:26:07', NULL),
+	(5, 'user.view', 'user', 'view', '2025-04-12 03:51:20', NULL, NULL),
+	(6, 'user.add', 'user', 'add', '2025-04-12 03:51:20', NULL, NULL),
+	(7, 'user.edit', 'user', 'edit', '2025-04-12 03:51:20', NULL, NULL),
+	(8, 'user.delete', 'user', 'delete', '2025-04-12 03:51:20', NULL, NULL),
+	(9, 'role.view', 'role', 'view', '2025-04-12 03:51:20', NULL, NULL),
+	(10, 'role.add', 'role', 'add', '2025-04-12 03:51:20', NULL, NULL),
+	(11, 'role.edit', 'role', 'edit', '2025-04-12 03:51:20', NULL, NULL),
+	(12, 'role.delete', 'role', 'delete', '2025-04-12 03:51:20', NULL, NULL),
+	(13, 'department.view', 'department', 'view', '2025-04-12 03:51:20', NULL, NULL),
+	(14, 'department.add', 'department', 'add', '2025-04-12 03:51:20', NULL, NULL),
+	(15, 'department.edit', 'department', 'edit', '2025-04-12 03:51:20', NULL, NULL),
+	(16, 'department.delete', 'department', 'delete', '2025-04-12 03:51:20', NULL, NULL);
 
 -- Dumping structure for table hethongtuvansv.questions
 DROP TABLE IF EXISTS `questions`;
@@ -153,10 +170,15 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hethongtuvansv.roles: ~0 rows (approximately)
+-- Dumping data for table hethongtuvansv.roles: ~5 rows (approximately)
 DELETE FROM `roles`;
+INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(4, 'System admin', '2025-04-12 17:05:05', NULL, NULL),
+	(6, 'Quản lý người dùng', '2025-04-12 17:10:56', NULL, NULL),
+	(8, 'Hello World API Server', '2025-04-13 03:26:51', '2025-04-13 07:24:15', NULL),
+	(10, '', '2025-04-13 08:14:58', NULL, NULL);
 
 -- Dumping structure for table hethongtuvansv.role_permission
 DROP TABLE IF EXISTS `role_permission`;
@@ -169,8 +191,35 @@ CREATE TABLE IF NOT EXISTS `role_permission` (
   CONSTRAINT `role_permission_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hethongtuvansv.role_permission: ~0 rows (approximately)
+-- Dumping data for table hethongtuvansv.role_permission: ~26 rows (approximately)
 DELETE FROM `role_permission`;
+INSERT INTO `role_permission` (`role_id`, `permission_id`) VALUES
+	(4, 1),
+	(4, 2),
+	(4, 3),
+	(4, 4),
+	(4, 5),
+	(4, 6),
+	(4, 7),
+	(4, 8),
+	(4, 9),
+	(4, 10),
+	(4, 11),
+	(4, 12),
+	(4, 13),
+	(4, 14),
+	(4, 15),
+	(4, 16),
+	(6, 5),
+	(6, 6),
+	(6, 7),
+	(6, 8),
+	(8, 1),
+	(8, 5),
+	(8, 9),
+	(8, 13),
+	(10, 9),
+	(10, 13);
 
 -- Dumping structure for table hethongtuvansv.users
 DROP TABLE IF EXISTS `users`;

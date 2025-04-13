@@ -23,7 +23,7 @@ public class CategoryRepositoryImpl implements ICategoryRepository {
 
 
     @Override
-    public void add(Category item) {
+    public int add(Category item) {
         try (Connection conn = DBConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(INSERT)) {
             ps.setString(1, item.getName());
 
@@ -32,6 +32,7 @@ public class CategoryRepositoryImpl implements ICategoryRepository {
         } finally {
             DBConnectionPool.closeConnection(conn);
         }
+        return 0;
     }
 
     @Override

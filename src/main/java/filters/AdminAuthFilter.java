@@ -1,5 +1,8 @@
 package filters;
 
+import config.MenuConfig;
+import config.MenuItem;
+import enums.RoutePermission;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -7,9 +10,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.List;
 
 
-@WebFilter("/admins/*")
+@WebFilter("/admin/*")
 public class AdminAuthFilter implements Filter {
 
     @Override
@@ -25,14 +29,21 @@ public class AdminAuthFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpSession session = httpRequest.getSession(false);
 
-        boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
-        boolean isAdmin = false;
+        String path = ((HttpServletRequest) request).getServletPath();
+        String requiredPermission = RoutePermission.getPermissionByPath(path);
 
-        if (isLoggedIn) {
-            // Giả sử 'userRole' là một thuộc tính trong session lưu vai trò của người dùng
-            String userRole = (String) session.getAttribute("userRole");
-            isAdmin = "admin".equals(userRole);
-        }
+        List<MenuItem> menus = MenuConfig.getMenus();
+        request.setAttribute("menus", menus);
+
+//        boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
+        boolean isLoggedIn = true;
+        boolean isAdmin = true;
+
+//        if (isLoggedIn) {
+//            // Giả sử 'userRole' là một thuộc tính trong session lưu vai trò của người dùng
+//            String userRole = (String) session.getAttribute("userRole");
+//            isAdmin = "admin".equals(userRole);
+//        }
 
         if (isLoggedIn && isAdmin) {
             // Nếu đã đăng nhập và có quyền admin, cho phép tiếp tục
