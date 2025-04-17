@@ -1,0 +1,187 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<div class="row">
+    <jsp:include page="/views/partials/message-box.jsp"></jsp:include>
+    <div class="col-md-9  mb-3">
+        <form action="${pageContext.request.contextPath}" method="GET">
+            <c:set var="tab" value="recent"/>
+
+            <c:if test="${param.tab != null && param.tab != 'recent'}">
+                <c:set var="tab" value="${param.tab}"/>
+            </c:if>
+            <input value="${tab}" type="hidden" name="tab" class="form-control">
+            <c:if test="${param.department_id != null}">
+                <input value="${param.department_id}" type="hidden" name="department_id" class="form-control">
+            </c:if>
+            <%--            <c:if test="${param.page != null}">--%>
+            <input value="1" type="hidden" name="page" class="form-control">
+            <%--            </c:if>--%>
+            <input value="${empty param.perPage ? 5 : param.perPage}" type="hidden" name="perPage" class="form-control">
+
+            <div class="row">
+                <div class="col-5">
+                    <select class="form-select" id="category" name="category">
+                        <option value="" selected>-- All category --</option>
+
+                        <c:forEach var="category" items="${categories}">
+                            ${param.category} - ${category.id}
+
+                            <c:set var="isSelected" value="false"/>
+                            <%--                            <c:set var="categoryInt" value="number ${param.category}"/>--%>
+                            <fmt:parseNumber var="categoryInt" type="number" value="${param.category}"/>
+                            <c:if test="${categoryInt == category.id}">
+                                <c:set var="isSelected" value="true"/>
+                            </c:if>
+                            <option ${isSelected ? 'selected' : ''}
+                                    value="${category.id}">${category.name}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="col-5">
+                    <div class="input-group">
+                        <input value="${param.keyword}" type="text" name="keyword" class="form-control"
+                               placeholder="Search...">
+                    </div>
+
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="align-items-end btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3 ">
+        <a href="${pageContext.request.contextPath}/question?action=add" class="btn btn-success w-100 " type="button">+
+            Ask a question</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-9">
+        <ul class="nav nav-tabs mb-3 " role="tablist">
+            <c:set var="queryStr" value=""/>
+            <c:if test="${not empty param.category}">
+                <c:set var="queryStr" value="${queryStr}&category=${fn:escapeXml(param.category)}"/>
+            </c:if>
+            <c:if test="${not empty param.department_id}">
+                <c:set var="queryStr" value="${queryStr}&department_id=${fn:escapeXml(param.department_id)}"/>
+            </c:if>
+            <c:if test="${not empty param.keyword}">
+                <c:set var="queryStr" value="${queryStr}&keyword=${fn:escapeXml(param.keyword)}"/>
+            </c:if>
+            <c:if test="${not empty param.page}">
+                <c:set var="queryStr" value="${queryStr}&page=1"/>
+            </c:if>
+            <c:if test="${not empty param.perPage}">
+                <c:set var="queryStr" value="${queryStr}&perPage=${fn:escapeXml(param.perPage)}"/>
+            </c:if>
+
+            <li class="nav-item">
+                <c:set var="isActiveTabRecent" value="${param.tab == 'recent' || param.tab==null}"/>
+
+                <a class="nav-link ${isActiveTabRecent ? 'active' : ''}"
+                   href="${pageContext.request.contextPath}?tab=recent${queryStr}">Newest
+                    questions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link ${param.tab == 'most_view' ? 'active' : ''}"
+                   href="${pageContext.request.contextPath}?tab=most_view${queryStr}">Most Viewed</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link ${param.tab == 'highest_vote' ? 'active' : ''}"
+                   href="${pageContext.request.contextPath}?tab=highest_vote${queryStr}">Highest
+                    Vote</a>
+            </li>
+            <%--            <li class="nav-item">--%>
+            <%--                <a class="nav-link" href="#">Unanswered</a>--%>
+            <%--            </li>--%>
+        </ul>
+        <div class="tab-content mb-3">
+            <div class="tab-panel active" id="home" role="tabpanel">
+                <c:if test="${empty questions}">
+                    <div class="card">
+                        <div class="mb-0 card-body border-dashed border-theme-color rounded">
+                            <p class="mb-0 text-muted text-center">No data available</p>
+                        </div>
+                    </div>
+                </c:if>
+                <c:forEach var="question" items="${questions}">
+                    <div class="card question-card">
+                        <div class="card-body d-flex">
+                            <div class="vote-section me-3">
+                                <h5>${question.vote_cnt}</h5>
+                                <p class="text-muted">vote</p>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="card-title">${question.title}</h5>
+                                <p class="card-text">${question.content}</p>
+                                    <%--                                <p class="card-text">--%>
+                                    <%--                                <c:out value="${question.content}" escapeXml="false"/>--%>
+                                    <%--                                </p>--%>
+                                <div class="mb-2">
+                                        <%--                                    <span class="tag">${question.category.name}</span>--%>
+                                    <span class="badge bg-info">${question.category.name}</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted">256 views</span>
+                                    <a href="#" class="text-primary">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+
+            </div>
+
+        </div>
+
+        <jsp:include page="/views/partials/client-pagination.jsp"></jsp:include>
+
+    </div>
+    <div class="col-md-3 ">
+        <div>
+            <c:set var="queryStrForDepart" value=""/>
+            <c:if test="${not empty param.category}">
+                <c:set var="queryStrForDepart" value="${queryStrForDepart}&category=${fn:escapeXml(param.category)}"/>
+            </c:if>
+            <c:if test="${not empty param.tab}">
+                <c:set var="queryStrForDepart" value="${queryStrForDepart}&tab=${fn:escapeXml(param.tab)}"/>
+            </c:if>
+
+            <c:if test="${not empty param.keyword}">
+                <c:set var="queryStrForDepart" value="${queryStrForDepart}&keyword=${fn:escapeXml(param.keyword)}"/>
+            </c:if>
+
+            <c:if test="${not empty param.page}">
+                <c:set var="queryStrForDepart" value="${queryStrForDepart}&page=1"/>
+            </c:if>
+            <c:if test="${not empty param.perPage}">
+                <c:set var="queryStrForDepart" value="${queryStrForDepart}&perPage=${fn:escapeXml(param.perPage)}"/>
+            </c:if>
+
+
+            <div class="list-group" id="list-tab" role="tablist">
+                <a href="${pageContext.request.contextPath}?department=-1${queryStrForDepart}"
+                   class="list-group-item list-group-item-action ${param.department_id == null ? 'active' : ''}"
+                   aria-disabled="true" }>
+                    All
+                </a>
+                <c:forEach var="department" items="${departments}">
+                    <c:set var="isSelected" value="false"/>
+                    <c:if test="${param.department_id == department.id}">
+                        <c:set var="isSelected" value="true"/>
+                    </c:if>
+                    <a href="${pageContext.request.contextPath}?department_id=${department.id}${queryStrForDepart}"
+                       class="list-group-item list-group-item-action ${isSelected ? 'active' : ''}">
+                            ${department.name}
+                    </a>
+                </c:forEach>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

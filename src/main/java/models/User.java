@@ -1,7 +1,9 @@
 package models;
 
+import java.util.List;
+
 public class User {
-    private String id;
+    private int id;
     private String email;
     private String password;
     private String name;
@@ -10,11 +12,30 @@ public class User {
     private String updated_at;
     private String avatar;
     private String deleted_at;
+    private int type;
+
+    private List<Role> roles;
+    private List<Department> departments;
 
     public User() {
     }
 
-    public User(String id, String email, String password, String name, String google_id, String created_at, String updated_at, String avatar, String deleted_at) {
+    public User(String email, String password, String name, int type) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.type = type;
+    }
+
+    public User(String email, String password, String name, String avatar, int type) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.avatar = avatar;
+        this.type = type;
+    }
+
+    public User(int id, String email, String password, String name, String google_id, String created_at, String updated_at, String avatar, String deleted_at) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -26,7 +47,31 @@ public class User {
         this.deleted_at = deleted_at;
     }
 
-    public void setId(String id) {
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -62,7 +107,7 @@ public class User {
         this.deleted_at = deleted_at;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

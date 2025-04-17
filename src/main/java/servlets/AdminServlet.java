@@ -1,7 +1,6 @@
 package servlets;
 
 import config.MenuConfig;
-import config.MenuItem;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,9 +9,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.Book;
 import repositoriesImpl.BookRepositoryImpl;
 import repositoriesImpl.CategoryRepositoryImpl;
-import services.IBookServiceImpl;
-import services.ICategoryServiceImpl;
-import servicesImpl.IBookService;
+import services.IBookService;
+import servicesImpl.BookServiceImpl;
+import servicesImpl.CategoryServiceImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,13 +20,13 @@ import java.util.List;
 @WebServlet({"/admin"})
 
 public class AdminServlet extends HttpServlet {
-    private ICategoryServiceImpl categoryService;
+    private CategoryServiceImpl categoryService;
     private IBookService bookService;
     private MenuConfig menuConfig;
 
     public void init() throws ServletException {
-        this.categoryService = new ICategoryServiceImpl(new CategoryRepositoryImpl());
-        this.bookService = new IBookServiceImpl(new BookRepositoryImpl());
+        this.categoryService = new CategoryServiceImpl(new CategoryRepositoryImpl());
+        this.bookService = new BookServiceImpl(new BookRepositoryImpl());
 
     }
 
@@ -38,10 +37,10 @@ public class AdminServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        List<MenuItem> menus = MenuConfig.getMenus();
-
-        req.setAttribute("menus", menus);
-        System.out.println(menus);
+//        List<MenuItem> menus = MenuConfig.getMenus();
+//
+//        req.setAttribute("menus", menus);
+//        System.out.println(menus);
         req.getRequestDispatcher("/views/layouts/admin.jsp").forward(req, resp);
 
 

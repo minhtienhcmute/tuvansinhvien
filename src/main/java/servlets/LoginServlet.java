@@ -14,7 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet({"/loginssss"})
+@WebServlet({"/login"})
 
 public class LoginServlet extends HttpServlet {
     @Override
@@ -25,8 +25,8 @@ public class LoginServlet extends HttpServlet {
 //        List <Book> books = this.bookService.getByCategory(categoryId);
 
 //        req.setAttribute("categories",categories);
-//        req.setAttribute("books",books);
-        req.getRequestDispatcher("/views/auth/login.jsp").forward(req, resp);
+        req.setAttribute("contentPage", "/views/auth/login.jsp");
+        req.getRequestDispatcher("/views/layouts/client.jsp").forward(req, resp);
     }
 
     @Override

@@ -10,7 +10,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="/views/partials/message-box.jsp"></jsp:include>
-
 <div class="table-responsive">
     <table class="table datatable" id="datatable_2">
         <thead class="table-light">
@@ -22,23 +21,18 @@
         <tbody>
         <c:forEach var="role" items="${roles}">
             <tr>
-                    <%--                                <td>${role.id}</td>--%>
                 <td>${role.name}</td>
                 <td class="text-end">
                     <a href="role?id=${role.id}"><i class="las la-info-circle text-secondary fs-18"></i></a>
                     <a href="role?action=edit&id=${role.id}"><i class="las la-pen text-secondary fs-18"></i></a>
                     <form action="role?action=delete&id=${role.id}" method="post" style="display: inline;"
                           id="deleteForm-${role.id}">
-                            <%--                        <a type="button" class="btn btn-link p-0" onclick="confirmDelete(${role.id})">--%>
-                            <%--                            <i class="las la-trash-alt text-secondary fs-18"></i>--%>
-                            <%--                        </a>--%>
+
                         <button type="button" class="btn btn-link p-0" onclick="confirmDelete(${role.id})">
                             <i class="las la-trash-alt text-secondary fs-18"></i>
                         </button>
                     </form>
-                        <%--                    <a href="#" onclick="confirmDelete(${role.id})">--%>
-                        <%--                        <i class="las la-trash-alt text-secondary fs-18"></i>--%>
-                        <%--                    </a>--%>
+
                 </td>
             </tr>
         </c:forEach>

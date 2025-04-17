@@ -48,6 +48,26 @@ public abstract class BaseRepositoryImpl<T> implements IRepository<T> {
         }
     }
 
+
+    @Override
+    public void insertBatchWithConnection(Connection conn, List<T> items) throws SQLException {
+        if (items == null || items.isEmpty()) return;
+
+        try (PreparedStatement stmt = conn.prepareStatement(getInsertQuery())) {
+
+            for (T item : items) {
+                setInsertParameters(stmt, item);
+                stmt.addBatch();
+            }
+            stmt.executeBatch();
+
+        } catch (SQLException e) {
+            this.printSQLException(e);
+            throw e;
+
+        }
+    }
+
     @Override
     public int add(T item) throws SQLException {
 //        try (Connection conn = DBConnectionPool.getConnection();
@@ -92,6 +112,29 @@ public abstract class BaseRepositoryImpl<T> implements IRepository<T> {
     }
 
     @Override
+    public int addWithConnection(Connection conn, T item) throws SQLException {
+        try (PreparedStatement stmt = conn.prepareStatement(getInsertQuery(), PreparedStatement.RETURN_GENERATED_KEYS)) {
+            setInsertParameters(stmt, item);
+
+
+            int affectedRows = stmt.executeUpdate();
+            System.out.println("Query: " + stmt);
+            if (affectedRows > 0) {
+                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        int generatedId = generatedKeys.getInt(1);  // Lấy ID (có thể là trường "id" trong cơ sở dữ liệu)
+                        return generatedId;  // Trả về đối tượng với ID đã được cập nhật
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            this.printSQLException(e);
+            throw e;
+        }
+        return -99;  // Trả về -99 nếu không thành công
+    }
+
+    @Override
     public void update(T item) throws SQLException {
         try (Connection conn = DBConnectionPool.getConnection();
              PreparedStatement stmt = conn.prepareStatement(getUpdateQuery())) {
@@ -122,6 +165,7 @@ public abstract class BaseRepositoryImpl<T> implements IRepository<T> {
         try (Connection conn = DBConnectionPool.getConnection();
              PreparedStatement stmt = conn.prepareStatement(getSelectByIdQuery())) {
             stmt.setInt(1, id);
+            System.out.println(stmt);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return mapResultSetToEntity(rs);
@@ -141,6 +185,8 @@ public abstract class BaseRepositoryImpl<T> implements IRepository<T> {
         try (Connection conn = DBConnectionPool.getConnection();
              PreparedStatement stmt = conn.prepareStatement(getSelectAllQuery());
              ResultSet rs = stmt.executeQuery()) {
+            System.out.println(stmt);
+
             while (rs.next()) {
                 list.add(mapResultSetToEntity(rs));
             }

@@ -24,4 +24,8 @@ public class UserDepartment {
     public int getDepartmentId() {
         return department_id;
     }
+
+    public UserDepartment(int user_id) {
+        this.user_id = user_id;
+    }
 }

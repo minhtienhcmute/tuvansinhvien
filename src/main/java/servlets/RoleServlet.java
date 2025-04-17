@@ -14,6 +14,7 @@ import repositoriesImpl.RoleRepositoryImpl;
 import servicesImpl.PermissionServiceImpl;
 import servicesImpl.RolePermissionServiceImpl;
 import servicesImpl.RoleServiceImpl;
+import utils.BreadcrumbUtils;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -30,6 +31,7 @@ public class RoleServlet extends HttpServlet {
     private PermissionServiceImpl permissionService;
     private RoleServiceImpl roleService;
     private RolePermissionServiceImpl rolePermissionService;
+    private final String breadcrumbTitle = "Role management";
 
     public void init() throws ServletException {
         this.permissionService = new PermissionServiceImpl(new PermissionRepositoryImpl());
@@ -56,7 +58,10 @@ public class RoleServlet extends HttpServlet {
 //                    handleViewApi(request, response); // trả JSON cho table
 //                }
                 else {
+
                     handleViewPage(request, response); // hiển thị trang JSP
+
+
                 }
                 break;
             case "add":
@@ -129,6 +134,15 @@ public class RoleServlet extends HttpServlet {
     }
 
     private void handleViewDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String pageDesc = "View role";
+        String[][] breadcrumbs = {
+                {"Role list", "/admin/role"},
+                {pageDesc, null},
+        };
+        request.setAttribute("breadcrumbTitle", breadcrumbTitle);
+        request.setAttribute("cardTitle", pageDesc);
+        request.setAttribute("breadcrumbItems", BreadcrumbUtils.createBreadcrumb(breadcrumbs));
+
         try {
 
             int roleId = Integer.parseInt(request.getParameter("id"));
@@ -211,19 +225,30 @@ public class RoleServlet extends HttpServlet {
         request.setAttribute("groupedPermissions", groupedPermissions);
         request.setAttribute("contentPage", "/views/admin/role/index.jsp");
         request.setAttribute("view", "/views/admin/role/view-list.jsp");
-        List<Role> roleList = roleService.getAllRoles();
+        List<Role> roleList = roleService.getRoles();
         request.setAttribute("roles", roleList);
+        request.setAttribute("breadcrumbTitle", breadcrumbTitle);
+        request.setAttribute("cardTitle", "Roles");
+
         request.getRequestDispatcher("/views/layouts/admin.jsp").forward(request, response);
     }
 
     private void handleAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO: code thêm role
         try {
-
+            String pageDesc = "Add role";
+            String[][] breadcrumbs = {
+                    {"Role list", "/admin/role"},
+                    {pageDesc, null},
+            };
             Map<String, List<Permission>> groupedPermissions = permissionService.getPermissionsGroupedByModule();
             request.setAttribute("groupedPermissions", groupedPermissions);
             request.setAttribute("contentPage", "/views/admin/role/index.jsp");
             request.setAttribute("view", "/views/admin/role/add-role.jsp");
+            request.setAttribute("breadcrumbTitle", breadcrumbTitle);
+            request.setAttribute("cardTitle", pageDesc);
+            request.setAttribute("breadcrumbItems", BreadcrumbUtils.createBreadcrumb(breadcrumbs));
+
             request.getRequestDispatcher("/views/layouts/admin.jsp").forward(request, response);
         } catch (Exception e) {
 
@@ -234,6 +259,11 @@ public class RoleServlet extends HttpServlet {
 
     private void handleEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO: code sửa role
+        String pageDesc = "Edit role";
+        String[][] breadcrumbs = {
+                {"Role list", "/admin/role"},
+                {pageDesc, null},
+        };
 
         try {
             String roleId = request.getParameter("id");
@@ -253,6 +283,9 @@ public class RoleServlet extends HttpServlet {
                 request.setAttribute("contentPage", "/views/admin/role/index.jsp");
                 request.setAttribute("contentPage", "/views/admin/role/index.jsp");
                 request.setAttribute("view", "/views/admin/role/edit-role.jsp");
+                request.setAttribute("breadcrumbTitle", breadcrumbTitle);
+                request.setAttribute("cardTitle", pageDesc);
+                request.setAttribute("breadcrumbItems", BreadcrumbUtils.createBreadcrumb(breadcrumbs));
                 request.getRequestDispatcher("/views/layouts/admin.jsp").forward(request, response);
             }
 

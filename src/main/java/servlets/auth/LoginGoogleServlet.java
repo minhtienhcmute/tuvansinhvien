@@ -43,7 +43,7 @@ public class LoginGoogleServlet extends HttpServlet {
             req.setAttribute("name", googlePojo.getName());
             req.setAttribute("email", googlePojo.getEmail());
             req.setAttribute("pojo", googlePojo);
-            RequestDispatcher dis = req.getRequestDispatcher("/views/layouts/client.jsp");
+            RequestDispatcher dis = req.getRequestDispatcher("/views/layouts/client1.jsp");
             dis.forward(req, resp);
         }
 //        req.getRequestDispatcher("/views/auth/login.jsp").forward(req, resp);

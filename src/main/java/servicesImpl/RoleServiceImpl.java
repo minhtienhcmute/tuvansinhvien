@@ -1,14 +1,11 @@
 package servicesImpl;
 
-import models.Permission;
 import models.Role;
 import repositoriesImpl.RoleRepositoryImpl;
 import services.IRoleService;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class RoleServiceImpl implements IRoleService {
 
@@ -37,15 +34,19 @@ public class RoleServiceImpl implements IRoleService {
         return this.roleRepository.getById(roleId);
     }
 
+    public List<Role> getRoles() {
+        return this.roleRepository.getAll();
+    }
+
     public List<Role> getAllRoles() {
         List<Role> roles = roleRepository.getAll();
 
         // Group permissions theo module
-        for (Role role : roles) {
-            // Group permissions của mỗi role theo module
-            Map<String, List<Permission>> groupedPermissions = role.getPermissions().stream()
-                    .collect(Collectors.groupingBy(Permission::getModule));
-        }
+//        for (Role role : roles) {
+//            // Group permissions của mỗi role theo module
+//            Map<String, List<Permission>> groupedPermissions = role.getPermissions().stream()
+//                    .collect(Collectors.groupingBy(Permission::getModule));
+//        }
 
         return roles;
     }

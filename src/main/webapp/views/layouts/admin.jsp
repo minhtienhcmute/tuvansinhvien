@@ -15,21 +15,28 @@
 
     <link href="${pageContext.request.contextPath}/assets/libs/simple-datatables/style.css" rel="stylesheet"
           type="text/css"/>
+    <%--    <link href="${pageContext.request.contextPath}/assets/libs/mobius1-selectr/selectr.min.css" rel="stylesheet"--%>
+    <%--          type="text/css"/>--%>
+    <link href="${pageContext.request.contextPath}/assets/libs/huebee/huebee.min.css" rel="stylesheet" type="text/css"/>
+
     <!-- App css -->
     <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="${pageContext.request.contextPath}/assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
     <link href="${pageContext.request.contextPath}/assets/css/app.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/ckeditor5/ckeditor5.css" rel="stylesheet" type="text/css"/>
+    <%--    <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>--%>
+    <script src="${pageContext.request.contextPath}/ckeditor5/ckeditor5.umd.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
             crossorigin="anonymous"></script>
+
     <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css"/>--%>
 </head>
 <body>
 <div class="topbar d-print-none">
     <div class="container-fluid">
         <nav class="topbar-custom d-flex justify-content-between" id="topbar-custom">
-
-
             <ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0">
                 <li>
                     <button class="nav-link mobile-menu-btn nav-icon" id="togglemenu">
@@ -54,17 +61,22 @@
                 <li class="dropdown">
                     <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#"
                        role="button" aria-haspopup="false" aria-expanded="false" data-bs-offset="0,19">
-                        <img src="assets/images/flags/us_flag.jpg" alt="" class="thumb-sm rounded-circle">
+                        <img src="${pageContext.request.contextPath}/assets/images/flags/us_flag.jpg" alt=""
+                             class="thumb-sm rounded-circle">
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#"><img src="/assets/images/flags/us_flag.jpg" alt=""
-                                                               height="15" class="me-2">English</a>
-                        <a class="dropdown-item" href="#"><img src="/assets/images/flags/spain_flag.jpg" alt=""
-                                                               height="15" class="me-2">Spanish</a>
-                        <a class="dropdown-item" href="#"><img src="/assets/images/flags/germany_flag.jpg" alt=""
-                                                               height="15" class="me-2">German</a>
-                        <a class="dropdown-item" href="#"><img src="/images/flags/french_flag.jpg" alt=""
-                                                               height="15" class="me-2">French</a>
+                        <a class="dropdown-item" href="#"><img
+                                src="${pageContext.request.contextPath}/assets/images/flags/us_flag.jpg" alt=""
+                                height="15" class="me-2">English</a>
+                        <a class="dropdown-item" href="#"><img
+                                src="${pageContext.request.contextPath}/assets/images/flags/spain_flag.jpg" alt=""
+                                height="15" class="me-2">Spanish</a>
+                        <a class="dropdown-item" href="#"><img
+                                src="${pageContext.request.contextPath}/assets/images/flags/germany_flag.jpg" alt=""
+                                height="15" class="me-2">German</a>
+                        <a class="dropdown-item" href="#"><img
+                                src="${pageContext.request.contextPath}/images/flags/french_flag.jpg" alt=""
+                                height="15" class="me-2">French</a>
                     </div>
                 </li><!--end topbar-language-->
 
@@ -278,12 +290,14 @@
                 <li class="dropdown topbar-item">
                     <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#"
                        role="button" aria-haspopup="false" aria-expanded="false" data-bs-offset="0,19">
-                        <img src="assets/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle">
+                        <img src="${pageContext.request.contextPath}/assets/images/users/avatar-1.jpg" alt=""
+                             class="thumb-md rounded-circle">
                     </a>
                     <div class="dropdown-menu dropdown-menu-end py-0">
                         <div class="d-flex align-items-center dropdown-item py-2 bg-secondary-subtle">
                             <div class="flex-shrink-0">
-                                <img src="assets/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle">
+                                <img src="${pageContext.request.contextPath}/assets/images/users/avatar-1.jpg" alt=""
+                                     class="thumb-md rounded-circle">
                             </div>
                             <div class="flex-grow-1 ms-2 text-truncate align-self-center">
                                 <h6 class="my-0 fw-medium text-dark fs-13">William Martin</h6>
@@ -318,6 +332,8 @@
 
     <div class="page-content">
         <div class="container-fluid">
+            <jsp:include page="/views/partials/breadscrum.jsp"/>
+
             <c:choose>
                 <c:when test="${not empty contentPage}">
                     <jsp:include page="${contentPage}"/>
@@ -372,27 +388,7 @@
         <!--end Rightbar/offcanvas-->
         <!--end Rightbar-->
         <!--Start Footer-->
-        <footer class="footer text-center text-sm-start d-print-none">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card mb-0 border-bottom-0 rounded-bottom-0">
-                            <div class="card-body">
-                                <p class="text-muted mb-0">
-                                    ©
-                                    <script> document.write(new Date().getFullYear()) </script>
-                                    Dastone
-                                    <span class="text-muted d-none d-sm-inline-block float-end">
-                                            Design with
-                                            <i class="iconoir-heart-solid text-danger align-middle"></i>
-                                            by Mannatthemes</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <jsp:include page="/views/partials/admin-footer.jsp"></jsp:include>
     </div>
 </div>
 <%--<script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>--%>
@@ -402,14 +398,18 @@
 <%--<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>--%>
 <script src="${pageContext.request.contextPath}/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/libs/simplebar/simplebar.min.js"></script>
+<%--<script src="${pageContext.request.contextPath}/assets/libs/mobius1-selectr/selectr.min.js"></script>--%>
 
-
+<script src="${pageContext.request.contextPath}/assets/libs/huebee/huebee.pkgd.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/libs/simple-datatables/umd/simple-datatables.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/pages/datatable.init.js"></script>
 
-<script src="${pageContext.request.contextPath}/assets/libs/apexcharts/apexcharts.min.js"></script>
-<script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/pages/index.init.js"></script>
+<%--<script src="${pageContext.request.contextPath}/assets/libs/apexcharts/apexcharts.min.js"></script>--%>
+<%--<script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>--%>
+
+<%--<script src="${pageContext.request.contextPath}/assets/js/pages/index.init.js"></script>--%>
+<%--<script src="${pageContext.request.contextPath}/assets/js/pages/forms-advanced.js"></script>--%>
+
 <script src="${pageContext.request.contextPath}/assets/js/app.js"></script>
 
 

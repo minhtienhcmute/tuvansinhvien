@@ -24,6 +24,16 @@ public class BookRepositoryImpl implements IBookRepository {
     Connection conn = null;
 
     @Override
+    public int addWithConnection(Connection conn, Book item) throws SQLException {
+        return 0;
+    }
+
+    @Override
+    public void insertBatchWithConnection(Connection conn, List<Book> items) throws SQLException {
+
+    }
+
+    @Override
     public List<Book> getByName(String name) {
 
         List<Book> books = new ArrayList<>();

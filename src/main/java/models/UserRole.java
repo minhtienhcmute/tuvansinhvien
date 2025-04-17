@@ -24,4 +24,8 @@ public class UserRole {
     public int getRoleId() {
         return role_id;
     }
+
+    public UserRole(int user_id) {
+        this.user_id = user_id;
+    }
 }

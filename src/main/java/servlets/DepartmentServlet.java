@@ -8,22 +8,22 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import repositoriesImpl.BookRepositoryImpl;
 import repositoriesImpl.CategoryRepositoryImpl;
-import services.IBookServiceImpl;
-import services.ICategoryServiceImpl;
-import servicesImpl.IBookService;
+import services.IBookService;
+import servicesImpl.BookServiceImpl;
+import servicesImpl.CategoryServiceImpl;
 
 import java.io.IOException;
 
 @WebServlet({"/admin/department"})
 
 public class DepartmentServlet extends HttpServlet {
-    private ICategoryServiceImpl categoryService;
+    private CategoryServiceImpl categoryService;
     private IBookService bookService;
     private MenuConfig menuConfig;
 
     public void init() throws ServletException {
-        this.categoryService = new ICategoryServiceImpl(new CategoryRepositoryImpl());
-        this.bookService = new IBookServiceImpl(new BookRepositoryImpl());
+        this.categoryService = new CategoryServiceImpl(new CategoryRepositoryImpl());
+        this.bookService = new BookServiceImpl(new BookRepositoryImpl());
 
     }
 

@@ -2,129 +2,94 @@ package repositoriesImpl;
 
 import models.Category;
 import repositories.ICategoryRepository;
-import utils.DBConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryRepositoryImpl implements ICategoryRepository {
-    private static final String INSERT = "INSERT INTO categories" + "  (name) VALUES " +
-            " (?);";
-
-    private static final String SELECT_BY_ID = "select id,name,status,category_id from categories where id =?";
-    private static final String SELECT_ALL = "select * from categories";
-    private static final String DELETE_BY_ID = "delete from categories where id = ?;";
-    private static final String UPDATE_BY_ID = "update categories set name = ? where id = ?;";
-    Connection conn = null;
-
+public class CategoryRepositoryImpl extends BaseRepositoryImpl<Category> implements ICategoryRepository {
 
     @Override
-    public int add(Category item) {
-        try (Connection conn = DBConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(INSERT)) {
-            ps.setString(1, item.getName());
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            DBConnectionPool.closeConnection(conn);
-        }
-        return 0;
+    protected String getInsertQuery() {
+        return "";
     }
 
     @Override
-    public void update(Category item) {
-        try (Connection conn = DBConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(UPDATE_BY_ID)) {
-            ps.setString(1, item.getName());
-            ps.setInt(2, item.getId());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            DBConnectionPool.closeConnection(conn);
-        }
+    protected String getUpdateQuery() {
+        return "";
     }
 
     @Override
-    public void delete(Category item) {
-        try (Connection conn = DBConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(DELETE_BY_ID)) {
-            ps.setString(1, item.getName());
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            DBConnectionPool.closeConnection(conn);
-        }
+    protected String getDeleteQuery() {
+        return "";
     }
 
     @Override
-    public Category getById(int id) {
+    protected String getSelectByIdQuery() {
+        return "";
+    }
 
-        Category category = null;
-        // Step 1: Establishing a Connection
-        try (Connection connection = DBConnectionPool.getConnection();
-             // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_ID)) {
-            preparedStatement.setInt(1, id);
-            System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
-            ResultSet rs = preparedStatement.executeQuery();
+    @Override
+    protected String getSelectAllQuery() {
+        return "SELECT * FROM categories";
+    }
 
-            // Step 4: Process the ResultSet object.
-            while (rs.next()) {
-                int cateId = rs.getInt("id");
-                String name = rs.getString("name");
-//                category = new Category(cateId, name);
-            }
-        } catch (SQLException e) {
-            printSQLException(e);
-        } finally {
-            DBConnectionPool.closeConnection(conn);
-        }
+    @Override
+    protected void setInsertParameters(PreparedStatement stmt, Category item) throws SQLException {
+
+    }
+
+    @Override
+    protected void setUpdateParameters(PreparedStatement stmt, Category item) throws SQLException {
+
+    }
+
+    @Override
+    protected void setDeleteParameters(PreparedStatement stmt, Category item) throws SQLException {
+
+    }
+
+    @Override
+    protected Category mapResultSetToEntity(ResultSet rs) throws SQLException {
+        Category category = new Category();
+        category.setId(rs.getInt("id"));
+        category.setName(rs.getString("name"));
+        category.setDescription(rs.getString("description"));
+        category.setDescription(rs.getString("created_at"));
+        category.setCreated_at(rs.getTimestamp("updated_at"));
         return category;
     }
 
     @Override
-    public List<Category> getAll() {
-        // using try-with-resources to avoid closing resources (boiler plate code)
-        List<Category> categories = new ArrayList<>();
-        // Step 1: Establishing a Connection
-        try (Connection connection = DBConnectionPool.getConnection();
-
-             // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL)) {
-            System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
-            ResultSet rs = preparedStatement.executeQuery();
-
-            // Step 4: Process the ResultSet object.
-            while (rs.next()) {
-                int cateId = rs.getInt("id");
-                String name = rs.getString("name");
-
-//                categories.add( new Category(cateId, name));
-            }
-        } catch (SQLException e) {
-            printSQLException(e);
-        }
-        return categories;
+    public int add(Category item) throws SQLException {
+        return 0;
     }
 
-    private void printSQLException(SQLException ex) {
-        for (Throwable e : ex) {
-            if (e instanceof SQLException) {
-                e.printStackTrace(System.err);
-                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
-                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
-                System.err.println("Message: " + e.getMessage());
-                Throwable t = ex.getCause();
-                while (t != null) {
-                    System.out.println("Cause: " + t);
-                    t = t.getCause();
-                }
-            }
-        }
+    @Override
+    public int addWithConnection(Connection conn, Category item) throws SQLException {
+        return 0;
+    }
+
+    @Override
+    public void update(Category item) throws SQLException {
+
+    }
+
+    @Override
+    public void delete(Category item) throws SQLException {
+
+    }
+
+    @Override
+    public Category getById(int id) throws SQLException {
+        return null;
+    }
+
+
+    @Override
+    public void insertBatchWithConnection(Connection conn, List<Category> items) throws SQLException {
+
     }
 }

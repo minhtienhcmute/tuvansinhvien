@@ -31,10 +31,16 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hethongtuvansv.categories: ~0 rows (approximately)
+-- Dumping data for table hethongtuvansv.categories: ~5 rows (approximately)
 DELETE FROM `categories`;
+INSERT INTO `categories` (`id`, `name`, `description`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'Các vấn đề chung trong khoa CKM', NULL, NULL, '2025-04-16 03:07:04', NULL, NULL),
+	(2, 'Nghiên cứu Khoa học sinh viên', NULL, NULL, '2025-04-16 03:07:24', '2025-04-16 03:07:33', NULL),
+	(3, 'Công tác sinh viên', NULL, NULL, '2025-04-16 03:07:48', NULL, NULL),
+	(4, 'Tuyển sinh', NULL, NULL, '2025-04-16 03:07:53', NULL, NULL),
+	(5, 'Ngành công nghiệp Kỹ thuật Điện tử', NULL, NULL, '2025-04-16 03:08:38', NULL, NULL);
 
 -- Dumping structure for table hethongtuvansv.comments
 DROP TABLE IF EXISTS `comments`;
@@ -51,10 +57,15 @@ CREATE TABLE IF NOT EXISTS `comments` (
   KEY `post_id` (`question_id`) USING BTREE,
   CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hethongtuvansv.comments: ~0 rows (approximately)
+-- Dumping data for table hethongtuvansv.comments: ~3 rows (approximately)
 DELETE FROM `comments`;
+INSERT INTO `comments` (`id`, `user_id`, `question_id`, `content`, `vote_cnt`, `created_at`, `updated_at`) VALUES
+	(1, 1, 1, '<p>Chào em.</p><p><i>Xét khen thưởng em liên hệ phòng Tuyển sinh và công tác Sinh viên qua gmail: p.cthssv@hcmute.edu.vn để được hỗ trợ tư vấn em nha.</i></p><p><i>thân!</i></p>', 0, '2025-04-17 09:56:37', NULL),
+	(2, 1, 4, '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơnChào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơnChào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, '2025-04-17 15:24:05', NULL),
+	(3, 1, 4, '<p>Thầy cũng không biết nữa em!</p>', 0, '2025-04-17 16:13:00', NULL),
+	(4, 1, 33, '<p><strong>Bảo hiểm xã hội Việt Nam trả lời&nbsp;</strong></p><p>Hiện nay trên ứng dụng VssID còn có trường hợp người lao động bị thiếu quá trình tham gia đóng BHXH. Bảo hiểm xã hội Việt Nam khẳng định toàn bộ quá trình tham gia BHXH, BHYT, BHTN của người lao động đã được số hóa, đồng bộ, lưu tại Cơ sở dữ liệu của Ngành. Do đó, người tham gia BHXH không cần quá lo lắng về việc hiển thị thiếu thời gian tham gia đóng BHXH trên ứng dụng VssID. Điều này không ảnh hưởng đến quyền lợi khi người lao động hưởng các chế độ BHXH. Bảo hiểm xã hội Việt Nam đang đẩy mạnh các giải pháp để cập nhật đầy đủ dữ liệu về thời gian tham gia BHXH trên ứng dụng VssID cho người lao động trong thời gian sớm nhất.</p><p>Để nhanh chóng cập nhật thông tin chính xác, người lao động phản ánh ngay với cơ quan BHXH tại địa phương trên toàn quốc (nếu bạn đang bảo lưu thời gian tham gia BHXH) hoặc nơi đang tham gia đóng BHXH để được hỗ trợ trực tiếp.</p>', 0, '2025-04-17 16:15:45', NULL);
 
 -- Dumping structure for table hethongtuvansv.departments
 DROP TABLE IF EXISTS `departments`;
@@ -63,14 +74,17 @@ CREATE TABLE IF NOT EXISTS `departments` (
   `name` varchar(100) NOT NULL,
   `description` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hethongtuvansv.departments: ~0 rows (approximately)
+-- Dumping data for table hethongtuvansv.departments: ~2 rows (approximately)
 DELETE FROM `departments`;
+INSERT INTO `departments` (`id`, `name`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'Khoa công nghệ thông tin', NULL, '2025-04-13 12:56:56', '2025-04-13 12:56:56', NULL),
+	(2, 'Khoa Điện - Điện tử', NULL, '2025-04-13 12:57:17', '2025-04-13 12:57:17', NULL);
 
 -- Dumping structure for table hethongtuvansv.department_question
 DROP TABLE IF EXISTS `department_question`;
@@ -142,23 +156,60 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `category_id` int(11) DEFAULT NULL,
+  `department_id` int(11) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `content` text DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT 0,
   `vote_cnt` int(11) DEFAULT 0,
   `views` int(11) DEFAULT 0,
   `reason` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `category_id` (`category_id`),
+  KEY `FK_questions_departments` (`department_id`),
+  CONSTRAINT `FK_questions_departments` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `questions_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hethongtuvansv.questions: ~0 rows (approximately)
+-- Dumping data for table hethongtuvansv.questions: ~31 rows (approximately)
 DELETE FROM `questions`;
+INSERT INTO `questions` (`id`, `user_id`, `category_id`, `department_id`, `title`, `content`, `status`, `vote_cnt`, `views`, `reason`, `created_at`, `updated_at`) VALUES
+	(0, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 1, 0, 0, NULL, '2025-04-16 03:51:01', '2025-04-17 05:27:46'),
+	(1, 1, 1, 1, 'Vấn đề đình chỉ học tập', '<p><strong>Chào các Thầy Cô, cho em hỏi điểm xét tốt nghiệp cho K21 xét theo hệ 4 vậy xét khen thưởng thủ khoa ngành, thủ khoa toàn khóa thì xét hệ 4 hay hệ 10 ạa</strong></p>', 1, 0, 0, NULL, '2025-04-16 03:49:16', '2025-04-17 09:56:37'),
+	(2, 1, 1, 1, 'Quy đổi anh văn K19', '<p><strong>Cho em hỏi k19, kỳ sau còn qui đổi anh văn 1234 được nữa không ạ.&nbsp;</strong><br><strong>Cho em hỏi k19, kỳ sau còn qui đổi anh văn 1234 được nữa không ạ.&nbsp;</strong><br><strong>Cho em hỏi k19, kỳ sau còn qui đổi anh văn 1234 được nữa không ạ.&nbsp;Cho em hỏi k19, kỳ sau còn qui đổi anh văn 1234 được nữa không ạ.&nbsp;Cho em hỏi k19, kỳ sau còn qui đổi anh văn 1234 được nữa không ạ.&nbsp;Cho em hỏi k19, kỳ sau còn qui đổi anh văn 1234 được nữa không ạ.&nbsp;Cho em hỏi k19, kỳ sau còn qui đổi anh văn 1234 được nữa không ạ.&nbsp;Cho em hỏi k19, kỳ sau còn qui đổi anh văn 1234 được nữa không ạ.&nbsp;Cho em hỏi k19, kỳ sau còn qui đổi anh văn 1234 được nữa không ạ.&nbsp;Cho em hỏi k19, kỳ sau còn qui đổi anh văn 1234 được nữa không ạ.&nbsp;Cho em hỏi k19, kỳ sau còn qui đổi anh văn 1234 được nữa không ạ.&nbsp;Cho em hỏi k19, kỳ sau còn qui đổi anh văn 1234 được nữa không ạ.&nbsp;</strong></p>', 2, 0, 0, NULL, '2025-04-16 03:50:16', '2025-04-17 05:27:50'),
+	(4, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 1, 0, 0, NULL, '2025-04-16 03:51:01', '2025-04-17 15:24:05'),
+	(5, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 1, 0, 0, NULL, '2025-04-16 03:51:01', '2025-04-17 05:27:49'),
+	(6, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 2, 0, 0, NULL, '2025-04-16 03:51:01', '2025-04-17 05:27:49'),
+	(7, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(8, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 1, 0, 0, NULL, '2025-04-16 03:51:01', '2025-04-17 05:27:48'),
+	(9, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(10, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 2, 0, 0, NULL, '2025-04-16 03:51:01', '2025-04-17 05:27:47'),
+	(11, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(12, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(13, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(14, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(15, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(16, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(17, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(18, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(19, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(20, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(21, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(22, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(23, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(24, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(25, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(26, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(27, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(28, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(29, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(30, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(31, 1, 2, 1, 'Xét tốt nghiệp tháng 3', '<p>Chào thầy cô cho em hỏi,<br>Em đã hoàn thành xong tất cả điều kiện tốt nghiệp. Giờ còn thiếu một môn học là Thực tập tốt nghiệp<br>Em mới đăng ký môn vào HK2 này. Em đã thực tập xong và nhờ giáo viên chấm điểm. Hoàn thành xong môn này vào cuối tháng 2.<br>Cô nói với em là hiện chưa khoá được điểm vì con nhiều bạn chưa thực tập xong.<br>Thì em muốn hỏi là vậy em có được đủ điều kiện để xét tốt nghiệp vào tháng 3 không ạ. Hay còn làm thêm thủ tục gì ạ<br>Em cảm ơn</p>', 0, 0, 0, NULL, '2025-04-16 03:51:01', NULL),
+	(32, 1, 4, 2, 'Tuyển sinh liên thông', '<p>Trường ơi cho em hỏi Em học xong cao đẳng Công Nghệ Kỉ Thuật BR-VT thì em có thể liên thông trực tiếp vào được không ạ . &nbsp;Em mong được trường hồi đáp ạ<br><br>int userId = Integer.<i>parseInt</i>(req.getParameter("id"));<br>String title = req.getParameter("title");<br>int categoryId = Integer.<i>parseInt</i>(req.getParameter("category_id"));<br>int departmentId = Integer.<i>parseInt</i>(req.getParameter("department_id"));<br>String content = req.getParameter("content");</p>', 0, 0, 0, NULL, '2025-04-16 17:31:54', NULL),
+	(33, 1, 4, 2, 'Thời hạn nộp bằng anh Văn', '<p><strong>Kính gửi Phòng Tuyển Sinh và Công Tác SV- Chế độ Chính sách</strong></p><p><strong>Em tên là: Châu Thị Thúy Kiều. MSSV: 24116166</strong></p><p><strong>Hiện tại đã qua ngày thông báo của trường nhưng em vẫn chưa thấy công bố kết quả chính thức về tiền trợ cấp và cũng chưa có tiền gửi vào tài khoản.</strong></p><p><strong>Em muốn hỏi là khi nào mới có danh sách và khi nào em mới nhận được tiền trợ cấp ạ?</strong></p><p><strong>Em xin cảm ơn!</strong></p>', 1, 0, 0, NULL, '2025-04-16 17:37:26', '2025-04-17 16:15:45');
 
 -- Dumping structure for table hethongtuvansv.roles
 DROP TABLE IF EXISTS `roles`;
@@ -170,15 +221,17 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hethongtuvansv.roles: ~5 rows (approximately)
+-- Dumping data for table hethongtuvansv.roles: ~6 rows (approximately)
 DELETE FROM `roles`;
 INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(4, 'System admin', '2025-04-12 17:05:05', NULL, NULL),
 	(6, 'Quản lý người dùng', '2025-04-12 17:10:56', NULL, NULL),
 	(8, 'Hello World API Server', '2025-04-13 03:26:51', '2025-04-13 07:24:15', NULL),
-	(10, '', '2025-04-13 08:14:58', NULL, NULL);
+	(10, 'Quản lý danh mục', '2025-04-13 08:14:58', '2025-04-14 04:50:09', NULL),
+	(11, 'Tư vấn viên', '2025-04-14 14:12:38', NULL, NULL),
+	(12, 'Admin', '2025-04-14 14:14:46', NULL, NULL);
 
 -- Dumping structure for table hethongtuvansv.role_permission
 DROP TABLE IF EXISTS `role_permission`;
@@ -191,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `role_permission` (
   CONSTRAINT `role_permission_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hethongtuvansv.role_permission: ~26 rows (approximately)
+-- Dumping data for table hethongtuvansv.role_permission: ~38 rows (approximately)
 DELETE FROM `role_permission`;
 INSERT INTO `role_permission` (`role_id`, `permission_id`) VALUES
 	(4, 1),
@@ -218,8 +271,24 @@ INSERT INTO `role_permission` (`role_id`, `permission_id`) VALUES
 	(8, 5),
 	(8, 9),
 	(8, 13),
+	(10, 1),
+	(10, 5),
+	(10, 6),
+	(10, 7),
 	(10, 9),
-	(10, 13);
+	(10, 13),
+	(11, 1),
+	(11, 2),
+	(11, 3),
+	(11, 4),
+	(11, 5),
+	(11, 6),
+	(11, 7),
+	(11, 8),
+	(12, 9),
+	(12, 10),
+	(12, 11),
+	(12, 12);
 
 -- Dumping structure for table hethongtuvansv.users
 DROP TABLE IF EXISTS `users`;
@@ -230,15 +299,23 @@ CREATE TABLE IF NOT EXISTS `users` (
   `google_id` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `avatar` varchar(50) DEFAULT NULL,
+  `type` tinyint(2) DEFAULT 0,
   `created_at` datetime DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hethongtuvansv.users: ~0 rows (approximately)
+-- Dumping data for table hethongtuvansv.users: ~6 rows (approximately)
 DELETE FROM `users`;
+INSERT INTO `users` (`id`, `email`, `password`, `google_id`, `name`, `avatar`, `type`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'minhtien020900@gmail.com', '$2a$10$iBzdX/U5YXZ9ZKOHVqBJROhwszR18f2Pj/i/r39k4EZzlKvAc3P3S', NULL, 'Mien Tinh dep TRAI', NULL, 1, '2025-04-14 10:51:39', '2025-04-14 14:46:59', NULL),
+	(5, '123@gmail.com', '$2a$10$prLmEYjCGQIs4iALp8RLj.MtOFuDg2VIGGxWv9nhXqyj.k64kl2TC', NULL, 'My App', NULL, 1, '2025-04-14 10:55:20', NULL, NULL),
+	(17, '1234@gmail.com', '$2a$10$04SOp43TtZdimnK4nlYHT.NdIwTu6t2XZinzz3OmTKvubY7v.wwJ.', NULL, 'Hello World API Server', NULL, 1, '2025-04-14 11:17:01', NULL, NULL),
+	(21, '1234455@gmail.com', '$2a$10$lab335nOfY05IKYlegDrpusyk.Ft6ke/3tPCDIspN/Wv9VfVFdExm', NULL, 'Hello World API Server', NULL, 1, '2025-04-14 15:29:07', NULL, NULL),
+	(22, 'mminhtien020900@gmail.com', '$2a$10$sdgA1Uu6VNOatRCRufXctO1u1qvXrx8vQScJx2gLsbDFMKLIOWyBq', NULL, 'Hello World API Server', NULL, 0, '2025-04-14 15:30:30', NULL, NULL),
+	(23, 'toilatien@gmail.com', '$2a$10$7tRC853trR0W0aYdm9LhF.jvKFKXVdS5sjvTjhcBT/hV8jPdLbFo.', NULL, 'Mien Tinh', NULL, 0, '2025-04-14 16:17:04', NULL, NULL);
 
 -- Dumping structure for table hethongtuvansv.user_department
 DROP TABLE IF EXISTS `user_department`;
@@ -251,8 +328,14 @@ CREATE TABLE IF NOT EXISTS `user_department` (
   CONSTRAINT `user_department_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hethongtuvansv.user_department: ~0 rows (approximately)
+-- Dumping data for table hethongtuvansv.user_department: ~5 rows (approximately)
 DELETE FROM `user_department`;
+INSERT INTO `user_department` (`user_id`, `department_id`) VALUES
+	(1, 1),
+	(5, 1),
+	(5, 2),
+	(17, 1),
+	(17, 2);
 
 -- Dumping structure for table hethongtuvansv.user_role
 DROP TABLE IF EXISTS `user_role`;
@@ -265,8 +348,16 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table hethongtuvansv.user_role: ~0 rows (approximately)
+-- Dumping data for table hethongtuvansv.user_role: ~7 rows (approximately)
 DELETE FROM `user_role`;
+INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
+	(1, 4),
+	(1, 6),
+	(1, 8),
+	(1, 10),
+	(5, 6),
+	(17, 4),
+	(17, 6);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

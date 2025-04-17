@@ -1,18 +1,35 @@
 package models;
 
+import java.sql.Timestamp;
+
 public class Comment {
     private int id;
     private int user_id;
     private int question_id;
     private String content;
     private int vote_cnt;
-    private String created_at;
-    private String updated_at;
+    private Timestamp created_at;
+    private Timestamp updated_at;
+    private User user;
 
     public Comment() {
     }
 
-    public Comment(int id, int user_id, int question_id, String content, int vote_cnt, String created_at, String updated_at) {
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Comment(int user_id, int question_id, String content) {
+        this.user_id = user_id;
+        this.question_id = question_id;
+        this.content = content;
+    }
+
+    public Comment(int id, int user_id, int question_id, String content, int vote_cnt, Timestamp created_at, Timestamp updated_at) {
         this.id = id;
         this.user_id = user_id;
         this.question_id = question_id;
@@ -42,11 +59,11 @@ public class Comment {
         this.vote_cnt = vote_cnt;
     }
 
-    public void setCreated_at(String created_at) {
+    public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
 
-    public void setUpdated_at(String updated_at) {
+    public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
 
@@ -70,11 +87,11 @@ public class Comment {
         return vote_cnt;
     }
 
-    public String getCreated_at() {
+    public Timestamp getCreated_at() {
         return created_at;
     }
 
-    public String getUpdated_at() {
+    public Timestamp getUpdated_at() {
         return updated_at;
     }
 }

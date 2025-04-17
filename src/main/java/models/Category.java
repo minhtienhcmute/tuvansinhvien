@@ -1,17 +1,19 @@
 package models;
 
+import java.sql.Timestamp;
+
 public class Category {
     private int id;
     private String name;
     private String description;
-    private String created_at;
-    private String updated_at;
-    private String deleted_at;
+    private Timestamp created_at;
+    private Timestamp updated_at;
+    private Timestamp deleted_at;
 
     public Category() {
     }
 
-    public Category(int id, String name, String description, String created_at, String updated_at, String deleted_at) {
+    public Category(int id, String name, String description, Timestamp created_at, Timestamp updated_at, Timestamp deleted_at) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -32,15 +34,15 @@ public class Category {
         this.description = description;
     }
 
-    public void setCreated_at(String created_at) {
+    public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
 
-    public void setUpdated_at(String updated_at) {
+    public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
 
-    public void setDeleted_at(String deleted_at) {
+    public void setDeleted_at(Timestamp deleted_at) {
         this.deleted_at = deleted_at;
     }
 
@@ -56,15 +58,15 @@ public class Category {
         return description;
     }
 
-    public String getCreated_at() {
+    public Timestamp getCreated_at() {
         return created_at;
     }
 
-    public String getUpdated_at() {
+    public Timestamp getUpdated_at() {
         return updated_at;
     }
 
-    public String getDeleted_at() {
+    public Timestamp getDeleted_at() {
         return deleted_at;
     }
 }
