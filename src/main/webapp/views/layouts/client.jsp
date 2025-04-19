@@ -63,18 +63,7 @@
 <jsp:include page="/views/client/client-footer.jsp"/>
 
 <script src="${pageContext.request.contextPath}/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<%--<script src="${pageContext.request.contextPath}/assets/libs/simplebar/simplebar.min.js"></script>--%>
-<%--<script src="${pageContext.request.contextPath}/assets/libs/mobius1-selectr/selectr.min.js"></script>--%>
 
-<%--<script src="${pageContext.request.contextPath}/assets/libs/huebee/huebee.pkgd.min.js"></script>--%>
-<%--<script src="${pageContext.request.contextPath}/assets/libs/simple-datatables/umd/simple-datatables.js"></script>--%>
-<%--<script src="${pageContext.request.contextPath}/assets/js/pages/datatable.init.js"></script>--%>
-
-<%--<script src="${pageContext.request.contextPath}/assets/libs/apexcharts/apexcharts.min.js"></script>--%>
-<%--<script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>--%>
-
-<%--<script src="${pageContext.request.contextPath}/assets/js/pages/index.init.js"></script>--%>
-<%--<script src="${pageContext.request.contextPath}/assets/js/pages/forms-advanced.js"></script>--%>
 
 <script src="${pageContext.request.contextPath}/assets/js/app.js"></script>
 </body>
