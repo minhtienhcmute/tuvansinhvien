@@ -54,16 +54,7 @@
 
 
                     </c:forEach>
-                    <div class="update-msg text-center">
-                        <div
-                                class="d-flex justify-content-center align-items-center thumb-lg update-icon-box  rounded-circle mx-auto">
-                            <img src="assets/images/extra/party.gif" alt="" class="d-inline-block me-1" height="30">
-                        </div>
-                        <h5 class="mt-3">Mannat Themes</h5>
-                        <p class="mb-3 text-muted">Dastone is a high quality web applications.</p>
-                        <a href="javascript: void(0);" class="btn bg-black text-white shadow-sm rounded-pill">Upgrade
-                            your plan</a>
-                    </div>
+
             </div>
         </div><!--end startbar-collapse-->
     </div><!--end startbar-menu-->

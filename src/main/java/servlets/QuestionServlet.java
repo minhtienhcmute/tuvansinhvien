@@ -17,7 +17,6 @@ import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @WebServlet({"/question"})
 
@@ -29,6 +28,7 @@ public class QuestionServlet extends HttpServlet {
     private UserServiceImpl userService;
     private QuestionServiceImpl questionService;
     private final String breadcrumbTitle = "User management";
+    private CommentServiceImpl commentService;
 
     public void init() throws ServletException {
         this.permissionService = new PermissionServiceImpl(new PermissionRepositoryImpl());
@@ -37,6 +37,8 @@ public class QuestionServlet extends HttpServlet {
         this.categoryService = new CategoryServiceImpl(new CategoryRepositoryImpl());
         this.departmentService = new DepartmentServiceImpl(new DepartmentRepositoryImpl());
         this.userService = new UserServiceImpl(new UserRepositoryImpl(), new UserRoleRepositoryImpl(), new UserDepartmentRepositoryImpl());
+        this.commentService = new CommentServiceImpl(new CommentRepositoryImpl());
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,12 +50,14 @@ public class QuestionServlet extends HttpServlet {
             switch (action) {
                 case "view":
                     // show list
-                    String roleId = request.getParameter("id");
+                    String id = request.getParameter("id");
 
-                    if (roleId != null) {
+                    if (id != null) {
                         handleViewDetail(request, response);
                     } else {
-                        handleViewPage(request, response); // hiển thị trang JSP
+                        response.sendError(HttpServletResponse.SC_NOT_FOUND); // 403
+
+//                        handleViewPage(request, response); // hiển thị trang JSP
                     }
                     break;
                 case "add":
@@ -63,11 +67,12 @@ public class QuestionServlet extends HttpServlet {
                     handleEdit(request, response);
                     break;
                 default:
-                    response.sendError(404);
+                    response.sendError(HttpServletResponse.SC_NOT_FOUND); // 403
                     break;
             }
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
         }
 
@@ -87,10 +92,12 @@ public class QuestionServlet extends HttpServlet {
                     doDelete(req, resp);
                     break;
                 default:
+                    resp.sendError(HttpServletResponse.SC_NOT_FOUND); // 403
                     break;
             }
         } catch (Exception e) {
             e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
         }
     }
@@ -107,7 +114,7 @@ public class QuestionServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/admin/user?success=" + URLEncoder.encode("Xóa người dùng thành công", StandardCharsets.UTF_8));
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendRedirect(req.getContextPath() + "/admin/user?error=" + URLEncoder.encode("Đã có lỗi xảy ra", StandardCharsets.UTF_8));
+            resp.sendRedirect(req.getContextPath() + "/admin/user?error=" + URLEncoder.encode("Lỗi: " + e.getMessage(), StandardCharsets.UTF_8));
         }
     }
 
@@ -206,24 +213,35 @@ public class QuestionServlet extends HttpServlet {
     }
 
     private void handleViewDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
+            String pageDesc = "Xem chi tiết";
+            String[][] breadcrumbs = {
+                    {pageDesc, null},
+            };
+            request.setAttribute("breadcrumbTitle", breadcrumbTitle);
+            request.setAttribute("breadcrumbItems", BreadcrumbUtils.createBreadcrumb(breadcrumbs));
 
-            int roleId = Integer.parseInt(request.getParameter("id"));
-            Role role = roleService.getRoleById(roleId);
-            Map<String, List<Permission>> groupedPermissions = role.getPermissions()
-                    .stream()
-                    .collect(Collectors.groupingBy(Permission::getModule));
 
-            request.setAttribute("groupedPermissions", groupedPermissions);
-            request.setAttribute("contentPage", "/views/admin/role/index.jsp");
-            request.setAttribute("view", "/views/admin/role/view-role.jsp");
-            request.setAttribute("role", role);
-            request.getRequestDispatcher("/views/layouts/admin.jsp").forward(request, response);
+            int questionId = Integer.parseInt(request.getParameter("id"));
+            questionService.increaseView(questionId);
+            Question question = questionService.findById(questionId);
+            List<Comment> comments = commentService.getCommentByQuestionId(questionId);
+            if (question == null) {
+                throw new Exception("Không tìm thấy câu hỏi");
+            }
+            List<Department> departments = this.departmentService.getAllDepartment();
+
+            request.setAttribute("departments", departments);
+            request.setAttribute("question", question);
+            request.setAttribute("comments", comments);
+
+            request.setAttribute("contentPage", "/views/client/question-detail.jsp");
+            request.getRequestDispatcher("/views/layouts/client.jsp").forward(request, response);
         } catch (Exception e) {
             String message = URLEncoder.encode("Lỗi: " + e.getMessage(), StandardCharsets.UTF_8);
             response.sendRedirect(request.getContextPath() + "?error=" + message);
         }
-
     }
 
 
@@ -236,14 +254,15 @@ public class QuestionServlet extends HttpServlet {
         request.setAttribute("cardTitle", "Questions");
 
         request.getRequestDispatcher("/views/layouts/admin.jsp").forward(request, response);
+
     }
 
     private void handleAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO: code thêm role
         try {
             String[][] breadcrumbs = {
-                    {"User list", "/admin/user"},
-                    {"Add user", null},
+
+                    {"Đặt câu hỏi", null},
             };
 
 //            List<Role> roles = roleService.getRoles();
@@ -254,7 +273,7 @@ public class QuestionServlet extends HttpServlet {
             request.setAttribute("categories", categories);
 
 
-//            request.setAttribute("breadcrumbItems", BreadcrumbUtils.createBreadcrumb(breadcrumbs));
+            request.setAttribute("breadcrumbItems", BreadcrumbUtils.createBreadcrumb(breadcrumbs));
             request.setAttribute("contentPage", "/views/client/add-post.jsp");
             request.getRequestDispatcher("/views/layouts/client.jsp").forward(request, response);
         } catch (Exception e) {

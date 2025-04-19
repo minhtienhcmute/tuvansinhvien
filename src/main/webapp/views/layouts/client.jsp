@@ -24,6 +24,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
             crossorigin="anonymous"></script>
+    <%--    <script src="https://cdn.ckbox.io/ckbox/2.6.1/ckbox.js" crossorigin></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/assets/js/main.js" crossorigin></script>--%>
 </head>
 <body>
 
@@ -35,6 +37,8 @@
     <div class="page-wrapper">
         <div class="page-content mx-0">
             <div class="container-fluid">
+                <jsp:include page="/views/partials/client-breadscrum.jsp"/>
+
                 <c:choose>
                     <c:when test="${not empty contentPage}">
                         <jsp:include page="${contentPage}"/>

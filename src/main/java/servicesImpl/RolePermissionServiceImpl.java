@@ -21,6 +21,12 @@ public class RolePermissionServiceImpl implements IRolePermissionService {
     //    public void deleteRolePermission(int roleId, List<String> permissionId) {
 //        this.rolePermissionRepository.deleteByRoleAndPermissionIds(roleId, permissionId);
 //    }
+
+//    public List<RolePermission> getRolePermissionsByRole(Role role) {
+//
+//
+//    }
+
     public void deleteRolePermission(int roleId) throws SQLException {
         this.rolePermissionRepository.delete(new RolePermission(roleId));
     }

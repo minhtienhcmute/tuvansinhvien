@@ -1,5 +1,6 @@
 package repositoriesImpl;
 
+import models.Permission;
 import models.RolePermission;
 import utils.DBConnectionPool;
 
@@ -7,18 +8,44 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.*;
 
 public class RolePermissionRepositoryImpl extends BaseRepositoryImpl<RolePermission> {
 
     private static final String INSERT = "INSERT INTO role_permission (role_id ,permission_id ) VALUES (?,?)";
-    private static final String SELECT_BOOK_ID = "select id,name,status,category_id from book where id =?";
-    private static final String SELECT_BOOKS_NAME = "select id,name,status,category_id from book where name =?";
-    private static final String GET_ALL = "select * from permissions";
-    private static final String DELETE_BOOKS_SQL = "delete from book where id = ?;";
-    private static final String UPDATE_BOOKS_SQL = "update book set name = ?,status= ?, category_id =? where id = ?;";
-    private static final String GET_BY_CATEGORY_ID = "select * FROM book where category_id = ?;";
-    Connection conn = null;
+
+    public Map<Integer, List<Permission>> getPermissionsByRoleIds(List<Integer> roleIds) throws SQLException {
+        Map<Integer, List<Permission>> permissionMap = new HashMap<>();
+
+        if (roleIds == null || roleIds.isEmpty()) return permissionMap;
+
+        String placeholders = String.join(",", Collections.nCopies(roleIds.size(), "?"));
+        String query = "SELECT rp.role_id, p.id AS permission_id, p.code AS permission_code " +
+                "FROM role_permission rp " +
+                "JOIN permissions p ON rp.permission_id = p.id " +
+                "WHERE rp.role_id IN (" + placeholders + ")";
+
+        try (Connection conn = DBConnectionPool.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            for (int i = 0; i < roleIds.size(); i++) {
+                stmt.setInt(i + 1, roleIds.get(i));
+            }
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int roleId = rs.getInt("role_id");
+                Permission permission = new Permission();
+                permission.setId(rs.getInt("permission_id"));
+                permission.setCode(rs.getString("permission_code"));
+
+                permissionMap.computeIfAbsent(roleId, k -> new ArrayList<>()).add(permission);
+            }
+        }
+
+        return permissionMap;
+    }
+
 
     @Override
     protected String getInsertQuery() {

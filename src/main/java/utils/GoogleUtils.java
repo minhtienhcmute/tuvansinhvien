@@ -20,26 +20,46 @@ public class GoogleUtils {
 
     }
 
-    public static String getToken(final String code) throws IOException {
-        String response = Request.Post(GOOGLE_LINK_GET_TOKEN)
-                .bodyForm(Form.form().add("client_id", GOOGLE_CLIENT_ID)
-                        .add("client_secret", GOOGLE_CLIENT_SECRET)
-                        .add("redirect_uri", GOOGLE_REDIRECT_URI)
-                        .add("code", code).add("grant_type", GOOGLE_GRANT_TYPE)
-                        .build())
-                .execute().returnContent().asString();
-        JsonObject jobj = new Gson().fromJson(response, JsonObject.class);
-        String accessToken = jobj.get("access_token").toString().replaceAll("\"", "");
-        return accessToken;
+    public static String getToken(final String code) throws Exception {
+        try {
+            String response = Request.Post(GOOGLE_LINK_GET_TOKEN)
+                    .bodyForm(Form.form()
+                            .add("client_id", GOOGLE_CLIENT_ID)
+                            .add("client_secret", GOOGLE_CLIENT_SECRET)
+                            .add("redirect_uri", GOOGLE_REDIRECT_URI)
+                            .add("code", code)
+                            .add("grant_type", GOOGLE_GRANT_TYPE)
+                            .build())
+                    .execute().returnContent().asString();
+
+            JsonObject jobj = new Gson().fromJson(response, JsonObject.class);
+            if (!jobj.has("access_token")) {
+                throw new Exception("Không thể lấy access token từ phản hồi của Google: " + response);
+            }
+
+            return jobj.get("access_token").getAsString();
+        } catch (IOException e) {
+            throw new Exception("Lỗi khi gửi yêu cầu lấy access token từ Google: " + e.getMessage(), e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static GooglePoJo getUserInfo(final String accessToken) throws
-            IOException {
-        String link = GOOGLE_LINK_GET_USER_INFO + accessToken;
-        String response = Request.Get(link).execute().returnContent().asString();
-        System.out.println(response);
-        GooglePoJo googlePojo = new Gson().fromJson(response, GooglePoJo.class);
-        System.out.println(googlePojo);
-        return googlePojo;
+            Exception {
+        try {
+            String link = GOOGLE_LINK_GET_USER_INFO + accessToken;
+            String response = Request.Get(link).execute().returnContent().asString();
+
+            GooglePoJo googlePojo = new Gson().fromJson(response, GooglePoJo.class);
+
+            if (googlePojo == null || googlePojo.getEmail() == null) {
+                throw new Exception("Không thể phân tích thông tin người dùng từ phản hồi Google: " + response);
+            }
+
+            return googlePojo;
+        } catch (IOException e) {
+            throw new Exception("Lỗi khi gửi yêu cầu lấy thông tin người dùng từ Google: " + e.getMessage(), e);
+        }
     }
 }

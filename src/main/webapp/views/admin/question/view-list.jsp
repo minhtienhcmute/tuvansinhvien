@@ -6,12 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <jsp:include page="/views/partials/message-box.jsp"></jsp:include>
-
 <div class="mb-3">
 
     <form action="${pageContext.request.contextPath}/admin/question" method="GET">
@@ -97,10 +97,9 @@
         <c:forEach var="question" items="${questions}">
             <tr>
                 <td>
-                    <c:set var="avatarUrl"
-                           value="${question.user.avatar != null ? question.user.avatar : 'assets/images/users/avatar-1.jpg'}"/>
-                    <img src="${pageContext.request.contextPath}/${avatarUrl}" alt="avatar-${question.user.name}"
-                         class="thumb-md d-inline rounded-circle me-1">
+                    <jsp:include page="/views/partials/user-avatar.jsp">
+                        <jsp:param name="avatarUrl" value="${question.user.avatar}"/>
+                    </jsp:include>
 
 
                         <%--                    <img src="${pageContext.request.contextPath}/${avatarUrl}" alt="avatar-${question.user.name}"--%>
@@ -139,19 +138,18 @@
                     </c:choose>
                 </td>
 
-
-                <td>${fn:substring(question.created_at, 0, 10)} ${fn:substring(question.created_at, 11, 16)}</td>
-                <td>${fn:substring(question.updated_at, 0, 10)} ${fn:substring(question.updated_at, 11, 16)}</td>
-                <td class="text-end">
+                <td><fmt:formatDate value="${question.created_at}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                <td><fmt:formatDate value="${question.updated_at}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                <td class="text-center">
                     <a href="question?id=${question.id}"><i class="las la-info-circle text-secondary fs-18"></i></a>
                         <%--                    <a href="user?action=edit&id=${user.id}"><i class="las la-pen text-secondary fs-18"></i></a>--%>
-                    <form action="user?action=delete" method="post" style="display: inline;"
-                          id="deleteForm-${user.id}">
-                        <input type="hidden" name="id" value="${user.id}">
-                        <button type="button" class="btn btn-link p-0" onclick="confirmDelete(${user.id})">
-                            <i class="las la-trash-alt text-secondary fs-18"></i>
-                        </button>
-                    </form>
+                        <%--                    <form action="user?action=delete" method="post" style="display: inline;"--%>
+                        <%--                          id="deleteForm-${user.id}">--%>
+                        <%--                        <input type="hidden" name="id" value="${user.id}">--%>
+                        <%--                        <button type="button" class="btn btn-link p-0" onclick="confirmDelete(${user.id})">--%>
+                        <%--                            <i class="las la-trash-alt text-secondary fs-18"></i>--%>
+                        <%--                        </button>--%>
+                        <%--                    </form>--%>
                 </td>
             </tr>
         </c:forEach>

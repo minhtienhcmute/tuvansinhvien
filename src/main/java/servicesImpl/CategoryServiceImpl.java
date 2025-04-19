@@ -16,7 +16,6 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     @Override
-
     public void add(Category category) throws SQLException {
         this.categoryRepository.add(category);
     }

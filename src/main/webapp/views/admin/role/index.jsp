@@ -21,46 +21,18 @@
                     <jsp:include page="/views/partials/card-header.jsp"></jsp:include>
                     <div class="col-auto">
                         <div class="row g-2">
-                            <%--                            <div class="col-auto">--%>
-                            <%--                                <a class="btn bg-primary-subtle text-primary dropdown-toggle d-flex align-items-center arrow-none"--%>
-                            <%--                                   data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"--%>
-                            <%--                                   aria-expanded="false" data-bs-auto-close="outside">--%>
-                            <%--                                    <i class="iconoir-filter-alt me-1"></i> Filter--%>
-                            <%--                                </a>--%>
-                            <%--                                <div class="dropdown-menu dropdown-menu-start">--%>
-                            <%--                                    <div class="p-2">--%>
-                            <%--                                        <div class="form-check mb-2">--%>
-                            <%--                                            <input type="checkbox" class="form-check-input" checked id="filter-all">--%>
-                            <%--                                            <label class="form-check-label" for="filter-all">--%>
-                            <%--                                                All--%>
-                            <%--                                            </label>--%>
-                            <%--                                        </div>--%>
-                            <%--                                        <div class="form-check mb-2">--%>
-                            <%--                                            <input type="checkbox" class="form-check-input" checked id="filter-one">--%>
-                            <%--                                            <label class="form-check-label" for="filter-one">--%>
-                            <%--                                                New--%>
-                            <%--                                            </label>--%>
-                            <%--                                        </div>--%>
-                            <%--                                        <div class="form-check mb-2">--%>
-                            <%--                                            <input type="checkbox" class="form-check-input" checked id="filter-two">--%>
-                            <%--                                            <label class="form-check-label" for="filter-two">--%>
-                            <%--                                                Active--%>
-                            <%--                                            </label>--%>
-                            <%--                                        </div>--%>
-                            <%--                                        <div class="form-check">--%>
-                            <%--                                            <input type="checkbox" class="form-check-input" checked id="filter-three">--%>
-                            <%--                                            <label class="form-check-label" for="filter-three">--%>
-                            <%--                                                Inactive--%>
-                            <%--                                            </label>--%>
-                            <%--                                        </div>--%>
-                            <%--                                    </div>--%>
-                            <%--                                </div>--%>
-                            <%--                            </div><!--end col-->--%>
-
                             <div class="col-auto">
-                                <a href="role?action=add"
-                                   class="btn btn-primary"><i class="fa-solid fa-plus me-1"></i> Add Role
-                                </a>
+                                <c:choose>
+
+                                    <c:when test="${empty param.action && canAdd}">
+                                        <a href="role?action=add"
+                                           class="btn btn-primary"><i class="fa-solid fa-plus me-1"></i> Add Role
+                                        </a>
+                                    </c:when>
+
+
+                                </c:choose>
+
 
                             </div><!--end col-->
                         </div>

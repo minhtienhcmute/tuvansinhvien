@@ -11,8 +11,8 @@
 <jsp:include page="/views/partials/message-box.jsp"></jsp:include>
 <form id="permissionForm" action="role?action=add" method="post">
     <%--    <div class="row">--%>
-    <input type="hidden" name="action" value="add"/> <!-- hoặc value="add" -->
-    <%--     <input type="hidden" name="id" value="${role.id}" /> <!-- chỉ dùng nếu là edit -->--%>
+    <input type="hidden" name="action" value="add"/>
+
     <div class="mb-3 row">
         <label for="horizontalInput1" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
@@ -27,7 +27,7 @@
                 <tr>
                     <th>Module</th>
                     <th>Authorization</th>
-                    <th>Check All</th>
+                    <%--                    <th>Check All</th>--%>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,19 +48,13 @@
                         <td>
                             <input class="form-check-input" name="permission[]" type="checkbox"
                                    id="inlineCheckbox">
-                            <label class="form-check-label"
-                                   for="inlineCheckbox">Check all</label>
+                                <%--                            <label class="form-check-label"--%>
+                                <%--                                   for="inlineCheckbox">Check all</label>--%>
                         </td>
                     </tr>
 
                 </c:forEach>
 
-                <%--                <tr>--%>
-                <%--                    <th scope="row">5</th>--%>
-                <%--                    <td>Jacob</td>--%>
-                <%--                    <td>XYZ@Example.com</td>--%>
-                <%--                    <td><span class="badge bg-transparent border border-warning text-warning">Personal</span></td>--%>
-                <%--                </tr>--%>
                 </tbody>
             </table><!--end /table-->
         </div>

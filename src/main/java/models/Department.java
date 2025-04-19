@@ -7,10 +7,10 @@ public class Department {
     private String name;
     private String description;
     private Timestamp created_at;
-    private String updated_at;
+    private Timestamp updated_at;
     private String deleted_at;
 
-    public Department(int id, String name, String description, Timestamp created_at, String updated_at, String deleted_at) {
+    public Department(int id, String name, String description, Timestamp created_at, Timestamp updated_at, String deleted_at) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -20,6 +20,11 @@ public class Department {
     }
 
     public Department() {
+    }
+
+    public Department(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public void setId(int id) {
@@ -38,7 +43,7 @@ public class Department {
         this.created_at = created_at;
     }
 
-    public void setUpdated_at(String updated_at) {
+    public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
 
@@ -62,7 +67,7 @@ public class Department {
         return created_at;
     }
 
-    public String getUpdated_at() {
+    public Timestamp getUpdated_at() {
         return updated_at;
     }
 

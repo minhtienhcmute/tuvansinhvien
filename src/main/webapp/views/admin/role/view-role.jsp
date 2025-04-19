@@ -10,7 +10,7 @@
 <jsp:include page="/views/partials/message-box.jsp"></jsp:include>
 
 <%--    <div class="row">--%>
-<input type="hidden" name="action" value="add"/> <!-- hoặc value="add" -->
+<input type="hidden" name="action" value="add">
 <%--     <input type="hidden" name="id" value="${role.id}" /> <!-- chỉ dùng nếu là edit -->--%>
 <div class="mb-3 row">
     <label for="horizontalInput1" class="col-sm-2 col-form-label">Name</label>
@@ -26,7 +26,7 @@
             <tr>
                 <th>Module</th>
                 <th>Authorization</th>
-                <th>Check All</th>
+                <%--                <th>Check All</th>--%>
             </tr>
             </thead>
             <tbody>
@@ -37,19 +37,20 @@
                         <c:forEach var="perm" items="${entry.value}">
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="permission[]" type="checkbox"
+                                <input onclick="return false;" class="form-check-input" name="permission[]"
+                                       type="checkbox"
                                        id="inlineCheckbox-${perm.id}" value="${perm.id}" checked>
                                 <label class="form-check-label"
                                        for="inlineCheckbox-${perm.id}">${perm.action}</label>
                             </div>
                         </c:forEach>
                     </td>
-                    <td>
-                        <input class="form-check-input" name="permission[]" type="checkbox"
-                               id="inlineCheckbox">
-                        <label class="form-check-label"
-                               for="inlineCheckbox">Check all</label>
-                    </td>
+                        <%--                    <td>--%>
+                        <%--                        <input readonly class="form-check-input" name="permission[]" type="checkbox"--%>
+                        <%--                               id="inlineCheckbox">--%>
+                        <%--                        <label class="form-check-label"--%>
+                        <%--                               for="inlineCheckbox">Check all</label>--%>
+                        <%--                    </td>--%>
                 </tr>
 
             </c:forEach>

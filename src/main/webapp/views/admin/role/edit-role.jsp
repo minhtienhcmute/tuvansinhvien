@@ -27,7 +27,7 @@
                 <tr>
                     <th>Module</th>
                     <th>Authorization</th>
-                    <th>Check All</th>
+                    <%--                    <th>Check All</th>--%>
                 </tr>
                 </thead>
                 <tbody>
@@ -57,12 +57,12 @@
                                 </div>
                             </c:forEach>
                         </td>
-                        <td>
-                            <input class="form-check-input" name="permission[]" type="checkbox"
-                                   id="inlineCheckbox">
-                            <label class="form-check-label"
-                                   for="inlineCheckbox">Check all</label>
-                        </td>
+                            <%--                        <td>--%>
+                            <%--                            <input class="form-check-input" name="permission[]" type="checkbox"--%>
+                            <%--                                   id="inlineCheckbox">--%>
+                            <%--                            <label class="form-check-label"--%>
+                            <%--                                   for="inlineCheckbox">Check all</label>--%>
+                            <%--                        </td>--%>
                     </tr>
 
                 </c:forEach>

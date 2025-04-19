@@ -5,8 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import models.*;
-import org.mindrot.jbcrypt.BCrypt;
 import repositoriesImpl.*;
 import servicesImpl.*;
 import utils.BreadcrumbUtils;
@@ -15,9 +15,9 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @WebServlet({"/admin/question"})
 
@@ -76,11 +76,11 @@ public class QuestionManageServlet extends HttpServlet {
         String action = req.getParameter("action");
         try {
             switch (action) {
-                case "add":
+                case "answer":
                     doAddPost(req, resp);
                     break;
-                case "edit":
-                    doPut(req, resp);
+                case "reject":
+                    doReject(req, resp);
                     break;
                 case "delete":
                     doDelete(req, resp);
@@ -106,56 +106,46 @@ public class QuestionManageServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/admin/user?success=" + URLEncoder.encode("Xóa người dùng thành công", StandardCharsets.UTF_8));
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendRedirect(req.getContextPath() + "/admin/user?error=" + URLEncoder.encode("Đã có lỗi xảy ra", StandardCharsets.UTF_8));
+            resp.sendRedirect(req.getContextPath() + "/admin/user?error=" + URLEncoder.encode("Lỗi: " + e.getMessage(), StandardCharsets.UTF_8));
         }
     }
 
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doReject(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+        int questionId = Integer.parseInt(request.getParameter("question_id"));
 
-        int userId = Integer.parseInt(request.getParameter("id"));
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String name = request.getParameter("name");
-        int type = Integer.parseInt(request.getParameter("type"));
-
-        String[] roleIds = request.getParameterValues("roles[]");
-        String[] deptIds = request.getParameterValues("departments[]");
-
-        if (name == null || name.trim().isEmpty()) {
-            String errorMessage = "Tên người dùng không thể để trống!";
-            String encodedErrorMessage = URLEncoder.encode(errorMessage, StandardCharsets.UTF_8);
-            resp.sendRedirect(request.getContextPath() + "/admin/user?action=edit&id=" + userId + "&error=" + encodedErrorMessage);
-            return;
-        }
         try {
-            String hashedPassword = (password != null && !password.isEmpty())
-                    ? BCrypt.hashpw(password, BCrypt.gensalt())
-                    : null;
+            String reason = request.getParameter("reason");
 
-            // Tạo User object (bạn có thể cần constructor phù hợp)
-            User user = new User();
-            user.setId(userId);
-            user.setName(name);
-            user.setEmail(email);
-            user.setType(type);
-            user.setPassword(hashedPassword);
+            if (reason == null || reason.trim().isEmpty()) {
+                String errorMessage = "Lý do từ chối không được để trống!";
+                throw new Exception(errorMessage);
+            }
 
-            // Gọi service để update
-            userService.updateUserWithRelations(user, roleIds, deptIds);
+            // Gọi service để từ chối câu hỏi
+            questionService.handleReject(questionId, reason);
 
-            String msg = "Cập nhật user thành công!";
-            String encoded = URLEncoder.encode(msg, StandardCharsets.UTF_8);
-            resp.sendRedirect(request.getContextPath() + "/admin/user?action=edit&id=" + userId + "&success=" + encoded);
+            String successMsg = URLEncoder.encode("Từ chối câu hỏi thành công!", StandardCharsets.UTF_8);
+            resp.sendRedirect(request.getContextPath() + "/admin/question?success=" + successMsg);
+
         } catch (Exception e) {
             e.printStackTrace();
-            String err = URLEncoder.encode("Lỗi khi cập nhật: " + e.getMessage(), StandardCharsets.UTF_8);
-            resp.sendRedirect(request.getContextPath() + "/admin/user?action=edit&id=" + userId + "&error=" + err);
+            String errorMsg = URLEncoder.encode("Đã xảy ra lỗi khi từ chối câu hỏi: " + e.getMessage(), StandardCharsets.UTF_8);
+            resp.sendRedirect(request.getContextPath() + "/admin/question?id=" + questionId + "&error=" + errorMsg);
+
         }
     }
 
     private void doAddPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int questionId = -1;
+        HttpSession session = request.getSession(false); // false: không tạo mới nếu chưa có
+
+        if (session == null || session.getAttribute("user") == null) {
+            // Không có session hoặc chưa đăng nhập
+            response.sendRedirect(request.getContextPath() + "/login?error=Bạn cần đăng nhập để thực hiện chức năng này");
+            return;
+        }
+        User user = (User) session.getAttribute("user");
+
         try {
             String questionIdParam = request.getParameter("question_id");
 
@@ -169,8 +159,9 @@ public class QuestionManageServlet extends HttpServlet {
             if (contentParam == null || contentParam.isEmpty()) {
                 throw new Exception("Empty content");
             }
-            int userId = 1;
-            Comment comment = new Comment(userId, questionId, contentParam);
+
+
+            Comment comment = new Comment(user.getId(), questionId, contentParam);
 
             // Tạo đối tượng User với mật khẩu đã hash
             this.questionService.handleAnswerQuestion(questionId, comment);
@@ -230,8 +221,12 @@ public class QuestionManageServlet extends HttpServlet {
     private void handleViewPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 
         try {
+            HttpSession session = request.getSession(false); // false: không tạo mới nếu chưa có
+            User user = (User) session.getAttribute("user");
+
             List<Category> categories = this.categoryService.getAll();
-            List<Department> departments = this.departmentService.getAllDepartment();
+            List<Department> departments = this.departmentService.getDepartmentByUserId(user.getId());
+//            List<Department> departments = this.departmentService.getAllDepartment();
 
             String statusParam = request.getParameter("status"); // ví dụ: "popular", "unanswered"...
             String categoryIdParam = request.getParameter("category");
@@ -241,7 +236,12 @@ public class QuestionManageServlet extends HttpServlet {
             int departmentId = departmentIdParam != null && !departmentIdParam.isEmpty() ? Integer.parseInt(departmentIdParam) : -1;
             String status = statusParam != null && !statusParam.isEmpty() ? statusParam : "0";
 
-            List<Integer> userDeptIds = Arrays.asList(1, 2); // Ví dụ user quản lý 3 phòng
+//            List<Integer> userDeptIds = Arrays.asList(1, 2); // Ví dụ user quản lý 3 phòng
+
+            List<Integer> userDeptIds = departments.stream()
+                    .map(Department::getId)
+                    .collect(Collectors.toList());
+
             List<Question> questions = this.questionService.getQuestionsFilteredForAdmin(status, categoryId, departmentId, userDeptIds);
 
             request.setAttribute("questions", questions);

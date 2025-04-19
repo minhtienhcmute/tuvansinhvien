@@ -17,7 +17,8 @@
             <div class="mb-3 row">
                 <label for="email-input" class="col-sm-2 col-form-label text-end">Email</label>
                 <div class="col-sm-10">
-                    <input value="${user.email}" required pattern=".+@gmail\.com" name="email" class="form-control"
+                    <input value="${user.email}" required pattern=".+@(gmail\.com|student\.hcmute\.edu\.vn)"
+                           name="email" class="form-control"
                            type="email"
                            id="email-input">
                 </div>

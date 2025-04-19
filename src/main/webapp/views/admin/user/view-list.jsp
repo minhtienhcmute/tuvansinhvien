@@ -10,6 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/views/partials/message-box.jsp"></jsp:include>
 
 <div class="table-responsive">
@@ -23,7 +24,9 @@
             <th>Role</th>
             <th>Department</th>
             <th>Created at</th>
-            <th class="text-end">Action</th>
+            <c:if test="${canEdit || canDelete}">
+                <th class="text-end">Action</th>
+            </c:if>
         </tr>
         </thead>
         <tbody>
@@ -48,21 +51,28 @@
                     </c:forEach>
                 </td>
 
-                <!-- Định dạng Created at -->
-                <td>${fn:substring(user.created_at, 0, 10)} ${fn:substring(user.created_at, 11, 16)}</td>
-                <!-- Giả sử created_at có dạng YYYY-MM-DD HH:MM:SS -->
 
-                <td class="text-end">
-                        <%--                    <a href="user?id=${user.id}"><i class="las la-info-circle text-secondary fs-18"></i></a>--%>
-                    <a href="user?action=edit&id=${user.id}"><i class="las la-pen text-secondary fs-18"></i></a>
-                    <form action="user?action=delete" method="post" style="display: inline;"
-                          id="deleteForm-${user.id}">
-                        <input type="hidden" name="id" value="${user.id}">
-                        <button type="button" class="btn btn-link p-0" onclick="confirmDelete(${user.id})">
-                            <i class="las la-trash-alt text-secondary fs-18"></i>
-                        </button>
-                    </form>
-                </td>
+                <td><fmt:formatDate value="${user.created_at}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                <c:if test="${canEdit || canDelete}">
+
+                    <td class="text-center">
+                            <%--                    <a href="user?id=${user.id}"><i class="las la-info-circle text-secondary fs-18"></i></a>--%>
+
+                        <c:if test="${canEdit}">
+                            <a href="user?action=edit&id=${user.id}"><i class="las la-pen text-secondary fs-18"></i></a>
+                        </c:if>
+                        <c:if test="${canDelete}">
+                            <form action="user?action=delete" method="post" style="display: inline;"
+                                  id="deleteForm-${user.id}">
+                                <input type="hidden" name="id" value="${user.id}">
+                                <button type="button" class="btn btn-link p-0" onclick="confirmDelete(${user.id})">
+                                    <i class="las la-trash-alt text-secondary fs-18"></i>
+                                </button>
+                            </form>
+                        </c:if>
+                    </td>
+                </c:if>
+
             </tr>
         </c:forEach>
         </tbody>

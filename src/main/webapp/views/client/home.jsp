@@ -108,25 +108,122 @@
                     </div>
                 </c:if>
                 <c:forEach var="question" items="${questions}">
-                    <div class="card question-card">
-                        <div class="card-body d-flex">
-                            <div class="vote-section me-3">
-                                <h5>${question.vote_cnt}</h5>
-                                <p class="text-muted">vote</p>
-                            </div>
-                            <div class="flex-grow-1">
-                                <h5 class="card-title">${question.title}</h5>
-                                <p class="card-text">${question.content}</p>
-                                    <%--                                <p class="card-text">--%>
-                                    <%--                                <c:out value="${question.content}" escapeXml="false"/>--%>
-                                    <%--                                </p>--%>
-                                <div class="mb-2">
-                                        <%--                                    <span class="tag">${question.category.name}</span>--%>
-                                    <span class="badge bg-info">${question.category.name}</span>
+
+
+                    <div class="card ">
+                        <div class="card-body">
+                                <%--                            <div class="vote-section me-3">--%>
+                                <%--                                <h5>${question.vote_cnt}</h5>--%>
+                                <%--                                <p class="text-muted">vote</p>--%>
+                                <%--                            </div>--%>
+
+
+                                <%--                            <div class="flex-grow-1">--%>
+                                <%--                                <h5 class="card-title">${question.title}</h5>--%>
+                                <%--                                <p class="card-text">${question.content}</p>--%>
+                                <%--                                    &lt;%&ndash;                                <p class="card-text">&ndash;%&gt;--%>
+                                <%--                                    &lt;%&ndash;                                <c:out value="${question.content}" escapeXml="false"/>&ndash;%&gt;--%>
+                                <%--                                    &lt;%&ndash;                                </p>&ndash;%&gt;--%>
+                                <%--                                <div class="mb-2">--%>
+                                <%--                                        &lt;%&ndash;                                    <span class="tag">${question.category.name}</span>&ndash;%&gt;--%>
+                                <%--                                    <span class="badge bg-info">${question.category.name}</span>--%>
+                                <%--                                </div>--%>
+                                <%--                                <div class="d-flex justify-content-between">--%>
+                                <%--                                    <span class="text-muted">256 views</span>--%>
+                                <%--                                    <a href="#" class="text-primary">Xem chi tiết</a>--%>
+                                <%--                                </div>--%>
+                                <%--                            </div>--%>
+                            <div class="row mt-3">
+                                <!-- VOTE + AVATAR -->
+                                <div class="col-1 align-items-center d-flex flex-column gap-2">
+                                    <jsp:include page="/views/partials/user-avatar.jsp">
+                                        <jsp:param name="avatarUrl" value="${question.user.avatar}"/>
+                                    </jsp:include>
+                                    <small class="text-muted text-center">${question.user.name}</small>
+
+                                        <%--        <div class="my-2">--%>
+                                        <%--            <i class="bi bi-caret-up-fill fs-4 text-secondary"></i><br/>--%>
+                                        <%--            <span class="fw-bold">${question.vote_cnt}</span><br/>--%>
+                                        <%--            <i class="bi bi-caret-down-fill fs-4 text-secondary"></i>--%>
+                                        <%--        </div>--%>
+                                        <%--        <small class="text-muted">vote</small>--%>
                                 </div>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">256 views</span>
-                                    <a href="#" class="text-primary">Xem chi tiết</a>
+
+                                <!-- NỘI DUNG CHÍNH -->
+                                <div class="col-md-11">
+                                    <div class="row d-flex">
+                                        <div class="col-8">
+                                            <h5 class="mb-2 flex-grow-1 me-3 fw-bold">
+                                                <a href="${pageContext.request.contextPath}/question?id=${question.id}">
+                                                        ${question.title}
+                                                </a>
+                                            </h5>
+                                            <div class="">
+                                                <span class="badge bg-primary">${question.category.name}</span>
+                                                <span class="badge bg-info">${question.department.name}</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-4 row  small text-muted">
+                                            <div class="row text-end">
+                        <span class="col-5 fw-semibold">
+                            Người gửi:
+                        </span>
+                                                <span class="col-7 text-dark text-start">
+                                                        ${question.user.name}
+                                                </span>
+                                            </div>
+
+                                            <div class="row text-end">
+                           <span class="col-5 fw-semibold">
+                            Email:
+                        </span>
+                                                <span class="col-7 text-dark text-start"><a
+                                                        href="mailto:${question.user.email}">${question.user.email}</a></span>
+                                            </div>
+
+
+                                            <div class="row text-end">
+                        <span class="col-5 fw-semibold">
+                            Ngày gửi:
+                        </span>
+                                                <span class="col-7 text-start">
+                        <fmt:formatDate value="${question.created_at}" pattern="yyyy-MM-dd HH:mm:ss"/>
+
+                    </span>
+                                            </div>
+                                            <div class="row text-end">
+                                                <span class="col-5 text-end fw-semibold">Trạng thái:</span>
+                                                <c:set var="color"
+                                                       value="${question.status == 0 ? 'warning' : question.status == 1 ? 'success' : 'danger'}"></c:set>
+                                                <c:set var="statusText"
+                                                       value="${question.status == 0 ? 'Waiting answer' : question.status == 1 ? 'Answered' : 'Rejected'}"></c:set>
+                                                <span class="col-7 text-${color} fw-medium text-start">
+                                                        ${statusText}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Nội dung câu hỏi -->
+                                    <div class="mt-2">
+                                            ${question.content}
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between gap-2">
+                                        <div class="d-flex gap-5 text-muted">
+                                            <div>
+                                                <i class="iconoir-eye me-1"></i> <!-- icon mắt -->
+                                                <small class="text-muted">${question.views} lượt xem</small>
+                                            </div>
+
+
+                                        </div>
+                                        <div>
+                                            <a href="${pageContext.request.contextPath}/question?id=${question.id}"
+                                               class="text-primary">Xem chi tiết</a>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

@@ -5,15 +5,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import models.Category;
 import models.Department;
 import models.Question;
-import repositoriesImpl.CategoryRepositoryImpl;
-import repositoriesImpl.DepartmentRepositoryImpl;
-import repositoriesImpl.QuestionRepositoryImpl;
+import models.User;
+import repositoriesImpl.*;
 import servicesImpl.CategoryServiceImpl;
 import servicesImpl.DepartmentServiceImpl;
 import servicesImpl.QuestionServiceImpl;
+import servicesImpl.UserServiceImpl;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -26,6 +27,9 @@ public class ClientServlet extends HttpServlet {
     private CategoryServiceImpl categoryService;
     private DepartmentServiceImpl departmentService;
     private QuestionServiceImpl questionService;
+    private final UserServiceImpl userService = new UserServiceImpl(
+            new UserRepositoryImpl(), new UserRoleRepositoryImpl(), new UserDepartmentRepositoryImpl()
+    );
 
     public void init() throws ServletException {
         this.categoryService = new CategoryServiceImpl(new CategoryRepositoryImpl());
@@ -39,6 +43,7 @@ public class ClientServlet extends HttpServlet {
 
             List<Category> categories = this.categoryService.getAll();
             List<Department> departments = this.departmentService.getAllDepartment();
+
             // Các tham số lọc và phân trang
             String tab = req.getParameter("tab"); // ví dụ: "popular", "unanswered"...
             String categoryIdParam = req.getParameter("category");
@@ -46,6 +51,7 @@ public class ClientServlet extends HttpServlet {
             String pageParam = req.getParameter("page");
             String pageSizeParam = req.getParameter("perPage");
             String keyword = req.getParameter("keyword");
+
 
             int categoryId = categoryIdParam != null && !categoryIdParam.isEmpty() ? Integer.parseInt(categoryIdParam) : -1;
             int departmentId = departmentIdParam != null && !departmentIdParam.isEmpty() ? Integer.parseInt(departmentIdParam) : -1;
@@ -64,6 +70,23 @@ public class ClientServlet extends HttpServlet {
             // Tổng số lượng để phân trang
             int totalQuestions = questionService.countQuestionsFiltered(categoryId, departmentId, keyword);
             int totalPages = (int) Math.ceil((double) totalQuestions / pageSize);
+
+            HttpSession session = req.getSession();
+
+            boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
+
+            if (isLoggedIn) {
+                User currentUser = (User) session.getAttribute("user");
+
+                User freshUser = userService.getUserByEmail(currentUser.getEmail());
+
+                if (freshUser != null) {
+                    userService.assignPermissionsToUserRoles(freshUser);
+                    session.setAttribute("user", freshUser);
+                }
+
+            }
+
 
             // Truyền dữ liệu cho JSP
             req.setAttribute("questions", questions);

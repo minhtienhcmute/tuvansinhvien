@@ -105,7 +105,8 @@
                     <c:if test="${totalPage != currentPage && totalPage-currentPage > 0}">
 
                         <li class="page-item ${currentPage == totalPage ? 'disabled' : ''}">
-                            <a class="page-link" href="${pageContext.request.contextPath}?page=${totalPage}${query}"
+                            <a class="page-link"
+                               href="${pageContext.request.contextPath}?page=${currentPage + 1}${query}"
                                aria-label="Last">»</a>
                         </li>
                     </c:if>

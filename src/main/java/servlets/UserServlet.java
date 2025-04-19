@@ -110,7 +110,7 @@ public class UserServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/admin/user?success=" + URLEncoder.encode("Xóa người dùng thành công", StandardCharsets.UTF_8));
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendRedirect(req.getContextPath() + "/admin/user?error=" + URLEncoder.encode("Đã có lỗi xảy ra", StandardCharsets.UTF_8));
+            resp.sendRedirect(req.getContextPath() + "/admin/user?error=" + URLEncoder.encode("Lỗi: " + e.getMessage(), StandardCharsets.UTF_8));
         }
     }
 

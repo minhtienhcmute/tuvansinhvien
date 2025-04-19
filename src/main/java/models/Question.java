@@ -1,5 +1,6 @@
 package models;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Question {
@@ -13,8 +14,12 @@ public class Question {
     private int vote_cnt;
     private int views;
     private String reason;
-    private String created_at;
+    private Timestamp created_at;
+    private Timestamp updated_at;
     private List<Comment> comments;
+    private User user;
+    private Department department;
+    private Category category;
 
     public List<Comment> getComments() {
         return comments;
@@ -48,10 +53,6 @@ public class Question {
         this.category = category;
     }
 
-    private String updated_at;
-    private User user;
-    private Department department;
-    private Category category;
 
     public Question() {
     }
@@ -64,7 +65,7 @@ public class Question {
         this.department_id = department_id;
     }
 
-    public Question(int id, int user_id, int category_id, String title, String content, int status, int vote_cnt, int views, String reason, String created_at, String updated_at) {
+    public Question(int id, int user_id, int category_id, String title, String content, int status, int vote_cnt, int views, String reason, Timestamp created_at, Timestamp updated_at) {
         this.id = id;
         this.user_id = user_id;
         this.category_id = category_id;
@@ -122,11 +123,11 @@ public class Question {
         this.reason = reason;
     }
 
-    public void setCreated_at(String created_at) {
+    public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
 
-    public void setUpdated_at(String updated_at) {
+    public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
 
@@ -166,11 +167,11 @@ public class Question {
         return reason;
     }
 
-    public String getCreated_at() {
+    public Timestamp getCreated_at() {
         return created_at;
     }
 
-    public String getUpdated_at() {
+    public Timestamp getUpdated_at() {
         return updated_at;
     }
 }

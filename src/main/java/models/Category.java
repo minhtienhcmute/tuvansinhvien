@@ -13,6 +13,11 @@ public class Category {
     public Category() {
     }
 
+    public Category(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public Category(int id, String name, String description, Timestamp created_at, Timestamp updated_at, Timestamp deleted_at) {
         this.id = id;
         this.name = name;

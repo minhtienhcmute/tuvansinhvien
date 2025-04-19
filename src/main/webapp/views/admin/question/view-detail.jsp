@@ -8,22 +8,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <jsp:include page="/views/partials/message-box.jsp"></jsp:include>
 
-<c:set var="avatarUrl"
-       value="${question.user.avatar != null ? question.user.avatar : 'assets/images/users/avatar-1.jpg'}"/>
 
 <div class="row mt-3">
     <!-- VOTE + AVATAR -->
-    <div class="col-md-1 text-center">
-        <img src="${pageContext.request.contextPath}/${avatarUrl}" width="40" alt="avatar-${question.user.name}"
-             class="thumb-md d-inline rounded-circle me-1">
-        <div class="my-2">
-            <i class="bi bi-caret-up-fill fs-4 text-secondary"></i><br/>
-            <span class="fw-bold">${question.vote_cnt}</span><br/>
-            <i class="bi bi-caret-down-fill fs-4 text-secondary"></i>
-        </div>
-        <small class="text-muted">vote</small>
+    <div class="col-1 align-items-center d-flex flex-column gap-2">
+        <jsp:include page="/views/partials/user-avatar.jsp">
+            <jsp:param name="avatarUrl" value="${question.user.avatar}"/>
+        </jsp:include>
+        <small class="text-muted text-center">${question.user.name}</small>
+
+        <%--        <div class="my-2">--%>
+        <%--            <i class="bi bi-caret-up-fill fs-4 text-secondary"></i><br/>--%>
+        <%--            <span class="fw-bold">${question.vote_cnt}</span><br/>--%>
+        <%--            <i class="bi bi-caret-down-fill fs-4 text-secondary"></i>--%>
+        <%--        </div>--%>
+        <%--        <small class="text-muted">vote</small>--%>
     </div>
 
     <!-- NỘI DUNG CHÍNH -->
@@ -60,7 +63,10 @@
                         <span class="col-5 fw-semibold">
                             Ngày gửi:
                         </span>
-                    <span class="col-7 text-start">${fn:substring(question.created_at, 0, 10)} ${fn:substring(question.created_at, 11, 16)}</span>
+                    <span class="col-7 text-start">
+                        <fmt:formatDate value="${question.created_at}" pattern="yyyy-MM-dd HH:mm:ss"/>
+
+                    </span>
                 </div>
                 <div class="row text-end">
                     <span class="col-5 text-end fw-semibold">Trạng thái:</span>
@@ -75,9 +81,10 @@
             </div>
         </div>
         <!-- Nội dung câu hỏi -->
-        <div>
+        <div class="mt-2">
             ${question.content}
         </div>
+
         <!-- Hành động -->
         <hr>
         <div class="d-flex justify-content-between gap-2">
@@ -86,13 +93,44 @@
                     <i class="iconoir-eye me-1"></i> <!-- icon mắt -->
                     <small class="text-muted">${question.views} lượt xem</small>
                 </div>
-                <%--                <div>--%>
-                <%--                    <i class="iconoir-eye me-1"></i> <!-- icon mắt -->--%>
-                <%--                    <small class="text-muted">${question.views} lượt xem</small>--%>
-                <%--                </div>--%>
-            </div>
-            <button class="btn btn-danger" onclick="showRejectModal()">Từ chối</button>
 
+
+            </div>
+            <c:if test="${canReject && question.status == 0}">
+                <button type="button" class="btn btn-danger btn-sm"
+                        data-bs-toggle="modal" data-bs-target="#rejectModal">
+                    Reject
+                </button>
+            </c:if>
+            <c:if test="${not empty question.reason}">
+                <div class="d-flex align-items-center text-danger">
+                    <i class="iconoir-warning-triangle me-1"></i> <!-- icon cảnh báo -->
+                    <small>Reason reject: ${question.reason}</small>
+                </div>
+            </c:if>
+            <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="rejectModal"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                    <form action="question?action=reject" method="POST" class="modal-content">
+                        <input type="hidden" name="question_id" value="${question.id}">
+                        <div class="modal-header">
+                            <h6 class="modal-title" id="rejectModalLabel">Reason reject</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <div class="modal-body">
+                         <textarea required class="form-control" name="reason" rows="4"
+                                   placeholder="Input reason"></textarea>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="mr-2 btn btn-danger">Submit</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+
+                    </form>
+                </div><!--end modal-dialog-->
+            </div><!--end modal-->
         </div>
 
     </div>
@@ -102,20 +140,23 @@
         <h4 class="card-title">Trả lời:</h4>
     </div>
     <div class="card-body">
-        <form action="question?action=add" method="post">
+        <form action="question?action=answer" method="post">
             <div class="row">
                 <input type="hidden" name="question_id" value="${question.id}">
                 <div class="col-1 align-items-center d-flex flex-column gap-2">
-                    <img src="${pageContext.request.contextPath}/${avatarUrl}" width="40"
-                         alt="avatar-${question.user.name}"
-                         class="thumb-md d-inline rounded-circle">
-                    <small class="text-muted text-center">Võ Minh Tiến</small>
+                    <jsp:include page="/views/partials/user-avatar.jsp">
+                        <jsp:param name="avatarUrl" value="${sessionScope.user.avatar}"/>
+                    </jsp:include>
+                    <small class="text-muted text-center">${sessionScope.user.name}</small>
                 </div>
                 <div class="col-11">
                     <textarea id="editorAnswer" class="form-control" rows="5" name="content"></textarea>
                     <div class="mt-3 d-flex justify-content-end gap-3">
-                        <button type="submit" class="btn btn-success">Gửi trả lời</button>
+                        <c:if test="${canAnswer && question.status != 2}">
+                            <button type="submit" class="btn btn-success">Gửi trả lời</button>
+                        </c:if>
                         <a href="question" class="btn btn-danger">Hủy</a>
+
                     </div>
                 </div>
             </div>
@@ -131,27 +172,27 @@
         </div>
         <div class="card-body">
             <c:forEach var="comment" items="${comments}">
-                <c:set var="avatarReplyer"
-                       value="${comment.user.avatar != null ? comment.user.avatar : 'assets/images/users/avatar-1.jpg'}"/>
+
                 <div class="row mb-3">
-                    <div class="col-md-1 text-center">
-                        <img src="${pageContext.request.contextPath}/${avatarReplyer}" width="40"
-                             alt="avatar-${comment.user.name}"
-                             class="thumb-md d-inline rounded-circle me-1">
-                        <div class="my-2">
-                            <i class="bi bi-caret-up-fill fs-4 text-secondary"></i><br/>
-                            <span class="fw-bold">${comment.vote_cnt}</span><br/>
-                            <i class="bi bi-caret-down-fill fs-4 text-secondary"></i>
-                        </div>
-                        <small class="text-muted">vote</small>
+                    <div class="col-md-1 align-items-center d-flex flex-column gap-2 text-center">
+                        <jsp:include page="/views/partials/user-avatar.jsp">
+                            <jsp:param name="avatarUrl" value="${comment.user.avatar}"/>
+                        </jsp:include>
+                        <small class="text-muted text-center">${comment.user.name}</small>
+                            <%--                        <div class="my-2">--%>
+                            <%--                            <i class="bi bi-caret-up-fill fs-4 text-secondary"></i><br/>--%>
+                            <%--                            <span class="fw-bold">${comment.vote_cnt}</span><br/>--%>
+                            <%--                            <i class="bi bi-caret-down-fill fs-4 text-secondary"></i>--%>
+                            <%--                        </div>--%>
+                            <%--                        <small class="text-muted">vote</small>--%>
 
                     </div>
 
                     <!-- NỘI DUNG CHÍNH -->
                     <div class="col-md-11">
-                        <div class="row d-flex">
+                        <div class="row ">
                             <div class="col-8">
-                                <div>
+                                <div class="bg-light rounded ms-n2 bg-light-alt p-3">
                                         ${comment.content}
                                 </div>
                             </div>
@@ -178,7 +219,9 @@
                         <span class="col-5 fw-semibold">
                             Ngày trả lời:
                         </span>
-                                    <span class="col-7 text-start">${fn:substring(comment.created_at, 0, 10)} ${fn:substring(comment.created_at, 11, 16)}</span>
+                                    <span class="col-7 text-start">
+                                        <fmt:formatDate value="${comment.created_at}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -194,43 +237,37 @@
 </c:if>
 
 
-<div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="rejectModalLabel">Lý do từ chối câu hỏi </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-
-            </div>
-
-            <div class="modal-body">
-                <textarea class="form-control" name="rejectReason" rows="4"
-                          placeholder="Nhập lý do từ chối..."></textarea>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="submit" class="btn btn-danger">Xác nhận từ chối</button>
-            </div>
-
-        </form>
-    </div>
-</div>
-
 <script>
     const {
         ClassicEditor,
         Essentials,
         Paragraph,
         Bold,
-        Italic
+        Italic, List,
+        Image,
+        Clear, Fullscreen,
     } = CKEDITOR;
 
     ClassicEditor
         .create(document.querySelector('#editorAnswer'), {
-            licenseKey: 'GPL', // Or 'GPL'.
+            // licenseKey: 'GPL', // Or 'GPL'.
+            licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDU5NzExOTksImp0aSI6ImY1MmZjZGMyLTI0YzAtNDYxNS1hN2Y0LTlhOWM2Yzk1NTA4MiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjAzMGI2OTJhIn0.13WnbXTKJ7WtkRf_Vl4M7mziSgoy2IJqAV2UVaInAEXeqE6gFICrKT0iXpUPyuc0PXkMjkhXDlyajgoID3FiJg',
             plugins: [Essentials, Paragraph, Bold, Italic],
-            toolbar: ['bold', 'italic', 'underline', 'link', 'undo', 'redo', 'clear', 'fullscreen', 'insertImage', 'insertUnorderedList', 'insertOrderedList'],
+            // toolbar: ['bold', 'italic', 'underline', 'link', 'undo', 'redo', 'clear', 'fullscreen', 'insertImage', 'insertUnorderedList', 'insertOrderedList'],
+            toolbar: [
+                'selectAll',
+                'undo',
+                'redo',
+                'bold',
+                'italic',
+                // Nếu bạn dùng dạng menu thì giữ các dòng bên dưới
+                // 'menuBar:accessibilityHelp',
+                // 'menuBar:selectAll',
+                // 'menuBar:undo',
+                // 'menuBar:redo',
+                // 'menuBar:bold',
+                // 'menuBar:italic'
+            ]
         })
         .catch(error => {
             console.error(error);

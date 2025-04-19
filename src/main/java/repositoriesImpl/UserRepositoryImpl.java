@@ -25,6 +25,171 @@ public class UserRepositoryImpl extends BaseRepositoryImpl<User> {
         return "UPDATE users SET email = ?, name = ?, type = ? WHERE id = ?";
     }
 
+    public void insertUserWithGoogle(String name, String email, String googleId, String avatar) throws SQLException {
+        String sql = "INSERT INTO users(name, email, google_id, avatar) VALUES (?, ?, ?, ?)";
+
+        try (Connection conn = DBConnectionPool.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)
+        ) {
+            stmt.setString(1, name);
+            stmt.setString(2, email);
+            stmt.setString(3, googleId);
+            stmt.setString(4, avatar);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    public String getUserByEmailAndGoogleIdQuery() {
+        return "SELECT u.id AS user_id, u.email, u.password, u.name, u.google_id, u.created_at, " +
+                "u.updated_at, u.avatar, u.deleted_at, u.type, " +
+                "r.id AS role_id, r.name AS role_name, " +
+                "d.id AS dept_id, d.name AS dept_name " +
+                "FROM users u " +
+                "LEFT JOIN user_role ur ON u.id = ur.user_id " +
+                "LEFT JOIN roles r ON ur.role_id = r.id " +
+                "LEFT JOIN user_department ud ON u.id = ud.user_id " +
+                "LEFT JOIN departments d ON ud.department_id = d.id " +
+                "WHERE u.email = ? AND u.google_id = ?";
+    }
+
+    public User getUserByEmailAndGoogleId(String email, String googleId) throws SQLException {
+        User user = null;
+
+        try (Connection conn = DBConnectionPool.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(getUserByEmailAndGoogleIdQuery())
+        ) {
+
+            System.out.println(stmt);
+            stmt.setString(1, email);
+            stmt.setString(2, googleId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+
+                if (user == null) {
+                    user = new User();
+                    user.setId(rs.getInt("user_id"));
+                    user.setEmail(rs.getString("email"));
+                    user.setPassword(rs.getString("password"));
+                    user.setName(rs.getString("name"));
+                    user.setGoogle_id(rs.getString("google_id"));
+                    user.setCreated_at(rs.getTimestamp("created_at"));
+                    user.setUpdated_at(rs.getTimestamp("updated_at"));
+                    user.setAvatar(rs.getString("avatar"));
+                    user.setDeleted_at(rs.getTimestamp("deleted_at"));
+                    user.setType(rs.getInt("type"));
+                    user.setRoles(new ArrayList<>());
+                    user.setDepartments(new ArrayList<>());
+                }
+
+                // Thêm role vào user nếu có
+                int roleId = rs.getInt("role_id");
+                String roleName = rs.getString("role_name");
+                if (roleName != null) {
+                    Role role = new Role();
+                    role.setId(roleId);
+                    role.setName(roleName);
+                    if (user.getRoles().stream().noneMatch(r -> r.getId() == roleId)) {
+                        user.getRoles().add(role);
+                    }
+                }
+
+                // Thêm department vào user nếu có
+                int deptId = rs.getInt("dept_id");
+                String deptName = rs.getString("dept_name");
+                if (deptName != null) {
+                    Department dept = new Department();
+                    dept.setId(deptId);
+                    dept.setName(deptName);
+                    if (user.getDepartments().stream().noneMatch(d -> d.getId() == (deptId))) {
+                        user.getDepartments().add(dept);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+            throw e;
+        }
+        return user;
+    }
+
+    protected String getUserByEmailQuery() {
+        return "SELECT u.id AS user_id, u.email, u.password, u.name, u.google_id, u.created_at, " +
+                "u.updated_at, u.avatar, u.deleted_at, u.type, " +
+                "r.id AS role_id, r.name AS role_name, " +
+                "d.id AS dept_id, d.name AS dept_name " +
+                "FROM users u " +
+                "LEFT JOIN user_role ur ON u.id = ur.user_id " +
+                "LEFT JOIN roles r ON ur.role_id = r.id " +
+                "LEFT JOIN user_department ud ON u.id = ud.user_id " +
+                "LEFT JOIN departments d ON ud.department_id = d.id " +
+                "WHERE u.email = ?";
+    }
+
+    public User getUserByEmail(String email) throws SQLException {
+        User user = null;
+
+        try (Connection conn = DBConnectionPool.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(getUserByEmailQuery())
+        ) {
+
+            stmt.setString(1, email);
+            System.out.println(stmt);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+
+                if (user == null) {
+                    user = new User();
+                    user.setId(rs.getInt("user_id"));
+                    user.setEmail(rs.getString("email"));
+                    user.setPassword(rs.getString("password"));
+                    user.setName(rs.getString("name"));
+                    user.setGoogle_id(rs.getString("google_id"));
+                    user.setCreated_at(rs.getTimestamp("created_at"));
+                    user.setUpdated_at(rs.getTimestamp("updated_at"));
+                    user.setAvatar(rs.getString("avatar"));
+                    user.setDeleted_at(rs.getTimestamp("deleted_at"));
+                    user.setType(rs.getInt("type"));
+                    user.setRoles(new ArrayList<>());
+                    user.setDepartments(new ArrayList<>());
+                }
+
+                // Thêm role vào user nếu có
+                int roleId = rs.getInt("role_id");
+                String roleName = rs.getString("role_name");
+                if (roleName != null) {
+                    Role role = new Role();
+                    role.setId(roleId);
+                    role.setName(roleName);
+                    if (user.getRoles().stream().noneMatch(r -> r.getId() == roleId)) {
+                        user.getRoles().add(role);
+                    }
+                }
+
+                // Thêm department vào user nếu có
+                int deptId = rs.getInt("dept_id");
+                String deptName = rs.getString("dept_name");
+                if (deptName != null) {
+                    Department dept = new Department();
+                    dept.setId(deptId);
+                    dept.setName(deptName);
+                    if (user.getDepartments().stream().noneMatch(d -> d.getId() == (deptId))) {
+                        user.getDepartments().add(dept);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+            throw e;
+        }
+        return user;
+    }
+
     public void updateUserWithoutPassword(Connection conn, User user) throws SQLException {
 
 
@@ -110,10 +275,10 @@ public class UserRepositoryImpl extends BaseRepositoryImpl<User> {
                     user.setPassword(rs.getString("password"));
                     user.setName(rs.getString("name"));
                     user.setGoogle_id(rs.getString("google_id"));
-                    user.setCreated_at(rs.getString("created_at"));
-                    user.setUpdated_at(rs.getString("updated_at"));
+                    user.setCreated_at(rs.getTimestamp("created_at"));
+                    user.setUpdated_at(rs.getTimestamp("updated_at"));
                     user.setAvatar(rs.getString("avatar"));
-                    user.setDeleted_at(rs.getString("deleted_at"));
+                    user.setDeleted_at(rs.getTimestamp("deleted_at"));
                     user.setType(rs.getInt("type"));
                     user.setRoles(new ArrayList<>());
                     user.setDepartments(new ArrayList<>());
@@ -183,10 +348,10 @@ public class UserRepositoryImpl extends BaseRepositoryImpl<User> {
                     user.setPassword(rs.getString("password"));
                     user.setName(rs.getString("name"));
                     user.setGoogle_id(rs.getString("google_id"));
-                    user.setCreated_at(rs.getString("created_at"));
-                    user.setUpdated_at(rs.getString("updated_at"));
+                    user.setCreated_at(rs.getTimestamp("created_at"));
+                    user.setUpdated_at(rs.getTimestamp("updated_at"));
                     user.setAvatar(rs.getString("avatar"));
-                    user.setDeleted_at(rs.getString("deleted_at"));
+                    user.setDeleted_at(rs.getTimestamp("deleted_at"));
                     user.setType(rs.getInt("type"));
                     user.setRoles(new ArrayList<>());
                     user.setDepartments(new ArrayList<>());

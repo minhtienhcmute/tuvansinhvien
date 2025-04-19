@@ -2,6 +2,7 @@ package auth;
 
 public class GooglePoJo {
     private String id;
+    private String sub;
     private String email;
     private boolean verified_email;
     private String name;
@@ -9,6 +10,15 @@ public class GooglePoJo {
     private String family_name;
     private String link;
     private String picture;
+
+    public String getSub() {
+        return sub;
+    }
+
+    public void setSub(String sub) {
+        this.sub = sub;
+    }
+
 
     public String getId() {
         return id;

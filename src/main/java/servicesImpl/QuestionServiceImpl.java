@@ -21,6 +21,10 @@ public class QuestionServiceImpl implements IQuestionService {
         this.questionRepository = questionRepository;
     }
 
+    public void handleReject(int questionId, String reason) throws SQLException {
+        this.questionRepository.rejectQuestion(questionId, reason);
+    }
+
     public void handleAnswerQuestion(int questionId, Comment comment) throws SQLException {
         Connection conn = null;
 
@@ -53,6 +57,10 @@ public class QuestionServiceImpl implements IQuestionService {
 
             }
         }
+    }
+
+    public void increaseView(int id) throws SQLException {
+        questionRepository.increaseViewCount(id);
     }
 
     public Question findById(int id) throws SQLException {

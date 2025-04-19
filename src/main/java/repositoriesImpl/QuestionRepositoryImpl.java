@@ -6,16 +6,45 @@ import models.Question;
 import models.User;
 import utils.DBConnectionPool;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class QuestionRepositoryImpl extends BaseRepositoryImpl<Question> {
 
+
+    public void increaseViewCount(int questionId) throws SQLException {
+        String sql = "{CALL increase_question_views(?)}";
+
+        try (Connection conn = DBConnectionPool.getConnection();
+             CallableStatement stmt = conn.prepareCall(sql)) {
+
+            stmt.setInt(1, questionId);
+            stmt.execute();
+
+        } catch (SQLException e) {
+            this.printSQLException(e);
+            throw e;
+        }
+    }
+
+    public void rejectQuestion(int questionId, String reason) throws SQLException {
+        String sql = "UPDATE questions SET status = 2, reason = ? WHERE id = ?";
+
+        try (Connection conn = DBConnectionPool.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, reason);
+            stmt.setInt(2, questionId);
+            System.out.println("Query: " + stmt);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            this.printSQLException(e);
+            throw e;
+
+        }
+    }
 
     public void updateStatusQuestion(Connection conn, Question question) throws SQLException {
 
@@ -118,6 +147,7 @@ public class QuestionRepositoryImpl extends BaseRepositoryImpl<Question> {
                         "JOIN categories c ON q.category_id = c.id " +
                         "WHERE 1=1"
         );
+        sql.append(" AND q.status = 1");
 
         if (categoryId != -1) {
             sql.append(" AND q.category_id = ?");
@@ -164,6 +194,7 @@ public class QuestionRepositoryImpl extends BaseRepositoryImpl<Question> {
                         "JOIN categories c ON q.category_id = c.id " +
                         "WHERE 1=1"
         );
+        sql.append(" AND q.status = 1");
 
         if (categoryId != -1) {
             sql.append(" AND q.category_id = ?");
@@ -230,11 +261,12 @@ public class QuestionRepositoryImpl extends BaseRepositoryImpl<Question> {
         q.setCategory_id(rs.getInt("category_id"));
         q.setDepartment_id(rs.getInt("department_id"));
         q.setUser_id(rs.getInt("user_id"));
-        q.setCreated_at(rs.getString("created_at"));
-        q.setUpdated_at(rs.getString("updated_at"));
+        q.setCreated_at(rs.getTimestamp("created_at"));
+        q.setUpdated_at(rs.getTimestamp("updated_at"));
         q.setVote_cnt(rs.getInt("vote_cnt"));
         q.setViews(rs.getInt("views"));
         q.setStatus(rs.getInt("status"));
+        q.setReason(rs.getString("reason"));
 
         // Gán User
         User u = new User();

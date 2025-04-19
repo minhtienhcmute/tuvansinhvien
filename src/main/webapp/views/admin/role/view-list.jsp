@@ -15,24 +15,31 @@
         <thead class="table-light">
         <tr>
             <th>Role name</th>
-            <th class="text-end">Action</th>
+            <%--            <c:if test="${canEdit || canDelete}">--%>
+            <th class="text-center">Action</th>
+            <%--            </c:if>--%>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="role" items="${roles}">
             <tr>
                 <td>${role.name}</td>
-                <td class="text-end">
+                <td class="text-center">
                     <a href="role?id=${role.id}"><i class="las la-info-circle text-secondary fs-18"></i></a>
-                    <a href="role?action=edit&id=${role.id}"><i class="las la-pen text-secondary fs-18"></i></a>
-                    <form action="role?action=delete&id=${role.id}" method="post" style="display: inline;"
-                          id="deleteForm-${role.id}">
 
-                        <button type="button" class="btn btn-link p-0" onclick="confirmDelete(${role.id})">
-                            <i class="las la-trash-alt text-secondary fs-18"></i>
-                        </button>
-                    </form>
+                    <c:if test="${canEdit}">
+                        <a href="role?action=edit&id=${role.id}"><i class="las la-pen text-secondary fs-18"></i></a>
 
+                    </c:if>
+                    <c:if test="${ canDelete}">
+                        <form action="role?action=delete&id=${role.id}" method="post" style="display: inline;"
+                              id="deleteForm-${role.id}">
+
+                            <button type="button" class="btn btn-link p-0" onclick="confirmDelete(${role.id})">
+                                <i class="las la-trash-alt text-secondary fs-18"></i>
+                            </button>
+                        </form>
+                    </c:if>
                 </td>
             </tr>
         </c:forEach>
