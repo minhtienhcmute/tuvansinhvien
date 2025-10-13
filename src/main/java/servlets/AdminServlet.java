@@ -6,7 +6,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.Book;
 import repositoriesImpl.BookRepositoryImpl;
 import repositoriesImpl.CategoryRepositoryImpl;
 import services.IBookService;
@@ -14,8 +13,6 @@ import servicesImpl.BookServiceImpl;
 import servicesImpl.CategoryServiceImpl;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
 
 @WebServlet({"/admin"})
 
@@ -32,11 +29,11 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            List<Book> testGetData = this.bookService.getAll();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            List<Book> testGetData = this.bookService.getAll();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
 //        List<MenuItem> menus = MenuConfig.getMenus();
 //
 //        req.setAttribute("menus", menus);
