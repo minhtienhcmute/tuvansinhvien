@@ -48,6 +48,10 @@ public class UserServlet extends HttpServlet {
             String action = request.getParameter("action");
             if (action == null) action = "view";
 
+//            String csrfToken = java.util.UUID.randomUUID().toString();
+//            request.getSession().setAttribute("CSRF_TOKEN", csrfToken);
+//            request.setAttribute("csrfToken", csrfToken);
+
             switch (action) {
                 case "view":
                     // show list

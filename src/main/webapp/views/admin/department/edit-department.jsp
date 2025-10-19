@@ -11,6 +11,7 @@
 <jsp:include page="/views/partials/message-box.jsp"></jsp:include>
 <form id="categoryForm" action="department?action=edit" method="post">
     <input type="hidden" name="id" value="${department.id}"/> <!-- chỉ dùng nếu là edit -->
+    <input type="hidden" name="csrfToken" value="${csrfToken}">
 
     <div class="row">
         <div class="col-lg-12">

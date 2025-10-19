@@ -21,9 +21,10 @@
     <%--    <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>--%>
     <script src="${pageContext.request.contextPath}/ckeditor5/ckeditor5.umd.js"></script>
     <%--    <script src="${pageContext.request.contextPath}/ckfinder/ckfinder.js"></script>--%>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-            crossorigin="anonymous"></script>
+    <%--    <script src="https://code.jquery.com/jquery-3.7.1.js"--%>
+    <%--            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="--%>
+    <%--            crossorigin="anonymous"></script>--%>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" nonce="${cspNonce}"></script>
 </head>
 <body>
 
@@ -68,7 +69,7 @@
                 </div><!--end col-->
             </div><!--end row-->
         </div>
-     
+
     </div>
 </div>
 <jsp:include page="/views/client/client-footer.jsp"/>

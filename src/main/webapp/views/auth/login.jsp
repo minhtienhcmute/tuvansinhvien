@@ -1,5 +1,6 @@
 <%@ page import="java.nio.charset.StandardCharsets" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="row d-flex justify-content-center">
     <div class="col-12 align-self-center">
         <div class="card-body">
@@ -13,8 +14,20 @@
                         </div>
                         <div class="card-body">
                             <form class="mb-4" action="login" method="POST">
-                                <input type="hidden" name="redirectUri" value="${param.redirect_uri}">
+                                <input type="hidden" name="csrfToken" value="${csrfToken}">
 
+                                <%--                                <input type="hidden" name="redirectUri" value="${param.redirect_uri}">--%>
+                                <%--                                <input type="hidden" name="redirectUri" value="${param.redirect_uri}">--%>
+                                <%--                                <input--%>
+                                <%--                                        value="<c:out value='${param.redirect_uri}' default=''/>"--%>
+                                <%--                                        type="hidden"--%>
+                                <%--                                        name="redirectUri"--%>
+                                <%--                                >--%>
+                                <input
+                                        type="hidden"
+                                        name="redirectUri"
+                                        value="<c:out value='${param.redirect_uri}'/>"
+                                />
                                 <div class="form-group mb-2">
                                     <label class="form-label" for="username">Email</label>
                                     <input type="text" class="form-control" id="username" name="email"

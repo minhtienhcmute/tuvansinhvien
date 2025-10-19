@@ -27,12 +27,12 @@
     <link href="${pageContext.request.contextPath}/assets/css/app.min.css" rel="stylesheet" type="text/css"/>
     <link href="${pageContext.request.contextPath}/ckeditor5/ckeditor5.css" rel="stylesheet" type="text/css"/>
     <%--    <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>--%>
-    <script src="${pageContext.request.contextPath}/ckeditor5/ckeditor5.umd.js"></script>
+    <script src="${pageContext.request.contextPath}/ckeditor5/ckeditor5.umd.js" nonce="${cspNonce}"></script>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-            crossorigin="anonymous"></script>
-
+    <%--    <script src="https://code.jquery.com/jquery-3.7.1.js"--%>
+    <%--            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="--%>
+    <%--            crossorigin="anonymous"></script>--%>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" nonce="${cspNonce}"></script>
     <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css"/>--%>
 </head>
 <body>
@@ -172,13 +172,15 @@
 
 <%--<script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>--%>
 <%--<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>--%>
-<script src="${pageContext.request.contextPath}/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/libs/bootstrap/js/bootstrap.bundle.min.js"
+        nonce="${cspNonce}"></script>
+<script src="${pageContext.request.contextPath}/assets/libs/simplebar/simplebar.min.js" nonce="${cspNonce}"></script>
 <%--<script src="${pageContext.request.contextPath}/assets/libs/mobius1-selectr/selectr.min.js"></script>--%>
 
-<script src="${pageContext.request.contextPath}/assets/libs/huebee/huebee.pkgd.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/libs/simple-datatables/umd/simple-datatables.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/pages/datatable.init.js"></script>
+<script src="${pageContext.request.contextPath}/assets/libs/huebee/huebee.pkgd.min.js" nonce="${cspNonce}"></script>
+<script src="${pageContext.request.contextPath}/assets/libs/simple-datatables/umd/simple-datatables.js"
+        nonce="${cspNonce}"></script>
+<script src="${pageContext.request.contextPath}/assets/js/pages/datatable.init.js" nonce="${cspNonce}"></script>
 
 <%--<script src="${pageContext.request.contextPath}/assets/libs/apexcharts/apexcharts.min.js"></script>--%>
 <%--<script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>--%>
@@ -186,7 +188,7 @@
 <%--<script src="${pageContext.request.contextPath}/assets/js/pages/index.init.js"></script>--%>
 <%--<script src="${pageContext.request.contextPath}/assets/js/pages/forms-advanced.js"></script>--%>
 
-<script src="${pageContext.request.contextPath}/assets/js/app.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/app.js" nonce="${cspNonce}"></script>
 
 
 </body>

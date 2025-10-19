@@ -12,7 +12,8 @@
         <div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-success rounded-circle mx-auto me-1">
             <i class="fas fa-check align-self-center mb-0 text-white "></i>
         </div>
-            ${param.success}
+        <c:out value="${param.success}"/>
+            <%--            ${param.success}--%>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 </c:if>
@@ -23,7 +24,8 @@
         <div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1">
             <i class="fas fa-xmark align-self-center mb-0 text-white "></i>
         </div>
-            ${param.error}
+        <c:out value="${param.error}"/>
+            <%--            ${param.param}--%>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 </c:if>

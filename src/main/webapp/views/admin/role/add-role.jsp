@@ -12,6 +12,7 @@
 <form id="permissionForm" action="role?action=add" method="post">
     <%--    <div class="row">--%>
     <input type="hidden" name="action" value="add"/>
+    <input type="hidden" name="csrfToken" value="${csrfToken}">
 
     <div class="mb-3 row">
         <label for="horizontalInput1" class="col-sm-2 col-form-label">Name</label>

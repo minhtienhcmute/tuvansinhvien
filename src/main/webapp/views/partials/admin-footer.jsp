@@ -6,7 +6,7 @@
                     <div class="card-body">
                         <p class="text-muted mb-0">
                             ©
-                            <script> document.write(new Date().getFullYear()) </script>
+                            <script nonce="${cspNonce}"> document.write(new Date().getFullYear()) </script>
                             Dastone
                             <span class="text-muted d-none d-sm-inline-block float-end">
                                             Design with

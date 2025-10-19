@@ -19,11 +19,12 @@
     <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="${pageContext.request.contextPath}/ckeditor5/ckeditor5.css" rel="stylesheet" type="text/css"/>
     <%--    <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>--%>
-    <script src="${pageContext.request.contextPath}/ckeditor5/ckeditor5.umd.js"></script>
+    <script src="${pageContext.request.contextPath}/ckeditor5/ckeditor5.umd.js" nonce="${cspNonce}"></script>
     <%--    <script src="${pageContext.request.contextPath}/ckfinder/ckfinder.js"></script>--%>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-            crossorigin="anonymous"></script>
+    <%--    <script src="https://code.jquery.com/jquery-3.7.1.js"--%>
+    <%--            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="--%>
+    <%--            crossorigin="anonymous"></script>--%>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" nonce="${cspNonce}"></script>
     <%--    <script src="https://cdn.ckbox.io/ckbox/2.6.1/ckbox.js" crossorigin></script>--%>
     <%--    <script src="${pageContext.request.contextPath}/assets/js/main.js" crossorigin></script>--%>
 </head>
@@ -62,9 +63,10 @@
 <!-- Include the Footer -->
 <jsp:include page="/views/client/client-footer.jsp"/>
 
-<script src="${pageContext.request.contextPath}/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/libs/bootstrap/js/bootstrap.bundle.min.js"
+        nonce="${cspNonce}"></script>
 
 
-<script src="${pageContext.request.contextPath}/assets/js/app.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/app.js" nonce="${cspNonce}"></script>
 </body>
 </html>

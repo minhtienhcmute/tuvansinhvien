@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,10 +9,11 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS for minor adjustments -->
-    <style>
+    <style nonce="${cspNonce}">
         .question-card {
             margin-bottom: 20px;
         }
+
         .tag {
             background-color: #e0e0e0;
             padding: 5px 10px;
@@ -20,6 +21,7 @@
             margin-right: 5px;
             font-size: 0.9em;
         }
+
         .status-waiting {
             background-color: #ffc107; /* Yellow for Waiting */
             color: white;
@@ -27,6 +29,7 @@
             border-radius: 5px;
             font-size: 0.9em;
         }
+
         .status-accepted {
             background-color: #28a745; /* Green for Accepted */
             color: white;
@@ -34,6 +37,7 @@
             border-radius: 5px;
             font-size: 0.9em;
         }
+
         .status-rejected {
             background-color: #dc3545; /* Red for Rejected */
             color: white;
@@ -68,7 +72,8 @@
                 <span class="text-muted">23 hour ago</span>
             </div>
             <p class="card-text">
-                I'm trying to integrate Prisma with Nuxt 3 but facing issues. I'm trying to integrate Prisma with Nuxt 3 b
+                I'm trying to integrate Prisma with Nuxt 3 but facing issues. I'm trying to integrate Prisma with Nuxt 3
+                b
             </p>
             <div class="mb-2">
                 <span class="tag">Không có khi</span>
@@ -94,7 +99,8 @@
                 <span class="text-muted">23/02/2025 15:30PM</span>
             </div>
             <p class="card-text">
-                I'm trying to integrate Prisma with Nuxt 3 but facing issues. I'm trying to integrate Prisma with Nuxt 3 b
+                I'm trying to integrate Prisma with Nuxt 3 but facing issues. I'm trying to integrate Prisma with Nuxt 3
+                b
             </p>
             <div class="mb-2">
                 <span class="tag">Không có khi</span>
@@ -120,7 +126,8 @@
                 <span class="text-muted">24/02/2025 10:00AM</span>
             </div>
             <p class="card-text">
-                I'm trying to integrate Prisma with Nuxt 3 but facing issues. I'm trying to integrate Prisma with Nuxt 3 b
+                I'm trying to integrate Prisma with Nuxt 3 but facing issues. I'm trying to integrate Prisma with Nuxt 3
+                b
             </p>
             <div class="mb-2">
                 <span class="tag">Không có khi</span>
@@ -177,7 +184,7 @@
 </c:forEach>
 
 <!-- Bootstrap JS and Popper.js -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+<%--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>--%>
+<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>--%>
 </body>
 </html>

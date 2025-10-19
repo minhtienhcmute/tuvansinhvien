@@ -12,6 +12,8 @@
 
 <form id="permissionForm" action="role?action=edit" method="post">
     <%--    <div class="row">--%>
+    <input type="hidden" name="csrfToken" value="${csrfToken}">
+
     <input type="hidden" name="id" value="${role.id}"/> <!-- chỉ dùng nếu là edit -->
     <div class="mb-3 row">
         <label for="horizontalInput1" class="col-sm-2 col-form-label">Name</label>

@@ -42,8 +42,17 @@
                 </div>
                 <div class="col-5">
                     <div class="input-group">
-                        <input value="${param.keyword}" type="text" name="keyword" class="form-control"
-                               placeholder="Search...">
+                        <%--                        <input value="${param.keyword}" type="text" name="keyword" class="form-control"--%>
+                        <%--                               placeholder="Search...">--%>
+
+
+                        <input
+                                value="<c:out value='${param.keyword}' default=''/>"
+                                type="text"
+                                name="keyword"
+                                class="form-control"
+                                placeholder="Search..."
+                        >
                     </div>
 
                 </div>
@@ -154,8 +163,11 @@
                                     <div class="row d-flex">
                                         <div class="col-8">
                                             <h5 class="mb-2 flex-grow-1 me-3 fw-bold">
-                                                <a href="${pageContext.request.contextPath}/question?id=${question.id}">
-                                                        ${question.title}
+                                                    <%--                                                <a href="${pageContext.request.contextPath}/question?id=${question.id}">--%>
+                                                    <%--                                                        ${question.title}--%>
+                                                    <%--                                                </a>--%>
+                                                <a href="${pageContext.request.contextPath}/question?id=<c:out value='${question.id}' />">
+                                                    <c:out value="${question.title}"/>
                                                 </a>
                                             </h5>
                                             <div class="">

@@ -33,7 +33,9 @@
     <div class="col-md-11">
         <div class="row d-flex">
             <div class="col-8">
-                <h5 class="mb-2 flex-grow-1 me-3 fw-bold">${question.title}</h5>
+                <h5 class="mb-2 flex-grow-1 me-3 fw-bold">
+                    <c:out value="${question.title}"/>
+                </h5>
                 <div class="">
                     <span class="badge bg-primary">${question.category.name}</span>
                     <span class="badge bg-info">${question.department.name}</span>
@@ -112,6 +114,8 @@
                  aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable" role="document">
                     <form action="question?action=reject" method="POST" class="modal-content">
+                        <input type="hidden" name="csrfToken" value="${csrfToken}">
+
                         <input type="hidden" name="question_id" value="${question.id}">
                         <div class="modal-header">
                             <h6 class="modal-title" id="rejectModalLabel">Reason reject</h6>
@@ -141,6 +145,8 @@
     </div>
     <div class="card-body">
         <form action="question?action=answer" method="post">
+            <input type="hidden" name="csrfToken" value="${csrfToken}">
+
             <div class="row">
                 <input type="hidden" name="question_id" value="${question.id}">
                 <div class="col-1 align-items-center d-flex flex-column gap-2">
@@ -250,8 +256,8 @@
 
     ClassicEditor
         .create(document.querySelector('#editorAnswer'), {
-            // licenseKey: 'GPL', // Or 'GPL'.
-            licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDU5NzExOTksImp0aSI6ImY1MmZjZGMyLTI0YzAtNDYxNS1hN2Y0LTlhOWM2Yzk1NTA4MiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjAzMGI2OTJhIn0.13WnbXTKJ7WtkRf_Vl4M7mziSgoy2IJqAV2UVaInAEXeqE6gFICrKT0iXpUPyuc0PXkMjkhXDlyajgoID3FiJg',
+            licenseKey: 'GPL', // Or 'GPL'.
+            // licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDU5NzExOTksImp0aSI6ImY1MmZjZGMyLTI0YzAtNDYxNS1hN2Y0LTlhOWM2Yzk1NTA4MiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjAzMGI2OTJhIn0.13WnbXTKJ7WtkRf_Vl4M7mziSgoy2IJqAV2UVaInAEXeqE6gFICrKT0iXpUPyuc0PXkMjkhXDlyajgoID3FiJg',
             plugins: [Essentials, Paragraph, Bold, Italic],
             // toolbar: ['bold', 'italic', 'underline', 'link', 'undo', 'redo', 'clear', 'fullscreen', 'insertImage', 'insertUnorderedList', 'insertOrderedList'],
             toolbar: [

@@ -35,7 +35,10 @@
                     <div class="col-md-11">
                         <div class="row d-flex">
                             <div class="col-8">
-                                <h5 class="mb-2 flex-grow-1 me-3 fw-bold">${question.title}</h5>
+                                <h5 class="mb-2 flex-grow-1 me-3 fw-bold">
+                                    <c:out value="${question.title}"/>
+                                </h5>
+                                <%--                                <h5 class="mb-2 flex-grow-1 me-3 fw-bold">${question.title}</h5>--%>
                                 <div class="">
                                     <span class="badge bg-primary">${question.category.name}</span>
                                     <span class="badge bg-info">${question.department.name}</span>

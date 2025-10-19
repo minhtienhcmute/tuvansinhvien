@@ -62,8 +62,10 @@
                             <a href="user?action=edit&id=${user.id}"><i class="las la-pen text-secondary fs-18"></i></a>
                         </c:if>
                         <c:if test="${canDelete}">
-                            <form action="user?action=delete" method="post" style="display: inline;"
+                            <form action="user?action=delete" method="post"
                                   id="deleteForm-${user.id}">
+                                <input type="hidden" name="csrfToken" value="${csrfToken}">
+
                                 <input type="hidden" name="id" value="${user.id}">
                                 <button type="button" class="btn btn-link p-0" onclick="confirmDelete(${user.id})">
                                     <i class="las la-trash-alt text-secondary fs-18"></i>

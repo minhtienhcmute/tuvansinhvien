@@ -12,8 +12,10 @@
     </resource-ref>
     <error-page>
         <error-code>404</error-code>
-        <location>/views/partials/404.jsp</location>
+        <!--        <location>/views/partials/404.jsp</location>-->
+        <location>/error</location>
     </error-page>
+
     <!-- web.xml -->
     <!-- web.xml -->
     <!--    <servlet>-->

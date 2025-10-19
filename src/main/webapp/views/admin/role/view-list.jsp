@@ -32,8 +32,9 @@
 
                     </c:if>
                     <c:if test="${ canDelete}">
-                        <form action="role?action=delete&id=${role.id}" method="post" style="display: inline;"
+                        <form action="role?action=delete&id=${role.id}" method="post"
                               id="deleteForm-${role.id}">
+                            <input type="hidden" name="csrfToken" value="${csrfToken}">
 
                             <button type="button" class="btn btn-link p-0" onclick="confirmDelete(${role.id})">
                                 <i class="las la-trash-alt text-secondary fs-18"></i>

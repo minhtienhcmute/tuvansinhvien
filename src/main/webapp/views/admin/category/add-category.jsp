@@ -10,6 +10,7 @@
 
 <jsp:include page="/views/partials/message-box.jsp"></jsp:include>
 <form id="categoryForm" action="category?action=add" method="post">
+    <input type="hidden" name="csrfToken" value="${csrfToken}">
     <div class="row">
         <div class="col-lg-12">
             <div class="mb-3 row">

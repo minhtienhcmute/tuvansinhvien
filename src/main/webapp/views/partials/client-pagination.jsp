@@ -117,7 +117,7 @@
     </div>
 </div>
 
-<script>
+<script nonce="${cspNonce}">
     $(document).ready(function () {
         $('select[name="perPage"]').on('change', function () {
             const perPage = $(this).val();

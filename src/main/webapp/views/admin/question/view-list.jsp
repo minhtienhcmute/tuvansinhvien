@@ -109,8 +109,12 @@
                         <%--                    </p>--%>
                 </td>
                     <%--                <td class="ps-0">${question.user.name}--%>
-                <td>${question.user.email}</td>
-                <td>${question.title}</td>
+                    <%--                <td>${question.user.email}</td>--%>
+                    <%--                <td>${question.title}</td>--%>
+
+
+                <td><c:out value="${question.user.email}" default="-"/></td>
+                <td><c:out value="${question.title}" default="(no title)"/></td>
                 <td>
                     <span class="badge bg-primary ">${question.department.name}</span>
                 </td>

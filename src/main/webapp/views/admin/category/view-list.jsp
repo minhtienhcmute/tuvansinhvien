@@ -43,7 +43,7 @@
                             </a>
                         </c:if>
                         <c:if test="${canDelete}">
-                            <form action="category?action=delete" method="post" style="display: inline;"
+                            <form action="category?action=delete" method="post"
                                   id="deleteForm-${category.id}">
                                 <input type="hidden" name="id" value="${category.id}">
                                 <button type="button" class="btn btn-link p-0" onclick="confirmDelete(${category.id})">
