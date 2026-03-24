@@ -26,7 +26,7 @@
                                 <input
                                         type="hidden"
                                         name="redirectUri"
-                                        value="<c:out value='${param.redirect_uri}'/>"
+                                        value="< c:out value='${param.redirect_uri}'/>"
                                 />
                                 <div class="form-group mb-2">
                                     <label class="form-label" for="username">Email</label>

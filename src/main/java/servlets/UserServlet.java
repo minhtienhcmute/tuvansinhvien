@@ -191,6 +191,14 @@ public class UserServlet extends HttpServlet {
             return;
         }
 
+
+        String passwordError = validatePassword(password);
+        if (passwordError != null) {
+            String encodedErrorMessage = URLEncoder.encode(passwordError, StandardCharsets.UTF_8);
+            resp.sendRedirect(req.getContextPath() + "/admin/user?action=add&error=" + encodedErrorMessage);
+            return;
+        }
+
         try {
             String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
@@ -211,6 +219,36 @@ public class UserServlet extends HttpServlet {
             String encodedErrorMessage = URLEncoder.encode(errorMessage, StandardCharsets.UTF_8);
             resp.sendRedirect(req.getContextPath() + "/admin/user?action=add&error=" + encodedErrorMessage);
         }
+    }
+
+    private String validatePassword(String password) {
+        if (password.length() < 8 || password.length() > 20) {
+            return "Mật khẩu phải có độ dài từ 8 đến 20 ký tự!";
+        }
+
+
+        if (!password.matches("^[A-Za-z0-9]+$")) {
+            return "Mật khẩu chỉ được chứa chữ hoa, chữ thường và số!";
+        }
+
+
+        if (!password.matches(".*[A-Z].*")) {
+            return "Mật khẩu phải có ít nhất 1 ký tự chữ hoa!";
+        }
+        if (!password.matches(".*[a-z].*")) {
+            return "Mật khẩu phải có ít nhất 1 ký tự chữ thường!";
+        }
+        if (!password.matches(".*[0-9].*")) {
+            return "Mật khẩu phải có ít nhất 1 ký tự số!";
+        }
+
+
+        for (int i = 0; i < password.length() - 1; i++) {
+            if (password.charAt(i) == password.charAt(i + 1)) {
+                return "Mật khẩu không được có hai ký tự liền kề giống nhau!";
+            }
+        }
+        return null;
     }
 
     private void handleViewDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

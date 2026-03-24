@@ -87,7 +87,7 @@ public class AdminAuthFilter implements Filter {
         }
 
         String path = ((HttpServletRequest) request).getServletPath();
-        String actionParam = httpRequest.getParameter("action"); // ví dụ: add, edit, delete
+        String actionParam = httpRequest.getParameter("action");
 
         String pathToCheck;
         if (actionParam != null && !actionParam.isEmpty()) {

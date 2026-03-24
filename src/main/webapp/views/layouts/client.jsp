@@ -24,7 +24,8 @@
     <%--    <script src="https://code.jquery.com/jquery-3.7.1.js"--%>
     <%--            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="--%>
     <%--            crossorigin="anonymous"></script>--%>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" nonce="${cspNonce}"></script>
+    <%--    <script src="https://code.jquery.com/jquery-3.7.1.js" nonce="${cspNonce}"></script>--%>
+    <script src="${pageContext.request.contextPath}/assets/jquery-3.7.1.min.js" nonce="${cspNonce}"></script>
     <%--    <script src="https://cdn.ckbox.io/ckbox/2.6.1/ckbox.js" crossorigin></script>--%>
     <%--    <script src="${pageContext.request.contextPath}/assets/js/main.js" crossorigin></script>--%>
 </head>

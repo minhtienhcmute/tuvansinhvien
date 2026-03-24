@@ -5,10 +5,7 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 
 //@WebFilter("/admin/users/*")
@@ -58,7 +55,26 @@ public class CspHeaderFilter implements Filter {
                 + "form-action 'self';";
         resp.setHeader("Content-Security-Policy", cspPolicy);
 
+        resp.setHeader("X-Content-Type-Options", "nosniff");
+
         chain.doFilter(request, response);
+
+        // --- 5️⃣ Thêm SameSite vào tất cả cookie ---
+        Collection<String> headers = resp.getHeaders("Set-Cookie");
+        if (headers != null && !headers.isEmpty()) {
+            boolean first = true;
+            for (String header : headers) {
+                if (!header.toLowerCase().contains("samesite")) {
+                    String newHeader = header + "; SameSite=Strict";
+                    if (first) {
+                        resp.setHeader("Set-Cookie", newHeader);
+                        first = false;
+                    } else {
+                        resp.addHeader("Set-Cookie", newHeader);
+                    }
+                }
+            }
+        }
     }
 
     @Override
