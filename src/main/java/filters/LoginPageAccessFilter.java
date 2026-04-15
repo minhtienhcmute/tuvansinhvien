@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebFilter({"/login"})
+@WebFilter({ "/login" })
 
 public class LoginPageAccessFilter implements Filter {
     @Override
@@ -27,10 +27,15 @@ public class LoginPageAccessFilter implements Filter {
         boolean isLoggedIn = session != null && session.getAttribute("user") != null;
 
         if (isLoggedIn) {
-            // Nếu đã đăng nhập → redirect về trang chủ
-            res.sendRedirect(req.getContextPath());
+            // Nếu đã đăng nhập -> không cho vào /login, chuyển về trang chủ.
+            String contextPath = req.getContextPath();
+            String homePath = contextPath == null || contextPath.isEmpty() ? "/" : contextPath + "/";
+            System.out.println("[LoginPageAccessFilter] logged-in user redirected from /login to: " + homePath);
+            res.sendRedirect(homePath);
+            return;
         } else {
             // Nếu chưa login → cho truy cập bình thường
+            System.out.println("[LoginPageAccessFilter] guest access /login");
             chain.doFilter(request, response);
         }
     }

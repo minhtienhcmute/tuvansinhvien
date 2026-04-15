@@ -1,6 +1,5 @@
 package servlets.auth;
 
-
 import auth.GooglePoJo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,6 +19,7 @@ import utils.DBConnectionPool;
 import utils.GoogleUtils;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
@@ -29,12 +29,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet({"/auth/callback"})
+@WebServlet({ "/auth/callback" })
 
 public class LoginGoogleServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private final AuthService authService = new AuthService();
-    private final UserServiceImpl userService = new UserServiceImpl(new UserRepositoryImpl(), new UserRoleRepositoryImpl(), new UserDepartmentRepositoryImpl());
+    private final UserServiceImpl userService = new UserServiceImpl(new UserRepositoryImpl(),
+            new UserRoleRepositoryImpl(), new UserDepartmentRepositoryImpl());
 
     public LoginGoogleServlet() {
         super();
@@ -65,7 +66,6 @@ public class LoginGoogleServlet extends HttpServlet {
             String name = googlePojo.getName();
             String avatar = googlePojo.getPicture();
 
-
             User user = authService.loginWithGoogle(email, googleId, name, avatar);
 
             if (user != null) {
@@ -84,17 +84,20 @@ public class LoginGoogleServlet extends HttpServlet {
             }
 
             if (state != null && !state.isEmpty()) {
-                resp.sendRedirect(state);
+                String decodedState = URLDecoder.decode(state, StandardCharsets.UTF_8);
+                resp.sendRedirect(decodedState);
             } else {
                 resp.sendRedirect(req.getContextPath() + "/");
             }
-
+            return;
 
         } catch (Exception e) {
             e.printStackTrace();
             String message = URLEncoder.encode(e.getMessage(), StandardCharsets.UTF_8);
             resp.sendRedirect(req.getContextPath() + "/login?error=" + message);
-//            resp.sendRedirect(req.getContextPath() + "/login?error=Đăng nhập Google thất bại");
+            return;
+            // resp.sendRedirect(req.getContextPath() + "/login?error=Đăng nhập Google thất
+            // bại");
         }
 
     }
@@ -106,8 +109,8 @@ public class LoginGoogleServlet extends HttpServlet {
         String password = req.getParameter("psw");
         String SQL_GET_USER = "SELECT * FROM users WHERE name = ? AND password = ?";
         try (Connection connection = DBConnectionPool.getConnection();
-             // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_GET_USER)) {
+                // Step 2:Create a statement using connection object
+                PreparedStatement preparedStatement = connection.prepareStatement(SQL_GET_USER)) {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
 
@@ -121,7 +124,6 @@ public class LoginGoogleServlet extends HttpServlet {
                 session.setAttribute("user", rs.getString("name"));
             }
             resp.sendRedirect(req.getContextPath() + "/admin");
-
 
         } catch (SQLException e) {
             System.out.println(e);

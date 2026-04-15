@@ -17,14 +17,15 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-@WebServlet({"/login"})
+@WebServlet({ "/login" })
 
 public class LoginServlet extends HttpServlet {
     private UserServiceImpl userService;
 
     @Override
     public void init() throws ServletException {
-        this.userService = new UserServiceImpl(new UserRepositoryImpl(), new UserRoleRepositoryImpl(), new UserDepartmentRepositoryImpl());
+        this.userService = new UserServiceImpl(new UserRepositoryImpl(), new UserRoleRepositoryImpl(),
+                new UserDepartmentRepositoryImpl());
     }
 
     @Override
@@ -47,7 +48,6 @@ public class LoginServlet extends HttpServlet {
         String serverBase = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort();
         String fullBaseUrl = serverBase + req.getContextPath() + "/auth/callback";
 
-
         String googleLoginUrl = "https://accounts.google.com/o/oauth2/auth"
                 + "?scope=openid profile email"
                 + "&redirect_uri="
@@ -60,13 +60,16 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String redirectUri = request.getParameter("redirectUri");
+        if (redirectUri == null) {
+            redirectUri = "";
+        }
 
         try {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-
 
             // Kiểm tra thông tin bắt buộc
             if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
@@ -81,7 +84,8 @@ public class LoginServlet extends HttpServlet {
                 throw new Exception("User not found");
             }
             if (user != null && user.getGoogle_id() != null) {
-                throw new Exception("Email này đã được tạo thông qua Google. Đăng nhập bằng Google để truy cập tài khoản.");
+                throw new Exception(
+                        "Email này đã được tạo thông qua Google. Đăng nhập bằng Google để truy cập tài khoản.");
             }
 
             String hashedPasswordInDB = user.getPassword();
@@ -92,13 +96,14 @@ public class LoginServlet extends HttpServlet {
 
                 userService.assignPermissionsToUserRoles(user);
 
-
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
 
-                redirectUri = !redirectUri.isEmpty() ? redirectUri : request.getContextPath();
+                redirectUri = !redirectUri.isEmpty() ? redirectUri
+                        : (request.getContextPath().isEmpty() ? "/" : request.getContextPath());
 
                 response.sendRedirect(redirectUri);
+                return;
 
             } else {
                 throw new Exception("Wrong password");
@@ -110,11 +115,12 @@ public class LoginServlet extends HttpServlet {
             if (redirectUri.isEmpty()) {
                 response.sendRedirect(request.getContextPath() + "/login?error=" + err);
             } else {
-                response.sendRedirect(request.getContextPath() + "/login?redirect_uri=" + redirectUri + "&error=" + err);
+                response.sendRedirect(
+                        request.getContextPath() + "/login?redirect_uri=" + redirectUri + "&error=" + err);
             }
+            return;
 
         }
-
 
     }
 }

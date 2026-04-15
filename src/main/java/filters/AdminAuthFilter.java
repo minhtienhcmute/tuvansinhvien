@@ -23,10 +23,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @WebFilter("/admin/*")
 public class AdminAuthFilter implements Filter {
-    private final UserServiceImpl userService = new UserServiceImpl(new UserRepositoryImpl(), new UserRoleRepositoryImpl(), new UserDepartmentRepositoryImpl());
+    private final UserServiceImpl userService = new UserServiceImpl(new UserRepositoryImpl(),
+            new UserRoleRepositoryImpl(), new UserDepartmentRepositoryImpl());
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -57,7 +57,6 @@ public class AdminAuthFilter implements Filter {
 
         User user = (User) session.getAttribute("user");
 
-
         try {
             // Làm mới dữ liệu user từ DB
             User freshUser = userService.getUserByEmail(user.getEmail());
@@ -82,7 +81,9 @@ public class AdminAuthFilter implements Filter {
         boolean isAdmin = user.getType() == 1;
 
         if (!isAdmin) {
-            httpResponse.sendRedirect(httpRequest.getContextPath());
+            String contextPath = httpRequest.getContextPath();
+            String homePath = (contextPath == null || contextPath.isEmpty()) ? "/" : contextPath + "/";
+            httpResponse.sendRedirect(homePath);
             return;
         }
 
@@ -103,7 +104,6 @@ public class AdminAuthFilter implements Filter {
             List<String> userPermissions = (List<String>) session.getAttribute("userPermissions");
             PermissionUtils.setPermissionFlags(httpRequest, userPermissions);
             request.setAttribute("menus", menus);
-
 
             chain.doFilter(request, response);
         } else {
