@@ -1,15 +1,15 @@
 <Context>
     <Resource
-            name="jdbc/MyAppDB"
-            auth="Container"
-            type="javax.sql.DataSource"
-            driverClassName="com.mysql.cj.jdbc.Driver"
-            url="jdbc:mysql://localhost:3306/hethongtuvansv?useSSL=false&amp;serverTimezone=UTC"
-            username="root"
-            password=""
-            maxTotal="50"
-            maxIdle="20"
-            minIdle="5"
-            maxWaitMillis="10000"
+        name="jdbc/MyAppDB"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="com.mysql.cj.jdbc.Driver"
+        url="jdbc:mysql://db:3306/hethongtuvansv?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true"
+        username="bookuser"
+        password="bookpass"
+        maxTotal="50"
+        maxIdle="20"
+        minIdle="5"
+        maxWaitMillis="10000"
     />
 </Context>
