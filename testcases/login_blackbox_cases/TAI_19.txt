@@ -1,0 +1,23 @@
+Test Case ID		Test Case Description		Kiểm tra từ chối câu hỏi với XSS trong reason
+Created By			Reviewed By			Version		1.0
+
+QA Tester's Log
+
+Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+Prerequisites:
+S #	Details
+1	Đã đăng nhập tài khoản admin
+2	Có câu hỏi đang chờ xử lý
+3	Form reject hiển thị bình thường
+
+Test Data
+1	question_id=1
+2	reason='<svg onload=alert(1)>'
+3	csrfToken hợp lệ
+
+Test Scenario
+
+Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Nhập lý do chứa XSS	Nội dung được hiển thị như text	Chưa thực thi			Not Executed
+2	Submit form reject	Trang chi tiết không chạy script hay popup	Chưa thực thi			Not Executed

@@ -1,0 +1,23 @@
+Test Case ID		Test Case Description		Kiểm tra từ chối câu hỏi với lý do hợp lệ
+Created By			Reviewed By			Version		1.0
+
+QA Tester's Log
+
+Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+Prerequisites:
+S #	Details
+1	Đã đăng nhập tài khoản admin
+2	Có câu hỏi đang chờ xử lý
+3	Form reject hiển thị ở trang chi tiết
+
+Test Data
+1	question_id=1
+2	reason='Nội dung spam'
+3	csrfToken hợp lệ
+
+Test Scenario
+
+Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Nhập lý do từ chối hợp lệ	Lý do được nhập thành công	Chưa thực thi			Not Executed
+2	Submit form reject	Question chuyển sang trạng thái rejected và lưu reason	Chưa thực thi			Not Executed

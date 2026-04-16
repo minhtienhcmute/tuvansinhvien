@@ -1,0 +1,23 @@
+Test Case ID		Test Case Description		Kiểm tra truy cập chi tiết câu hỏi khi thiếu tham số id
+Created By			Reviewed By			Version		1.0
+
+QA Tester's Log
+
+Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+Prerequisites:
+S #	Details
+1	Đã đăng nhập tài khoản admin
+2	Đang ở trang quản lý câu hỏi
+3	Không truyền tham số id trên URL
+
+Test Data
+1	URL: /admin/question
+2		
+3		
+
+Test Scenario
+
+Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập /admin/question không có id	Trang danh sách được hiển thị, không vào detail	Chưa thực thi			Not Executed
+2	Quan sát URL và nội dung	Không phát sinh lỗi hệ thống	Chưa thực thi			Not Executed

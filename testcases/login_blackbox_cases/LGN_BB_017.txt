@@ -1,0 +1,19 @@
+Test Case ID		LGN_BB_017	Test Case Description		Google login lỗi khi không lấy được thông tin người dùng
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Môi trường test mô phỏng lỗi OAuth				1	code OAuth lỗi/hết hạn
+2					2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gọi callback với code lỗi		Không đăng nhập thành công		Chưa thực thi			Not Executed
+2	Quan sát thông báo		Trở về login và hiển thị lỗi phù hợp		Chưa thực thi			Not Executed
+
+

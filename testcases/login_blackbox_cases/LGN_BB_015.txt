@@ -1,0 +1,19 @@
+Test Case ID		LGN_BB_015	Test Case Description		User thường truy cập admin bị từ chối
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Đã đăng nhập bằng tài khoản không phải admin				1	URL: /admin/dashboard
+2					2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập /admin/dashboard		Không được xem nội dung admin		Chưa thực thi			Not Executed
+2	Quan sát điều hướng		Chuyển về trang chủ hoặc trang báo không có quyền		Chưa thực thi			Not Executed
+
+

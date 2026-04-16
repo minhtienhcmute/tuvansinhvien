@@ -1,0 +1,23 @@
+Test Case ID		Test Case Description		Kiểm tra trả lời câu hỏi khi content để trống
+Created By			Reviewed By			Version		1.0
+
+QA Tester's Log
+
+Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+Prerequisites:
+S #	Details
+1	Đã đăng nhập tài khoản admin
+2	Có câu hỏi đang chờ trả lời
+3	Form reply hiển thị bình thường
+
+Test Data
+1	question_id=1
+2	content=''
+3	csrfToken hợp lệ
+
+Test Scenario
+
+Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Để trống nội dung trả lời	Form vẫn gửi request	Chưa thực thi			Not Executed
+2	Submit form	Server báo lỗi empty content và không lưu	Chưa thực thi			Not Executed

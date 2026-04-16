@@ -1,0 +1,19 @@
+Test Case ID		LGN_BB_010	Test Case Description		POST /login với CSRF token sai
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Có session hợp lệ				1	csrfToken giả mạo
+2					2	Email/password bất kỳ
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gửi POST /login với token sai		Request bị từ chối		Chưa thực thi			Not Executed
+2	Quan sát phản hồi		Trả về lỗi 403 hoặc thông báo token không hợp lệ		Chưa thực thi			Not Executed
+
+

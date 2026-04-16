@@ -1,0 +1,379 @@
+==============================
+Test Case ID		LGN_BB_001	Test Case Description		Kiểm tra truy cập trang đăng nhập thành công
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Người dùng chưa đăng nhập				1	URL: /login
+2	Trình duyệt hoạt động bình thường				2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập /login		Hiển thị form đăng nhập		Chưa thực thi			Not Executed
+2	Quan sát các thành phần form		Có Email, Password, nút Log In, nút Google		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_002	Test Case Description		Đăng nhập thành công với email/password hợp lệ
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Tài khoản local hợp lệ tồn tại				1	Email: local_user@example.com
+2	Người dùng đang ở trang login				2	Password đúng
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Nhập email và password đúng		Giá trị được nhập		Chưa thực thi			Not Executed
+2	Click Log In		Đăng nhập thành công và chuyển trang		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_003	Test Case Description		Đăng nhập thất bại khi email để trống
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Đang ở trang login				1	Email: (rỗng)
+2					2	Password: 123456
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Để trống email, nhập password		Giá trị password được nhập		Chưa thực thi			Not Executed
+2	Click Log In		Không đăng nhập, hiển thị lỗi		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_004	Test Case Description		Đăng nhập thất bại khi mật khẩu để trống
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Đang ở trang login				1	Email: local_user@example.com
+2					2	Password: (rỗng)
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Nhập email, để trống password		Giá trị email được nhập		Chưa thực thi			Not Executed
+2	Click Log In		Không đăng nhập, hiển thị lỗi		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_005	Test Case Description		Đăng nhập thất bại khi email không tồn tại
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Không có user với email test				1	Email: not_found@example.com
+2					2	Password: 123456
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Nhập email không tồn tại và password		Giá trị được nhập		Chưa thực thi			Not Executed
+2	Click Log In		Không đăng nhập, báo lỗi tài khoản		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_006	Test Case Description		Đăng nhập thất bại khi mật khẩu sai
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Tồn tại tài khoản hợp lệ				1	Email: local_user@example.com
+2					2	Password: wrongpass
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Nhập email đúng, password sai		Giá trị được nhập		Chưa thực thi			Not Executed
+2	Click Log In		Không đăng nhập, báo lỗi mật khẩu		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_007	Test Case Description		Không cho đăng nhập password với tài khoản tạo bằng Google
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Tài khoản đã đăng ký qua Google				1	Email tài khoản Google
+2					2	Password bất kỳ
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Nhập email tài khoản Google và password		Giá trị được nhập		Chưa thực thi			Not Executed
+2	Click Log In		Không đăng nhập, yêu cầu đăng nhập Google		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_008	Test Case Description		Đăng nhập thành công và quay lại URL đích (redirect_uri)
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Có URL yêu cầu đăng nhập trước				1	redirect_uri: /question?action=create
+2	Tài khoản local hợp lệ				2	Email/Password đúng
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập URL bảo vệ khi chưa login		Bị chuyển về /login có redirect_uri		Chưa thực thi			Not Executed
+2	Đăng nhập thành công		Quay lại đúng URL đích ban đầu		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_009	Test Case Description		POST /login thiếu CSRF token
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Có tool gửi request POST thủ công				1	POST /login không có csrfToken
+2					2	Email/password bất kỳ
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gửi POST /login thiếu csrfToken		Request bị từ chối		Chưa thực thi			Not Executed
+2	Quan sát phản hồi		Trả về lỗi 403 hoặc thông báo token không hợp lệ		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_010	Test Case Description		POST /login với CSRF token sai
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Có session hợp lệ				1	csrfToken giả mạo
+2					2	Email/password bất kỳ
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gửi POST /login với token sai		Request bị từ chối		Chưa thực thi			Not Executed
+2	Quan sát phản hồi		Trả về lỗi 403 hoặc thông báo token không hợp lệ		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_011	Test Case Description		Người dùng đã đăng nhập truy cập lại trang /login
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Người dùng đã đăng nhập thành công				1	URL: /login
+2					2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập /login khi đã login		Không hiển thị form login		Chưa thực thi			Not Executed
+2	Quan sát điều hướng		Chuyển về trang chủ		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_012	Test Case Description		Truy cập chức năng client cần đăng nhập khi chưa login
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Chưa đăng nhập				1	URL: /question?action=create
+2					2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập URL cần đăng nhập		Bị chuyển sang trang login		Chưa thực thi			Not Executed
+2	Quan sát URL		Có redirect_uri		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_013	Test Case Description		Truy cập chức năng view công khai khi chưa login
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Chưa đăng nhập				1	URL: /question?action=view
+2					2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập /question?action=view		Không bị chuyển sang login		Chưa thực thi			Not Executed
+2	Quan sát trang		Nội dung view hiển thị bình thường		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_014	Test Case Description		Truy cập admin khi chưa đăng nhập
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Chưa đăng nhập				1	URL: /admin/users?action=index
+2					2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập URL admin		Bị chuyển sang trang login		Chưa thực thi			Not Executed
+2	Quan sát URL		Có redirect_uri để quay lại sau login		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_015	Test Case Description		User thường truy cập admin bị từ chối
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Đã đăng nhập bằng tài khoản không phải admin				1	URL: /admin/dashboard
+2					2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập /admin/dashboard		Không được xem nội dung admin		Chưa thực thi			Not Executed
+2	Quan sát điều hướng		Chuyển về trang chủ hoặc trang báo không có quyền		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_016	Test Case Description		Google callback không có code
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Có thể truy cập URL callback				1	URL: /auth/callback
+2	Không truyền tham số code				2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gọi /auth/callback không có code		Không đăng nhập		Chưa thực thi			Not Executed
+2	Quan sát điều hướng		Chuyển về /login		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_017	Test Case Description		Google login lỗi khi không lấy được thông tin người dùng
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Môi trường test mô phỏng lỗi OAuth				1	code OAuth lỗi/hết hạn
+2					2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gọi callback với code lỗi		Không đăng nhập thành công		Chưa thực thi			Not Executed
+2	Quan sát thông báo		Trở về login và hiển thị lỗi phù hợp		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_018	Test Case Description		Google login thành công với tài khoản đã liên kết
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Google account đã liên kết hệ thống				1	Google account hợp lệ
+2	Người dùng chưa login				2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Bấm đăng nhập Google và xác thực		Google xác thực thành công		Chưa thực thi			Not Executed
+2	Quay về hệ thống		Đăng nhập thành công và vào hệ thống		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_019	Test Case Description		Google login với email mới chưa có trong hệ thống
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Email Google chưa từng có trong hệ thống				1	Google account mới
+2	Người dùng chưa login				2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Đăng nhập bằng Google		Xác thực Google thành công		Chưa thực thi			Not Executed
+2	Quay về hệ thống		Đăng nhập được và có thể sử dụng tài khoản		Chưa thực thi			Not Executed
+
+==============================
+Test Case ID		LGN_BB_020	Test Case Description		Kiểm tra bảo mật chống open redirect ở state của Google callback
+Created By		Duy	Reviewed By		Ân		Version		1.0
+
+QA Tester’s Log
+
+Tester's Name		Duy	Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Có thể gọi callback với state tùy chỉnh				1	state: https://evil.example/phishing
+2	Code OAuth hợp lệ				2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gọi callback với state trỏ domain ngoài		Không nên redirect ra domain ngoài		Chưa thực thi			Not Executed
+2	Quan sát điều hướng thực tế		Nếu redirect ra ngoài thì ghi nhận lỗ hổng bảo mật		Chưa thực thi			Not Executed

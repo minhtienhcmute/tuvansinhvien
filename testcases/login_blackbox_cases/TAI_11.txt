@@ -1,0 +1,23 @@
+Test Case ID		Test Case Description		Kiểm tra hiển thị đầy đủ thông tin trên trang chi tiết câu hỏi
+Created By			Reviewed By			Version		1.0
+
+QA Tester's Log
+
+Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+Prerequisites:
+S #	Details
+1	Đã đăng nhập tài khoản admin
+2	Tồn tại câu hỏi có comment
+3	Câu hỏi có title, content, category, department và người gửi hợp lệ
+
+Test Data
+1	URL: /admin/question?id=1
+2		
+3		
+
+Test Scenario
+
+Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Mở trang chi tiết câu hỏi	Trang hiển thị đầy đủ thông tin câu hỏi	Chưa thực thi			Not Executed
+2	Quan sát comment	Danh sách trả lời được hiển thị đúng thứ tự	Chưa thực thi			Not Executed

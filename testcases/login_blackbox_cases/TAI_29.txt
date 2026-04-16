@@ -1,0 +1,23 @@
+Test Case ID		Test Case Description		Kiểm tra payload XSS trong tham số question_id trên URL
+Created By			Reviewed By			Version		1.0
+
+QA Tester's Log
+
+Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+Prerequisites:
+S #	Details
+1	Đã đăng nhập tài khoản admin
+2	Có thể mở trang chi tiết câu hỏi
+3	Trình duyệt bật console
+
+Test Data
+1	URL: /admin/question?id=<script>alert('xss')</script>
+2		
+3		
+
+Test Scenario
+
+Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập URL chứa payload XSS	Payload hiển thị như text an toàn	Chưa thực thi			Not Executed
+2	Quan sát trình duyệt và console	Không có popup hoặc script thực thi	Chưa thực thi			Not Executed

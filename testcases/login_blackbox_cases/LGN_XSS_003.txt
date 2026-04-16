@@ -1,0 +1,19 @@
+==============================
+Test Case ID		LGN_XSS_003	Test Case Description		Kiểm tra XSS khi payload được URL-encode trong tham số error
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Truy cập được trang login				1	error=%3Cimg%20src%3Dx%20onerror%3Dalert('xss')%3E
+2	Trình duyệt mở tab Network/Console				2	URL: /login?error=<payload-encoded>
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập URL với error đã encode		Trang không bị vỡ layout		Chưa thực thi			Not Executed
+2	Quan sát vùng hiển thị message-box		Nội dung hiển thị an toàn, không render HTML nguy hiểm		Chưa thực thi			Not Executed
+3	Theo dõi console runtime		Không có script nào được thực thi		Chưa thực thi			Not Executed

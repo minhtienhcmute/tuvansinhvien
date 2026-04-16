@@ -1,0 +1,19 @@
+Test Case ID		LGN_BB_008	Test Case Description		Đăng nhập thành công và quay lại URL đích (redirect_uri)
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Có URL yêu cầu đăng nhập trước				1	redirect_uri: /question?action=create
+2	Tài khoản local hợp lệ				2	Email/Password đúng
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập URL bảo vệ khi chưa login		Bị chuyển về /login có redirect_uri		Chưa thực thi			Not Executed
+2	Đăng nhập thành công		Quay lại đúng URL đích ban đầu		Chưa thực thi			Not Executed
+
+

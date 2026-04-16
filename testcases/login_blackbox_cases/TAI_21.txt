@@ -1,0 +1,23 @@
+Test Case ID		Test Case Description		Kiểm tra xóa câu hỏi khi thiếu question_id
+Created By			Reviewed By			Version		1.0
+
+QA Tester's Log
+
+Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+Prerequisites:
+S #	Details
+1	Đã đăng nhập tài khoản admin
+2	Đang ở ngữ cảnh có thể gọi action delete
+3	Không truyền question_id trong request
+
+Test Data
+1	action=delete
+2	question_id missing
+3	csrfToken hợp lệ nếu hệ thống yêu cầu
+
+Test Scenario
+
+Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gửi request xóa thiếu question_id	Server báo lỗi tham số không hợp lệ	Chưa thực thi			Not Executed
+2	Quan sát phản hồi	Không xóa nhầm câu hỏi khác	Chưa thực thi			Not Executed

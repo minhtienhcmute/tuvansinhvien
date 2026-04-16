@@ -1,0 +1,19 @@
+Test Case ID		LGN_BB_002	Test Case Description		Đăng nhập thành công với email/password hợp lệ
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Tài khoản local hợp lệ tồn tại				1	Email: local_user@example.com
+2	Người dùng đang ở trang login				2	Password đúng
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Nhập email và password đúng		Giá trị được nhập		Chưa thực thi			Not Executed
+2	Click Log In		Đăng nhập thành công và chuyển trang		Chưa thực thi			Not Executed
+
+

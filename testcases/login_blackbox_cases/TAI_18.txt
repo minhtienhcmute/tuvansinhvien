@@ -1,0 +1,23 @@
+Test Case ID		Test Case Description		Kiểm tra từ chối câu hỏi với SQL injection trong reason
+Created By			Reviewed By			Version		1.0
+
+QA Tester's Log
+
+Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+Prerequisites:
+S #	Details
+1	Đã đăng nhập tài khoản admin
+2	Có câu hỏi đang chờ xử lý
+3	Hệ thống kiểm soát dữ liệu đầu vào
+
+Test Data
+1	question_id=1
+2	reason="'; DELETE FROM questions;--"
+3	csrfToken hợp lệ
+
+Test Scenario
+
+Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Nhập lý do chứa SQL injection	Dữ liệu được nhận như chuỗi bình thường	Chưa thực thi			Not Executed
+2	Submit form reject	SQL không thực thi, chỉ cập nhật reason	Chưa thực thi			Not Executed

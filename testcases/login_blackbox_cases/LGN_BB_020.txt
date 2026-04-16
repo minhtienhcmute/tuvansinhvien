@@ -1,0 +1,18 @@
+Test Case ID		LGN_BB_020	Test Case Description		Kiểm tra bảo mật chống open redirect ở state của Google callback
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Có thể gọi callback với state tùy chỉnh				1	state: https://evil.example/phishing
+2	Code OAuth hợp lệ				2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gọi callback với state trỏ domain ngoài		Không nên redirect ra domain ngoài		Chưa thực thi			Not Executed
+2	Quan sát điều hướng thực tế		Nếu redirect ra ngoài thì ghi nhận lỗ hổng bảo mật		Chưa thực thi			Not Executed
+

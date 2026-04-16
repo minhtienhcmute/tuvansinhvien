@@ -1,0 +1,23 @@
+Test Case ID		Test Case Description		Kiểm tra lọc câu hỏi theo phòng ban hợp lệ
+Created By			Reviewed By			Version		1.0
+
+QA Tester's Log
+
+Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+Prerequisites:
+S #	Details
+1	Đã đăng nhập tài khoản admin
+2	Admin được gán ít nhất 1 phòng ban
+3	Có câu hỏi thuộc đúng phòng ban đó
+
+Test Data
+1	URL: /admin/question?department=1
+2		
+3		
+
+Test Scenario
+
+Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Chọn phòng ban trong bộ lọc	Danh sách được lọc theo phòng ban	Chưa thực thi			Not Executed
+2	Quan sát kết quả	Chỉ hiển thị câu hỏi thuộc phòng ban đã chọn	Chưa thực thi			Not Executed

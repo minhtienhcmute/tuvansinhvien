@@ -1,0 +1,19 @@
+Test Case ID		LGN_BB_018	Test Case Description		Google login thành công với tài khoản đã liên kết
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Google account đã liên kết hệ thống				1	Google account hợp lệ
+2	Người dùng chưa login				2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Bấm đăng nhập Google và xác thực		Google xác thực thành công		Chưa thực thi			Not Executed
+2	Quay về hệ thống		Đăng nhập thành công và vào hệ thống		Chưa thực thi			Not Executed
+
+

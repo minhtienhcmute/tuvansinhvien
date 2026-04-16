@@ -1,0 +1,23 @@
+Test Case ID		Test Case Description		Kiểm tra xử lý status filter chứa SQL injection hoặc giá trị không hợp lệ
+Created By			Reviewed By			Version		1.0
+
+QA Tester's Log
+
+Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+Prerequisites:
+S #	Details
+1	Đã đăng nhập tài khoản admin
+2	Có dữ liệu câu hỏi trong DB
+3	Trang quản lý câu hỏi đang hoạt động bình thường
+
+Test Data
+1	status=1 OR 1=1
+2	status=abc
+3		
+
+Test Scenario
+
+Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gửi request với status không hợp lệ	Server không thực thi SQL injection và xử lý an toàn	Chưa thực thi			Not Executed
+2	Quan sát danh sách	Không lộ dữ liệu ngoài phạm vi bộ lọc	Chưa thực thi			Not Executed

@@ -1,0 +1,18 @@
+Test Case ID		LGN_XSS_001	Test Case Description		Kiểm tra Reflected XSS qua tham số error trên trang login
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Có thể truy cập trang /login				1	URL: /login?error=<script>alert('xss')</script>
+2	Trình duyệt bật console				2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập URL chứa payload trong error		Trang login vẫn hiển thị bình thường		Chưa thực thi			Not Executed
+2	Quan sát thông báo lỗi trên UI		Payload hiển thị dạng text, không render thành script		Chưa thực thi			Not Executed
+3	Quan sát trình duyệt/console		Không có popup alert, không có script thực thi		Chưa thực thi			Not Executed

@@ -1,0 +1,19 @@
+Test Case ID		LGN_BB_019	Test Case Description		Google login với email mới chưa có trong hệ thống
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Email Google chưa từng có trong hệ thống				1	Google account mới
+2	Người dùng chưa login				2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Đăng nhập bằng Google		Xác thực Google thành công		Chưa thực thi			Not Executed
+2	Quay về hệ thống		Đăng nhập được và có thể sử dụng tài khoản		Chưa thực thi			Not Executed
+
+

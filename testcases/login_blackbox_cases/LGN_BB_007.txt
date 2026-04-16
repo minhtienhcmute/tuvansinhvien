@@ -1,0 +1,19 @@
+Test Case ID		LGN_BB_007	Test Case Description		Không cho đăng nhập password với tài khoản tạo bằng Google
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Tài khoản đã đăng ký qua Google				1	Email tài khoản Google
+2					2	Password bất kỳ
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Nhập email tài khoản Google và password		Giá trị được nhập		Chưa thực thi			Not Executed
+2	Click Log In		Không đăng nhập, yêu cầu đăng nhập Google		Chưa thực thi			Not Executed
+
+

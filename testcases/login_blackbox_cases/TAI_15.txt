@@ -1,0 +1,23 @@
+Test Case ID		Test Case Description		Kiểm tra trả lời câu hỏi với XSS trong content
+Created By			Reviewed By			Version		1.0
+
+QA Tester's Log
+
+Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+Prerequisites:
+S #	Details
+1	Đã đăng nhập tài khoản admin
+2	Có câu hỏi đang chờ trả lời
+3	Editor trả lời hỗ trợ nhập HTML
+
+Test Data
+1	question_id=1
+2	content='<img src=x onerror=alert(1)>'
+3	csrfToken hợp lệ
+
+Test Scenario
+
+Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Nhập nội dung chứa XSS	Nội dung hiển thị như text, không thực thi script	Chưa thực thi			Not Executed
+2	Submit form trả lời	Trang chi tiết không phát sinh popup hoặc script	Chưa thực thi			Not Executed

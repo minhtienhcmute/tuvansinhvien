@@ -1,0 +1,18 @@
+Test Case ID		LGN_XSS_002	Test Case Description		Kiểm tra XSS qua tham số redirect_uri trên trang login
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Có thể truy cập URL login với query string				1	redirect_uri=<script>alert('xss')</script>
+2	Người dùng chưa đăng nhập				2	URL: /login?redirect_uri=<payload>
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập /login với redirect_uri chứa payload		Form login hiển thị bình thường		Chưa thực thi			Not Executed
+2	Quan sát source/DOM của hidden redirectUri		Payload được escape hoặc không được thực thi		Chưa thực thi			Not Executed
+3	Submit login sai để quay lại login		Không có thực thi script tại UI		Chưa thực thi			Not Executed

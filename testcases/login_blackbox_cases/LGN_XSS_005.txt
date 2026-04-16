@@ -1,0 +1,19 @@
+==============================
+Test Case ID		LGN_XSS_005	Test Case Description		Kiểm tra DOM-based XSS khi thay đổi query string trực tiếp trên thanh địa chỉ
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Mở trang login trên trình duyệt				1	Thêm query: ?error=<script>alert(1)</script>&redirect_uri=<img src=x onerror=alert(2)>
+2	Bật DevTools (Elements/Console)				2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gõ trực tiếp query payload vào URL login		Trang tải lại bình thường		Chưa thực thi			Not Executed
+2	Quan sát DOM vùng message và form hidden input		Không có node script độc hại được inject thực thi		Chưa thực thi			Not Executed
+3	Theo dõi hành vi runtime		Không bật popup alert, không chuyển hướng bất thường		Chưa thực thi			Not Executed

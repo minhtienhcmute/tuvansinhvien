@@ -1,0 +1,23 @@
+Test Case ID		Test Case Description		Kiểm tra lọc câu hỏi theo danh mục hợp lệ
+Created By			Reviewed By			Version		1.0
+
+QA Tester's Log
+
+Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+Prerequisites:
+S #	Details
+1	Đã đăng nhập tài khoản admin
+2	Có ít nhất 1 danh mục câu hỏi hợp lệ
+3	Có câu hỏi thuộc danh mục đó
+
+Test Data
+1	URL: /admin/question?category=1
+2		
+3		
+
+Test Scenario
+
+Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Chọn danh mục trong bộ lọc	Danh sách được lọc theo danh mục	Chưa thực thi			Not Executed
+2	Quan sát kết quả	Chỉ hiển thị câu hỏi thuộc danh mục đã chọn	Chưa thực thi			Not Executed

@@ -1,0 +1,19 @@
+==============================
+Test Case ID		LGN_XSS_004	Test Case Description		Kiểm tra XSS qua thông báo lỗi từ callback Google login
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Có thể gọi endpoint /auth/callback				1	code giả lập lỗi
+2	Có thể kiểm soát giá trị error trả về login (qua query)				2	error=<svg/onload=alert('xss')>
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gọi callback lỗi và chuyển về /login?error=<payload>		Hệ thống quay về login		Chưa thực thi			Not Executed
+2	Quan sát thông báo lỗi hiển thị		Payload chỉ hiện text, không kích hoạt script		Chưa thực thi			Not Executed
+3	Kiểm tra popup/console		Không xuất hiện alert bất thường		Chưa thực thi			Not Executed

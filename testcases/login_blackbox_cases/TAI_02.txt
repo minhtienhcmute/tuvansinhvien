@@ -1,0 +1,23 @@
+Test Case ID		Test Case Description		Kiểm tra lọc câu hỏi theo trạng thái Waiting answer
+Created By			Reviewed By			Version		1.0
+
+QA Tester's Log
+
+Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+Prerequisites:
+S #	Details
+1	Đã đăng nhập tài khoản admin
+2	Có dữ liệu câu hỏi ở nhiều trạng thái
+3	Đang ở trang quản lý câu hỏi
+
+Test Data
+1	URL: /admin/question?status=0
+2		
+3		
+
+Test Scenario
+
+Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Chọn trạng thái Waiting answer	Bộ lọc được áp dụng đúng	Chưa thực thi			Not Executed
+2	Quan sát danh sách	Chỉ hiển thị câu hỏi đang chờ trả lời	Chưa thực thi			Not Executed

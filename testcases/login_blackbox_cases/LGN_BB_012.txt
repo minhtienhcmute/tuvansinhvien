@@ -1,0 +1,19 @@
+Test Case ID		LGN_BB_012	Test Case Description		Truy cập chức năng client cần đăng nhập khi chưa login
+Created By			Reviewed By				Version		1.0
+
+QA Tester’s Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Chưa đăng nhập				1	URL: /question?action=create
+2					2	
+3					3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập URL cần đăng nhập		Bị chuyển sang trang login		Chưa thực thi			Not Executed
+2	Quan sát URL		Có redirect_uri		Chưa thực thi			Not Executed
+
+
