@@ -10,7 +10,7 @@ RUN mvn -B -ntp clean package -DskipTests
 
 FROM tomcat:11.0-jdk25-temurin-jammy
 
-COPY --from=build /build/target/*.war /usr/local/tomcat/webapps/ROOT.war
+COPY --from=build /build/target/*.war /usr/local/tomcat/webapps/_03_final_project_war.war
 
 EXPOSE 8080
 

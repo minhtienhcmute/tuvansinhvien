@@ -18,7 +18,7 @@ services:
       MYSQL_PASSWORD: bookpass
       MYSQL_ROOT_PASSWORD: rootpass
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - ./database:/var/lib/mysql
       - ./src/main/resources/sql/db.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
