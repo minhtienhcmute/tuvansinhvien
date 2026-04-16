@@ -1,23 +1,17 @@
 Test Case ID		Test Case Description		Kiểm tra từ chối câu hỏi khi reason để trống
-Created By			Reviewed By			Version		1.0
+Created By			Reviewed By				Version		1.0
 
 QA Tester's Log
 
-Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
 
-Prerequisites:
-S #	Details
-1	Đã đăng nhập tài khoản admin
-2	Có câu hỏi đang chờ xử lý
-3	Form reject đã mở
-
-Test Data
-1	question_id=1
-2	reason=''
-3	csrfToken hợp lệ
+S #	Prerequisites:				S #	Test Data
+1	Đã đăng nhập tài khoản admin				1	question_id=1
+2	Có câu hỏi đang chờ xử lý				2	reason=''
+3	Form reject đã mở				3	csrfToken hợp lệ
 
 Test Scenario
 
-Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
-1	Để trống lý do từ chối	Người dùng vẫn có thể nhấn submit	Chưa thực thi			Not Executed
-2	Submit form reject	Server yêu cầu nhập lý do, không lưu dữ liệu	Chưa thực thi			Not Executed
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Để trống lý do từ chối		Người dùng vẫn có thể nhấn submit		Chưa thực thi			Not Executed
+2	Submit form reject		Server yêu cầu nhập lý do, không lưu dữ liệu		Chưa thực thi			Not Executed

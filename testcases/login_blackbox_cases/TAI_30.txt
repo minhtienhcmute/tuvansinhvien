@@ -1,23 +1,17 @@
 Test Case ID		Test Case Description		Kiểm tra action không hợp lệ trên quản lý câu hỏi
-Created By			Reviewed By			Version		1.0
+Created By			Reviewed By				Version		1.0
 
 QA Tester's Log
 
-Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
 
-Prerequisites:
-S #	Details
-1	Đã đăng nhập tài khoản admin
-2	Có thể gửi request thủ công
-3	Không có action tương ứng trong servlet
-
-Test Data
-1	URL: /admin/question?action=unknown
-2		
-3		
+S #	Prerequisites:				S #	Test Data
+1	Đã đăng nhập tài khoản admin				1	URL: /admin/question?action=unknown
+2	Có thể gửi request thủ công				2	
+3	Không có action tương ứng trong servlet				3	
 
 Test Scenario
 
-Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
-1	Gửi request với action không hợp lệ	Server trả 404 hoặc bỏ qua an toàn	Chưa thực thi			Not Executed
-2	Quan sát phản hồi	Không thực thi nhầm logic answer/reject/delete	Chưa thực thi			Not Executed
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gửi request với action không hợp lệ		Server trả 404 hoặc bỏ qua an toàn		Chưa thực thi			Not Executed
+2	Quan sát phản hồi		Không thực thi nhầm logic answer/reject/delete		Chưa thực thi			Not Executed

@@ -1,23 +1,17 @@
 Test Case ID		Test Case Description		Kiểm tra truy cập chi tiết câu hỏi khi chưa đăng nhập
-Created By			Reviewed By			Version		1.0
+Created By			Reviewed By				Version		1.0
 
 QA Tester's Log
 
-Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
 
-Prerequisites:
-S #	Details
-1	Người dùng chưa đăng nhập
-2	Có thể truy cập trực tiếp URL detail
-3	Question id bất kỳ tồn tại trong DB
-
-Test Data
-1	URL: /admin/question?id=1
-2		
-3		
+S #	Prerequisites:				S #	Test Data
+1	Người dùng chưa đăng nhập				1	URL: /admin/question?id=1
+2	Có thể truy cập trực tiếp URL detail				2	
+3	Question id bất kỳ tồn tại trong DB				3	
 
 Test Scenario
 
-Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
-1	Truy cập chi tiết khi chưa login	Hệ thống chặn truy cập trái phép	Chưa thực thi			Not Executed
-2	Quan sát điều hướng	Chuyển về login hoặc trả 403 Forbidden	Chưa thực thi			Not Executed
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Truy cập chi tiết khi chưa login		Hệ thống chặn truy cập trái phép		Chưa thực thi			Not Executed
+2	Quan sát điều hướng		Chuyển về login hoặc trả 403 Forbidden		Chưa thực thi			Not Executed

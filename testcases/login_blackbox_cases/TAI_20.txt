@@ -1,23 +1,17 @@
 Test Case ID		Test Case Description		Kiểm tra xóa câu hỏi với ID hợp lệ
-Created By			Reviewed By			Version		1.0
+Created By			Reviewed By				Version		1.0
 
 QA Tester's Log
 
-Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
 
-Prerequisites:
-S #	Details
-1	Đã đăng nhập tài khoản admin
-2	Có câu hỏi tồn tại trong DB
-3	Có quyền thực hiện xóa câu hỏi
-
-Test Data
-1	question_id=5
-2	csrfToken hợp lệ nếu hệ thống yêu cầu
-3		
+S #	Prerequisites:				S #	Test Data
+1	Đã đăng nhập tài khoản admin				1	question_id=5
+2	Có câu hỏi tồn tại trong DB				2	csrfToken hợp lệ nếu hệ thống yêu cầu
+3	Có quyền thực hiện xóa câu hỏi				3	
 
 Test Scenario
 
-Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
-1	Gửi request xóa question_id hợp lệ	Câu hỏi được xóa khỏi hệ thống	Chưa thực thi			Not Executed
-2	Quan sát danh sách sau xóa	Câu hỏi không còn xuất hiện trong DB hoặc UI	Chưa thực thi			Not Executed
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gửi request xóa question_id hợp lệ		Câu hỏi được xóa khỏi hệ thống		Chưa thực thi			Not Executed
+2	Quan sát danh sách sau xóa		Câu hỏi không còn xuất hiện trong DB hoặc UI		Chưa thực thi			Not Executed

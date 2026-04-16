@@ -1,23 +1,17 @@
 Test Case ID		Test Case Description		Kiểm tra mở trang chi tiết câu hỏi với ID hợp lệ
-Created By			Reviewed By			Version		1.0
+Created By			Reviewed By				Version		1.0
 
 QA Tester's Log
 
-Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
 
-Prerequisites:
-S #	Details
-1	Đã đăng nhập tài khoản admin
-2	Tồn tại câu hỏi có ID hợp lệ
-3	Câu hỏi có dữ liệu trả lời hoặc chưa trả lời
-
-Test Data
-1	URL: /admin/question?id=1
-2		
-3		
+S #	Prerequisites:				S #	Test Data
+1	Đã đăng nhập tài khoản admin				1	URL: /admin/question?id=1
+2	Tồn tại câu hỏi có ID hợp lệ				2	
+3	Câu hỏi có dữ liệu trả lời hoặc chưa trả lời				3	
 
 Test Scenario
 
-Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
-1	Mở trang chi tiết câu hỏi	Trang chi tiết được render thành công	Chưa thực thi			Not Executed
-2	Quan sát nội dung	Hiển thị đúng thông tin câu hỏi đã chọn	Chưa thực thi			Not Executed
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Mở trang chi tiết câu hỏi		Trang chi tiết được render thành công		Chưa thực thi			Not Executed
+2	Quan sát nội dung		Hiển thị đúng thông tin câu hỏi đã chọn		Chưa thực thi			Not Executed

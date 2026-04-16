@@ -1,23 +1,17 @@
 Test Case ID		Test Case Description		Kiểm tra xử lý question_id không phải số
-Created By			Reviewed By			Version		1.0
+Created By			Reviewed By				Version		1.0
 
 QA Tester's Log
 
-Tester's Name		Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
 
-Prerequisites:
-S #	Details
-1	Đã đăng nhập tài khoản admin
-2	Có màn hình detail hoặc form action sử dụng question_id
-3	Không có validation phía UI cho kiểu dữ liệu
-
-Test Data
-1	question_id=abc
-2	action=answer hoặc action=reject
-3	csrfToken hợp lệ
+S #	Prerequisites:				S #	Test Data
+1	Đã đăng nhập tài khoản admin				1	question_id=abc
+2	Có màn hình detail hoặc form action sử dụng question_id				2	action=answer hoặc action=reject
+3	Không có validation phía UI cho kiểu dữ liệu				3	csrfToken hợp lệ
 
 Test Scenario
 
-Step #	Step Details			Expected Results			Actual Results			Pass / Fail / Not executed / Suspended/Crashed
-1	Gửi request với question_id không phải số	Server trả lỗi hoặc redirect an toàn	Chưa thực thi			Not Executed
-2	Quan sát hành vi	Ứng dụng không crash và không thực thi request sai	Chưa thực thi			Not Executed
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Gửi request với question_id không phải số		Server trả lỗi hoặc redirect an toàn		Chưa thực thi			Not Executed
+2	Quan sát hành vi		Ứng dụng không crash và không thực thi request sai		Chưa thực thi			Not Executed
