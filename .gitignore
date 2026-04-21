@@ -36,3 +36,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Docker MySQL data ###
+database/*
+!database/.gitkeep

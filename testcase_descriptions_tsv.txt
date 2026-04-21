@@ -1,0 +1,110 @@
+Sheet	Test Case ID	Test Case Description
+THUAN_001	QLND_001	Kiểm tra đúng giao diện quản lý người dùng khi chọn chức năng quản lý người dùng
+THUAN_002	QLND_002	Kiểm tra bảng danh sách người dùng
+THUAN_003	QLND_003	Kiểm tra chức năng Phân trang của trang quản lý
+THUAN_004	QLND_004	Kiểm tra chức năng Tìm kiếm của trang QLND
+THUAN_005	QLND_005	Kiểm tra nút add user
+THUAN_006	QLND_006	Thêm người dùng thành công với dữ liệu hợp lệ
+THUAN_007	QLND_007	Kiểm tra báo lỗi khi thêm người dùng trùng email
+THUAN_008	QLND_008	Kiểm tra báo lỗi khi thêm email không đúng định dạng
+THUAN_009	QLND_009	Kiểm tra báo lỗi khi thêm để trống email
+THUAN_010	QLND_010	Kiểm tra báo lỗi khi thêm để trống password
+THUAN_011	QLND_011	Kiểm tra báo lỗi khi thêm để trống name
+THUAN_012	QLND_012	Kiểm tra báo lỗi khi không chọn type cho người dùng
+THUAN_013	QLND_013	Kiểm tra type người dùng(Client) không được cấp quyền System admin
+THUAN_014	QLND_014	Thêm người dùng type là admin và không cho admin bất kì quyền nào
+THUAN_015	QLND_015	Kiểm tra button cancel
+THUAN_016	QLND_016	Kiểm tra lỗi các trường khi không nhập bất cứ dữ liệu khi ấn thêm mới
+THUAN_017	QLND_017	Kiểm tra thông tin người dùng muốn edit khi ấn chức năng eidit ở cột action
+THUAN_018	QLND_018	Kiểm tra trường password không hiện thị trong trang edit
+THUAN_019	QLND_019	kiểm tra chức nang edit và sửa thông tin người dùng
+THUAN_020	QLND_020	Đăng nhập với người dùng vừa cập nhật
+THUAN_021	QLND_021	Thay đổi role người dùng từ admin system xuống chỉ còn là tư vấn viên
+THUAN_022	QLND_022	Kiểm tra danh sách người dùng khi ấn action xoá người dùng
+THUAN_023	QLND_001	Kiểm tra đúng giao diện quản lý người dùng khi chọn chức năng quản lý phân quyền
+THUAN_024	QLPQ_002	Kiểm tra bảng danh sách cách quyền cơ bản
+THUAN_025	QLPQ_003	Kiểm tra chức năng Tìm kiếm của trang QLPQ
+THUAN_026	QLPQ_004	Kiểm tra chuyển trang khi ấn button thêm phân quyền
+THUAN_027	QLPQ_005	Kiểm tra chức năng thêm khi ấn submit mà không thêm bất kì dữ liệu nào
+THUAN_028	QLPQ_006	Thêm quyền mới và không cấp chức năng cụ thể nào cho quyền đó
+THUAN_029	QLPQ_007	Thêm 1 quyền mới tên là TestQLPQ với đủ hành động để kiểm tra quản lý trang phân quyền của quyền mới thêm
+THUAN_030	QLPQ_008	Thêm mới người dùng và cập nhật quyền mới thêm cho người dùng mới
+THUAN_031	QLPQ_009	Kiểm tra những hành động được cập nhập ở quyền mới mà người dùng mới đăng nhập với role RoleQLPQ
+THUAN_032	QLPQ_010	Kiểm tra thông tin action của role khi ấn eidt
+THUAN_033	QLPQ_011	Kiểm tra chỉnh sửa role của tài khoản đang có role các action chỉnh sửa phân quyền sang role quản lý phòng ban
+THUAN_034	QLPQ_012	Thêm 1 quyền mới có action "view" và không có thêm bất khì hành động nào khác
+THUAN_035	QLPQ_013	Thêm mới người dùng và cập nhật quyền mới thêm chỉ có action "view" cho người dùng mới
+THUAN_036	QLPQ_014	Thêm 1 quyền mới có đầy đủ action "add","edit","delete" và không có action " view"
+THUAN_037	QLPQ_015	Kiểm tra truy cập trang quản lý phân quyền bằng tài khoản không có cấp role truy cập
+THUAN_038	QLPQ_016	Kiểm tra chức năng cancel
+THUAN_039	QLPQ_017	Kiểm tra chức năng xoá
+THUAN_040	QLPQ_018	Kiểm tra quyền của người dùng bị xoá quyền
+TIEN_001	LGN_BB_001	Kiểm tra truy cập trang đăng nhập thành công
+TIEN_002	LGN_BB_002	Đăng nhập thành công với email/password hợp lệ
+TIEN_003	LGN_BB_003	Đăng nhập thất bại khi email để trống
+TIEN_004	LGN_BB_004	Đăng nhập thất bại khi mật khẩu để trống
+TIEN_005	LGN_BB_005	Đăng nhập thất bại khi email không tồn tại
+TIEN_006	LGN_BB_006	Đăng nhập thất bại khi mật khẩu sai
+TIEN_007	LGN_BB_007	Không cho đăng nhập password với tài khoản tạo bằng Google
+TIEN_008	LGN_BB_008	Đăng nhập thành công và quay lại URL đích (redirect_uri)
+TIEN_009	LGN_BB_009	POST /login thiếu CSRF token
+TIEN_010	LGN_BB_010	POST /login với CSRF token sai
+TIEN_011	LGN_BB_011	Người dùng đã đăng nhập truy cập lại trang /login
+TIEN_012	LGN_BB_012	Truy cập chức năng client cần đăng nhập khi chưa login
+TIEN_013	LGN_BB_013	Truy cập chức năng view công khai khi chưa login
+TIEN_014	LGN_BB_014	Truy cập admin khi chưa đăng nhập
+TIEN_015	LGN_BB_015	User thường truy cập admin bị từ chối
+TIEN_016	LGN_BB_016	Google callback không có code
+TIEN_017	LGN_BB_017	Google login lỗi khi không lấy được thông tin người dùng
+TIEN_018	LGN_BB_018	Google login thành công với tài khoản đã liên kết
+TIEN_019	LGN_BB_019	Google login với email mới chưa có trong hệ thống
+TIEN_020	LGN_XSS_001	Kiểm tra Reflected XSS qua tham số error trên trang login
+TIEN_021	LGN_XSS_002	Kiểm tra XSS qua tham số redirect_uri trên trang login
+TAI_001	Test Case Description	Kiểm tra hiển thị danh sách câu hỏi khi admin truy cập trang quản lý
+TAI_002	Test Case Description	Kiểm tra lọc câu hỏi theo trạng thái Waiting answer
+TAI_003	Test Case Description	Kiểm tra lọc câu hỏi theo trạng thái Answered
+TAI_004	Test Case Description	Kiểm tra lọc câu hỏi theo trạng thái Rejected
+TAI_005	Test Case Description	Kiểm tra lọc câu hỏi theo phòng ban hợp lệ
+TAI_006	Test Case Description	Kiểm tra lọc câu hỏi theo danh mục hợp lệ
+TAI_007	Test Case Description	Kiểm tra lọc kết hợp trạng thái, phòng ban và danh mục
+TAI_008	Test Case Description	Kiểm tra mở trang chi tiết câu hỏi với ID hợp lệ
+TAI_009	Test Case Description	Kiểm tra truy cập chi tiết câu hỏi khi thiếu tham số id
+TAI_010	Test Case Description	Kiểm tra truy cập chi tiết câu hỏi với ID không tồn tại
+TAI_011	Test Case Description	Kiểm tra hiển thị đầy đủ thông tin trên trang chi tiết câu hỏi
+TAI_012	Test Case Description	Kiểm tra trả lời câu hỏi với nội dung hợp lệ
+TAI_013	Test Case Description	Kiểm tra trả lời câu hỏi khi content để trống
+TAI_014	Test Case Description	Kiểm tra trả lời câu hỏi với SQL injection trong content
+TAI_015	Test Case Description	Kiểm tra trả lời câu hỏi với XSS trong content
+TAI_016	Test Case Description	Kiểm tra từ chối câu hỏi với lý do hợp lệ
+TAI_017	Test Case Description	Kiểm tra từ chối câu hỏi khi reason để trống
+TAI_018	Test Case Description	Kiểm tra từ chối câu hỏi với SQL injection trong reason
+TAI_019	Test Case Description	Kiểm tra từ chối câu hỏi với XSS trong reason
+TAI_020	Test Case Description	Kiểm tra xử lý question_id không phải số
+TAI_021	Test Case Description	Kiểm tra truy cập danh sách câu hỏi khi chưa đăng nhập
+TAI_022	Test Case Description	Kiểm tra truy cập chi tiết câu hỏi khi chưa đăng nhập
+TAI_023	Test Case Description	Kiểm tra chỉ hiển thị câu hỏi thuộc phòng ban được phép quản lý
+TAI_024	Test Case Description	Kiểm tra xử lý status filter chứa SQL injection hoặc giá trị không hợp lệ
+TAI_025	Test Case Description	Kiểm tra payload XSS trong tham số question_id trên URL
+TAI_026	Test Case Description	Kiểm tra action không hợp lệ trên quản lý câu hỏi
+TAI_27	TAI_31	Kiểm tra danh sách phòng ban trên dropdown chỉ hiển thị phòng ban được phân công
+DAI_001	DAI_001	General Test - 01:  Mục đặt câu hỏi của người dùng:Tất cả các trường bắt buộc phải được xác thực và đánh dấu bằng dấu sao (*).
+DAI_002	DAI_002	General Test - 02:  Mục đặt câu hỏi của người dùng:Các thông báo lỗi (validation) phải được hiển thị rõ ràng và đúng vị trí tương ứng với trường nhập liệu.
+DAI_003	DAI_003	General Test - 03: Mục đặt câu hỏi của người dùng: Tất cả các thông báo lỗi nên được hiển thị bằng cùng một kiểu CSS (ví dụ: cùng sử dụng màu đỏ).
+DAI_004	DAI_004	General Test - 04: Mục đặt câu hỏi của người dùng:Các thông báo xác nhận thành công phải có định dạng khác với thông báo lỗi (ví dụ: dùng màu xanh lá).
+DAI_005	DAI_005	General Test - 05: Mục đặt câu hỏi của người dùng:Nội dung của các ô chú thích (tooltip) phải có ý nghĩa, dễ hiểu và đúng ngữ cảnh.
+DAI_006	DAI_006	General Test - 06: Mục đặt câu hỏi của người dùng:Các danh sách chọn (dropdown) nên để giá trị mặc định đầu tiên là để trống hoặc hiển thị văn bản hướng dẫn như "Chọn...".
+DAI_007	DAI_007	General Test - 11:Mục đặt câu hỏi của người dùng:"Làm mới" (Reset) phải đưa tất cả các trường dữ liệu về giá trị mặc định ban đầu.
+DAI_008	DAI_008	General Test - 14: Mục đặt câu hỏi của người dùng:Kiểm tra việc nhập các ký tự đặc biệt vào tất cả các trường nhập liệu để đảm bảo hệ thống không bị lỗi.
+DAI_009	DAI_009	General Test - 15:Mục đặt câu hỏi của người dùng: Nhãn của các trường dữ liệu phải được đặt tên chuẩn (ví dụ: trường nhập tiêu đề thì nhãn phải hiển thị rõ là 'Title'.
+DAI_010	DAI_010	General Test - 31:Dữ liệu nhập vào có khoảng trắng ở đầu hoặc cuối chuỗi phải được hệ thống xử lý đúng (thường là tự động cắt bỏ).
+DAI_011	DAI_011	GUI-23:Biểu tượng "đang tải" (hourglass/loading) phải hiển thị khi hệ thống đang bận xử lý dữ liệu.
+DAI_012	DAI_012	Các đoạn văn bản trên trang phải được canh lề trái theo tiêu chuẩn đọc.
+DAI_013	DAI_013	Trong trường hợp các tiêu chí lọc không bắt buộc, người dùng vẫn có thể thực hiện tìm kiếm và hệ thống sẽ trả về kết quả theo tiêu chí mặc định.
+DAI_014	DAI_014	Phải hiển thị thông báo lỗi (validation) phù hợp khi người dùng nhập các giá trị không hợp lệ vào các ô điều kiện lọc.
+DAI_015	DAI_015	Bảng kết quả phải hiển thị tổng số bản ghi/kết quả tìm được.
+DAI_016	DAI_016	Cột đang được sắp xếp phải hiển thị biểu tượng sắp xếp (tăng dần hoặc giảm dần).
+DAI_017	DAI_017	Các nút phân trang Next, Previous hoặc mũi tên << , >>  phải hoạt động đúng chức năng.
+DAI_018	DAI_018	Khi số lượng kết quả lớn hơn số bản ghi mặc định trên mỗi trang, hệ thống phải hiển thị chức năng phân trang.
+DAI_019	DAI_019	Các điều kiện tìm kiếm đã sử dụng phải được hiển thị lại trên màn hình kết quả để người dùng dễ kiểm tra.
+DAI_020	DAI_020	Kiểm tra tất cả các tham số tìm kiếm đã nhập có được sử dụng để lấy dữ liệu hiển thị trên bảng kết quả hay không.
+DAI_021	DAI_021	Sau khi submit trang thành công, kiểm tra dữ liệu đã được lưu đúng vào database hay chưa.

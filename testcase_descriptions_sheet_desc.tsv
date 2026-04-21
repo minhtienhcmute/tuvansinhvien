@@ -1,0 +1,110 @@
+Sheet	Test Case Description	Result
+THUAN_001	Kiểm tra đúng giao diện quản lý người dùng khi chọn chức năng quản lý người dùng	Pass
+THUAN_002	Kiểm tra bảng danh sách người dùng	Pass
+THUAN_003	Kiểm tra chức năng Phân trang của trang quản lý	Pass
+THUAN_004	Kiểm tra chức năng Tìm kiếm của trang QLND	Pass
+THUAN_005	Kiểm tra nút add user	Pass
+THUAN_006	Thêm người dùng thành công với dữ liệu hợp lệ	Pass
+THUAN_007	Kiểm tra báo lỗi khi thêm người dùng trùng email	Pass
+THUAN_008	Kiểm tra báo lỗi khi thêm email không đúng định dạng	Pass
+THUAN_009	Kiểm tra báo lỗi khi thêm để trống email	Pass
+THUAN_010	Kiểm tra báo lỗi khi thêm để trống password	Pass
+THUAN_011	Kiểm tra báo lỗi khi thêm để trống name	Pass
+THUAN_012	Kiểm tra báo lỗi khi không chọn type cho người dùng	Fail
+THUAN_013	Kiểm tra type người dùng(Client) không được cấp quyền System admin	Fail
+THUAN_014	Thêm người dùng type là admin và không cho admin bất kì quyền nào	Fail
+THUAN_015	Kiểm tra button cancel	Pass
+THUAN_016	Kiểm tra lỗi các trường khi không nhập bất cứ dữ liệu khi ấn thêm mới	Fail
+THUAN_017	Kiểm tra thông tin người dùng muốn edit khi ấn chức năng eidit ở cột action	Pass
+THUAN_018	Kiểm tra trường password không hiện thị trong trang edit	Pass
+THUAN_019	kiểm tra chức nang edit và sửa thông tin người dùng	Pass
+THUAN_020	Đăng nhập với người dùng vừa cập nhật	Pass
+THUAN_021	Thay đổi role người dùng từ admin system xuống chỉ còn là tư vấn viên	Pass
+THUAN_022	Kiểm tra danh sách người dùng khi ấn action xoá người dùng	Pass
+THUAN_023	Kiểm tra đúng giao diện quản lý người dùng khi chọn chức năng quản lý phân quyền	Pass
+THUAN_024	Kiểm tra bảng danh sách cách quyền cơ bản	Pass
+THUAN_025	Kiểm tra chức năng Tìm kiếm của trang QLPQ	Pass
+THUAN_026	Kiểm tra chuyển trang khi ấn button thêm phân quyền	Pass
+THUAN_027	Kiểm tra chức năng thêm khi ấn submit mà không thêm bất kì dữ liệu nào	Pass
+THUAN_028	Thêm quyền mới và không cấp chức năng cụ thể nào cho quyền đó	Fail
+THUAN_029	Thêm 1 quyền mới tên là TestQLPQ với đủ hành động để kiểm tra quản lý trang phân quyền của quyền mới thêm	Pass
+THUAN_030	Thêm mới người dùng và cập nhật quyền mới thêm cho người dùng mới	Pass
+THUAN_031	Kiểm tra những hành động được cập nhập ở quyền mới mà người dùng mới đăng nhập với role RoleQLPQ	Pass
+THUAN_032	Kiểm tra thông tin action của role khi ấn eidt	Pass
+THUAN_033	Kiểm tra chỉnh sửa role của tài khoản đang có role các action chỉnh sửa phân quyền sang role quản lý phòng ban	Pass
+THUAN_034	Thêm 1 quyền mới có action "view" và không có thêm bất khì hành động nào khác	Pass
+THUAN_035	Thêm mới người dùng và cập nhật quyền mới thêm chỉ có action "view" cho người dùng mới	Pass
+THUAN_036	Thêm 1 quyền mới có đầy đủ action "add","edit","delete" và không có action " view"	Fail
+THUAN_037	Kiểm tra truy cập trang quản lý phân quyền bằng tài khoản không có cấp role truy cập	Pass
+THUAN_038	Kiểm tra chức năng cancel	Pass
+THUAN_039	Kiểm tra chức năng xoá	Pass
+THUAN_040	Kiểm tra quyền của người dùng bị xoá quyền	Pass
+TIEN_001	Kiểm tra truy cập trang đăng nhập thành công	Not Executed
+TIEN_002	Đăng nhập thành công với email/password hợp lệ	Not Executed
+TIEN_003	Đăng nhập thất bại khi email để trống	Not Executed
+TIEN_004	Đăng nhập thất bại khi mật khẩu để trống	Not Executed
+TIEN_005	Đăng nhập thất bại khi email không tồn tại	Not Executed
+TIEN_006	Đăng nhập thất bại khi mật khẩu sai	Not Executed
+TIEN_007	Không cho đăng nhập password với tài khoản tạo bằng Google	Not Executed
+TIEN_008	Đăng nhập thành công và quay lại URL đích (redirect_uri)	Not Executed
+TIEN_009	POST /login thiếu CSRF token	Not Executed
+TIEN_010	POST /login với CSRF token sai	Not Executed
+TIEN_011	Người dùng đã đăng nhập truy cập lại trang /login	Not Executed
+TIEN_012	Truy cập chức năng client cần đăng nhập khi chưa login	Not Executed
+TIEN_013	Truy cập chức năng view công khai khi chưa login	Not Executed
+TIEN_014	Truy cập admin khi chưa đăng nhập	Not Executed
+TIEN_015	User thường truy cập admin bị từ chối	Not Executed
+TIEN_016	Google callback không có code	Not Executed
+TIEN_017	Google login lỗi khi không lấy được thông tin người dùng	Not Executed
+TIEN_018	Google login thành công với tài khoản đã liên kết	Not Executed
+TIEN_019	Google login với email mới chưa có trong hệ thống	Not Executed
+TIEN_020	Kiểm tra Reflected XSS qua tham số error trên trang login	Not Executed
+TIEN_021	Kiểm tra XSS qua tham số redirect_uri trên trang login	Not Executed
+TAI_001	Kiểm tra hiển thị danh sách câu hỏi khi admin truy cập trang quản lý	Not Executed
+TAI_002	Kiểm tra lọc câu hỏi theo trạng thái Waiting answer	Not Executed
+TAI_003	Kiểm tra lọc câu hỏi theo trạng thái Answered	Not Executed
+TAI_004	Kiểm tra lọc câu hỏi theo trạng thái Rejected	Not Executed
+TAI_005	Kiểm tra lọc câu hỏi theo phòng ban hợp lệ	Not Executed
+TAI_006	Kiểm tra lọc câu hỏi theo danh mục hợp lệ	Not Executed
+TAI_007	Kiểm tra lọc kết hợp trạng thái, phòng ban và danh mục	Not Executed
+TAI_008	Kiểm tra mở trang chi tiết câu hỏi với ID hợp lệ	Not Executed
+TAI_009	Kiểm tra truy cập chi tiết câu hỏi khi thiếu tham số id	Not Executed
+TAI_010	Kiểm tra truy cập chi tiết câu hỏi với ID không tồn tại	Not Executed
+TAI_011	Kiểm tra hiển thị đầy đủ thông tin trên trang chi tiết câu hỏi	Not Executed
+TAI_012	Kiểm tra trả lời câu hỏi với nội dung hợp lệ	Not Executed
+TAI_013	Kiểm tra trả lời câu hỏi khi content để trống	Not Executed
+TAI_014	Kiểm tra trả lời câu hỏi với SQL injection trong content	Not Executed
+TAI_015	Kiểm tra trả lời câu hỏi với XSS trong content	Not Executed
+TAI_016	Kiểm tra từ chối câu hỏi với lý do hợp lệ	Not Executed
+TAI_017	Kiểm tra từ chối câu hỏi khi reason để trống	Not Executed
+TAI_018	Kiểm tra từ chối câu hỏi với SQL injection trong reason	Not Executed
+TAI_019	Kiểm tra từ chối câu hỏi với XSS trong reason	Not Executed
+TAI_020	Kiểm tra xử lý question_id không phải số	Not Executed
+TAI_021	Kiểm tra truy cập danh sách câu hỏi khi chưa đăng nhập	Not Executed
+TAI_022	Kiểm tra truy cập chi tiết câu hỏi khi chưa đăng nhập	Not Executed
+TAI_023	Kiểm tra chỉ hiển thị câu hỏi thuộc phòng ban được phép quản lý	Not Executed
+TAI_024	Kiểm tra xử lý status filter chứa SQL injection hoặc giá trị không hợp lệ	Not Executed
+TAI_025	Kiểm tra payload XSS trong tham số question_id trên URL	Not Executed
+TAI_026	Kiểm tra action không hợp lệ trên quản lý câu hỏi	Not Executed
+TAI_27	Kiểm tra danh sách phòng ban trên dropdown chỉ hiển thị phòng ban được phân công	Not Executed
+DAI_001	General Test - 01:  Mục đặt câu hỏi của người dùng:Tất cả các trường bắt buộc phải được xác thực và đánh dấu bằng dấu sao (*).	Fail
+DAI_002	General Test - 02:  Mục đặt câu hỏi của người dùng:Các thông báo lỗi (validation) phải được hiển thị rõ ràng và đúng vị trí tương ứng với trường nhập liệu.	Pass
+DAI_003	General Test - 03: Mục đặt câu hỏi của người dùng: Tất cả các thông báo lỗi nên được hiển thị bằng cùng một kiểu CSS (ví dụ: cùng sử dụng màu đỏ).	Pass
+DAI_004	General Test - 04: Mục đặt câu hỏi của người dùng:Các thông báo xác nhận thành công phải có định dạng khác với thông báo lỗi (ví dụ: dùng màu xanh lá).	PASS
+DAI_005	General Test - 05: Mục đặt câu hỏi của người dùng:Nội dung của các ô chú thích (tooltip) phải có ý nghĩa, dễ hiểu và đúng ngữ cảnh.	FAIL
+DAI_006	General Test - 06: Mục đặt câu hỏi của người dùng:Các danh sách chọn (dropdown) nên để giá trị mặc định đầu tiên là để trống hoặc hiển thị văn bản hướng dẫn như "Chọn...".	FAIL
+DAI_007	General Test - 11:Mục đặt câu hỏi của người dùng:"Làm mới" (Reset) phải đưa tất cả các trường dữ liệu về giá trị mặc định ban đầu.	PASS
+DAI_008	General Test - 14: Mục đặt câu hỏi của người dùng:Kiểm tra việc nhập các ký tự đặc biệt vào tất cả các trường nhập liệu để đảm bảo hệ thống không bị lỗi.	PASS
+DAI_009	General Test - 15:Mục đặt câu hỏi của người dùng: Nhãn của các trường dữ liệu phải được đặt tên chuẩn (ví dụ: trường nhập tiêu đề thì nhãn phải hiển thị rõ là 'Title'.	FAIL
+DAI_010	General Test - 31:Dữ liệu nhập vào có khoảng trắng ở đầu hoặc cuối chuỗi phải được hệ thống xử lý đúng (thường là tự động cắt bỏ).	PASS
+DAI_011	GUI-23:Biểu tượng "đang tải" (hourglass/loading) phải hiển thị khi hệ thống đang bận xử lý dữ liệu.	FAIL
+DAI_012	Các đoạn văn bản trên trang phải được canh lề trái theo tiêu chuẩn đọc.	Pass
+DAI_013	Trong trường hợp các tiêu chí lọc không bắt buộc, người dùng vẫn có thể thực hiện tìm kiếm và hệ thống sẽ trả về kết quả theo tiêu chí mặc định.	Pass
+DAI_014	Phải hiển thị thông báo lỗi (validation) phù hợp khi người dùng nhập các giá trị không hợp lệ vào các ô điều kiện lọc.	Pass
+DAI_015	Bảng kết quả phải hiển thị tổng số bản ghi/kết quả tìm được.	FAIL
+DAI_016	Cột đang được sắp xếp phải hiển thị biểu tượng sắp xếp (tăng dần hoặc giảm dần).	FAIL
+DAI_017	Các nút phân trang Next, Previous hoặc mũi tên << , >>  phải hoạt động đúng chức năng.	Pass
+DAI_018	Khi số lượng kết quả lớn hơn số bản ghi mặc định trên mỗi trang, hệ thống phải hiển thị chức năng phân trang.	Pass
+DAI_019	Các điều kiện tìm kiếm đã sử dụng phải được hiển thị lại trên màn hình kết quả để người dùng dễ kiểm tra.	Pass
+DAI_020	Kiểm tra tất cả các tham số tìm kiếm đã nhập có được sử dụng để lấy dữ liệu hiển thị trên bảng kết quả hay không.	Pass
+DAI_021	Sau khi submit trang thành công, kiểm tra dữ liệu đã được lưu đúng vào database hay chưa.	Pass

@@ -1,0 +1,18 @@
+Test Case ID		TAI_31	Test Case Description		Kiểm tra danh sách phòng ban trên dropdown chỉ hiển thị phòng ban được phân công
+Created By			Reviewed By				Version		1.0
+
+QA Tester's Log
+
+Tester's Name			Date Tested		16/4/2026		Test Case (Pass/Fail/Not Executed/Suspended/Crashed)		Not Executed
+
+S #	Prerequisites:				S #	Test Data
+1	Đã đăng nhập tài khoản admin				1	Admin được gán 2-3 phòng ban cụ thể
+2	Hệ thống có ít nhất 5 phòng ban khác nhau				2	Có phòng ban khác không thuộc quyền của admin
+3	Đang ở trang quản lý câu hỏi có dropdown lọc phòng ban				3	
+
+Test Scenario
+
+Step #	Step Details		Expected Results		Actual Results			Pass / Fail / Not executed / Suspended/Crashed
+1	Mở dropdown lọc phòng ban		Hiển thị danh sách các phòng ban được phân công cho admin		Dropdown hiển thị đúng danh sách phòng ban được phân công, không có exception			Pass
+2	Quan sát danh sách phòng ban		Chỉ có phòng ban được gán, không hiển thị phòng ban khác		Danh sách phòng ban chỉ bao gồm phòng ban được gán, không hiển thị phòng ban khác, phân quyền hoạt động đúng			Pass
+3	Chọn từng phòng ban trong dropdown		Danh sách câu hỏi lọc đúng theo phòng ban, không lộ dữ liệu ngoài quyền		Danh sách câu hỏi lọc chính xác theo phòng ban được chọn, không lộ dữ liệu từ phòng ban khác, xử lý an toàn			Pass

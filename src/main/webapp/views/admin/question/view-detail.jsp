@@ -250,8 +250,8 @@
 
     ClassicEditor
         .create(document.querySelector('#editorAnswer'), {
-            // licenseKey: 'GPL', // Or 'GPL'.
-            licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDU5NzExOTksImp0aSI6ImY1MmZjZGMyLTI0YzAtNDYxNS1hN2Y0LTlhOWM2Yzk1NTA4MiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjAzMGI2OTJhIn0.13WnbXTKJ7WtkRf_Vl4M7mziSgoy2IJqAV2UVaInAEXeqE6gFICrKT0iXpUPyuc0PXkMjkhXDlyajgoID3FiJg',
+            licenseKey: 'GPL', // Or 'GPL'.
+            // licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDU5NzExOTksImp0aSI6ImY1MmZjZGMyLTI0YzAtNDYxNS1hN2Y0LTlhOWM2Yzk1NTA4MiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjAzMGI2OTJhIn0.13WnbXTKJ7WtkRf_Vl4M7mziSgoy2IJqAV2UVaInAEXeqE6gFICrKT0iXpUPyuc0PXkMjkhXDlyajgoID3FiJg',
             plugins: [Essentials, Paragraph, Bold, Italic],
             // toolbar: ['bold', 'italic', 'underline', 'link', 'undo', 'redo', 'clear', 'fullscreen', 'insertImage', 'insertUnorderedList', 'insertOrderedList'],
             toolbar: [
